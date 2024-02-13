@@ -69,9 +69,7 @@
             margin-right: 10px;
             fill: white; 
         }
-
         .article {
-            text-decoration: none;
             font-style: italic;
             color: inherit;
         }
@@ -83,10 +81,11 @@
         <img class="profile-picture" src="https://avatars.githubusercontent.com/u/44034432?v=4" alt="Profile Picture">
         <a href="#introduction">Introduction</a>
         <a href="#publication">Publications</a>
-        <a href="#formation">Formation</a>
         <a href="#teaching">Teaching</a>
+        <a href="#talks">Talks</a>
         <a href="#service">Service</a>
-        
+        <a href="#formation">Formation</a>
+
         <div class="github-link">
             <a class="svg-icon" href="https://github.com/jacquetpi?tab=repositories">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
@@ -96,11 +95,11 @@
             </a>
         </div>
         
-        <button id="colorSwitchButton">Switch Colors</button>
+    <button id="colorSwitchButton"><span style='text-decoration:underline'>Switch Colors</span></button>
     </div>
     <div class="content">
         <h1 id="name">Pierre Jacquet</h1>
-        <h2>Ph.D. student</h2>
+        <h2>Ph.D. Candidate</h2>
 
         <div class="section" id="introduction">
             <h2>Introduction</h2>
@@ -109,25 +108,31 @@
             </p>
         </div>
 
+        <!-- https://hal.science/search/index/?q=*&authIdPerson_i=1351435 -->
         <div class="section" id="publication">
             <h2>Publication</h2>
-            <p>CLOUDFACTORY: An Open Toolkit to Generate Production-like Workloads for Cloud Infrastructures<br><a class="article" href="https://inria.hal.science/hal-04168667v1/document">> IC2E 2023</a></p>
-            <p>Mainframe footprint and consumption, an evaluation based on sustainable IT approach<br><a class="article" href="https://raw.githubusercontent.com/jacquetpi/jacquetpi.github.io/main/content/mainframe-consumption-unamed.pdf">> Master thesis</a></p>
+
+            <p>SweetspotVM: Oversubscribing CPU without Sacrificing VM Performance<br>> <a class="article" href="https://hal.science/hal-04454043v1">CCGRID 2024</a></p>
+            <p>CLOUDFACTORY: An Open Toolkit to Generate Production-like Workloads for Cloud Infrastructures<br>> <a class="article" href="https://inria.hal.science/hal-04168667v1/document">IC2E 2023</a></p>
+            <p>La chasse au gaspillage dans le cloud et les data centers<br>> <a class="article" href="https://theconversation.com/la-chasse-au-gaspillage-dans-le-cloud-et-les-data-centers-196669"> Press article (2023)</a></p>
+            <p>Mainframe footprint and consumption, an evaluation based on sustainable IT approach<br>> <a class="article" href="https://raw.githubusercontent.com/jacquetpi/jacquetpi.github.io/main/content/mainframe-consumption-unamed.pdf"> Master thesis (2021)</a></p>
         </div>
 
-        <div class="section" id="formation">
-            <h2>Formation</h2>
-            <ul>
-                <li>PhD Degree : Lille University, IMT Atlantique (in progress)</li>
-                <li>Engineering degree : EPISEN (2021)</li>
-            </ul>
-        </div>
-
-        <div class="section" id="Teaching">
+        <div class="section" id="teaching">
             <h2>Teaching</h2>
             <p>Object oriented programing (Java) : Lille University</p>
             <p>Software security : Lille University</p>
             <p>Object oriented programing (C++) : Lille University</p>
+        </div>
+
+        <div class="section" id="talks">
+            <h2>Talks</h2>
+            <ul>
+                <li>A less brown Cloud using oversubscription ~ Epiférence, EPISEN</li>
+                <li>An oversubscription continuum ~ Winter school of GDR RSD/ASF’24</li>
+                <li>ScroogeVM: Boosting Cloud resource utilization with greedy oversubscription ~ Compas’23 conference</li>
+                <li>Sampling Resource Requirements to Optimize Virtual Machines Sizing ~ EuroSys’22 conference (Poster session)</li>
+            </ul>
         </div>
 
         <div class="section" id="service">
@@ -137,6 +142,14 @@
                 <li>DSN'24</li>
                 <li>Compas'23</li>
                 <li>Cluster'23</li>
+            </ul>
+        </div>
+
+        <div class="section" id="formation">
+            <h2>Formation</h2>
+            <ul>
+                <li>PhD Degree: Lille University, IMT Atlantique (in progress)</li>
+                <li>Master degree: EPISEN, Paris-Est University (2021)</li>
             </ul>
         </div>
     </div>
