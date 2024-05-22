@@ -1,0 +1,1 @@
+Boring personal website built with no fancy framework made in a "sobriety" spirit
