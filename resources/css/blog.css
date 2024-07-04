@@ -6,7 +6,7 @@ body {
     color: white;
 }
 .sub-blog-sidebar-left {
-    width: 20.6%;
+    width: 21%;
     min-width:5.6em;
     max-width:14em;
     color: white;
@@ -60,6 +60,8 @@ body {
     font-style: italic;
 }
 .blog-content {
+    max-width: 1200px;
+    margin: 0 auto;
     padding-left: min(max(2%,4px),30px);
 }
 .theme-contrast {

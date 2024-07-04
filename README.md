@@ -1,1 +1,2 @@
-Boring personal website built with no fancy framework made in a "sobriety" spirit
+Boring personal website built without any fancy framework in a "sobriety" spirit
+[Link to website](https://jacquetpi.github.com)

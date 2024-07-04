@@ -23,8 +23,8 @@ if (checkPrefExists()){
     else{lightOn();}   
 }
 else{
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches){lightOff();
-    }else{lightOn();}   
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches){lightOff();}
+    else{lightOn();}   
 }
 
 const colorButton = document.getElementById('colorSwitchButton');
@@ -40,3 +40,6 @@ colorButton.addEventListener('click', () => {
 
 const picture = document.getElementById('profile-picture');
 picture.addEventListener('click', () => {window.location.href = '/'})
+
+// var userLang = navigator.language || navigator.userLanguage;
+// let isFrench = userLang.includes("fr");

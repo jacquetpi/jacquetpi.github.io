@@ -27,6 +27,7 @@ body {
 }
 .cv-content {
     flex: 1;
+    max-width: 1200px;
     padding-top: 5px;
     padding-left: min(max(2%,4px),30px);
     margin-left: min(max(21%,5.6em),14em);
@@ -59,7 +60,7 @@ body {
         display: none !important;
     }
 }
-@media only screen and (max-height: 24em) {
+@media only screen and (max-height: 25em) {
     .height-optional {
         display: none !important;
     }
@@ -74,6 +75,7 @@ body {
 }
 .cv-sidebar-ext-link {
     margin-top: 20px;
+    margin-bottom: 10px;
     display: flex;
     flex-direction: row;
     text-align: center;
@@ -82,8 +84,8 @@ body {
 .svg-icon {
     width: 30px;
     height: 30px;
-    margin-left: 5px;
-    margin-right: 5px;
+    margin-left: 0.3em;
+    margin-right: 0.3em;
     fill: white; 
 }
 .article {
