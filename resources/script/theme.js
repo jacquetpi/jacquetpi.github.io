@@ -12,7 +12,7 @@ function lightOff() {
     body.style.backgroundColor = 'black';
     body.style.color = 'white';
     for (var i = 0; i < themeConstrat.length; i++){themeConstrat[i].style.color = "white";}
-    for (var i = 0; i < themeGrey.length; i++){themeGrey[i].style.color = "#bebebe";}
+    for (var i = 0; i < themeGrey.length; i++){themeGrey[i].style.color = "#e6e6e6";}
 }
 
 function checkPrefExists() { return "theme" in localStorage;}
