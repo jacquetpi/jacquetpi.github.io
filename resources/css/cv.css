@@ -39,12 +39,17 @@ body {
     .cv-content {
         margin-left: 0px;
     }
+    #fallback-link {
+        display: flex !important;
+    }
 }
 .theme-contrast {
     color: black;
+    fill: black;
 }
 .theme-grey {
     color: #5a5a5a;
+    fill: #5a5a5a;
 }
 .cv-section {
     margin-bottom: 20px;
@@ -81,7 +86,7 @@ body {
     text-align: center;
     align-items: center;
 }
-.svg-icon {
+.cv-svg-icon {
     margin-left: 0.4em;
     margin-right: 0.4em;
     fill: white; 
@@ -99,8 +104,12 @@ body {
     flex-direction: row;
     text-align: center;
     align-items: center;
-    margin-left:30%;
-    margin-right:30%;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+.body-svg-icon {
+    margin-left: 0.6em;
+    margin-right: 0.6em;
 }
 .article {
     font-style: italic;
