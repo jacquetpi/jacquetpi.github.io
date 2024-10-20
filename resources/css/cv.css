@@ -82,11 +82,25 @@ body {
     align-items: center;
 }
 .svg-icon {
-    width: 30px;
-    height: 30px;
-    margin-left: 0.3em;
-    margin-right: 0.3em;
+    margin-left: 0.4em;
+    margin-right: 0.4em;
     fill: white; 
+}
+@media only screen and (max-width: 35em) {
+    .cv-sidebar-ext-link {
+        display: none !important;
+    }
+    #fallback-link {
+        display: flex !important;
+    }
+}
+#fallback-link{
+    display: none;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    margin-left:30%;
+    margin-right:30%;
 }
 .article {
     font-style: italic;
