@@ -22,8 +22,17 @@ body {
     color: inherit;
     display: block;
     border: none;
+    margin-top: 1em;
     background: none;
     font-style: italic;
+}
+@media only screen and (max-width: 30em){
+    .cv-sidebar {
+        font-size: 80% !important;
+    }
+    #colorSwitchButton {
+        font-size: 80% !important;
+    }
 }
 .cv-content {
     flex: 1;
@@ -32,7 +41,7 @@ body {
     padding-left: min(max(2%,4px),30px);
     margin-left: min(max(21%,5.6em),14em);
 }
-@media only screen and ((max-width: 25em) or (max-height: 15em)){
+@media only screen and ((max-width: 25em) or (max-height: 18em)){
     .cv-sidebar {
         display: none;
     }
@@ -60,7 +69,7 @@ body {
     margin-bottom: 10px;
     display: block;
 }
-@media only screen and (max-height: 34em) {
+@media only screen and (max-height: 36em) {
     .cv-sidebar-link {
         display: none !important;
     }
@@ -71,6 +80,7 @@ body {
     }
 }
 #profile-picture {
+    margin-top: 1em;
     width: auto;
     height: auto;
     max-width: 60%;
