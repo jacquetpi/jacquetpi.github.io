@@ -6,6 +6,7 @@ body {
     color: white;
 }
 .sub-blog-sidebar-left {
+    margin-top: 1em;
     width: 21%;
     min-width:5.6em;
     max-width:14em;
