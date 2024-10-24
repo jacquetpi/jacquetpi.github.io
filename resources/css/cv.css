@@ -83,8 +83,8 @@ body {
     margin-top: 1em;
     width: auto;
     height: auto;
-    max-width: 60%;
-    max-height: 60%;
+    max-width: 40%;
+    max-height: 40%;
     border-radius: 100%;
     object-fit: contain;
 }
