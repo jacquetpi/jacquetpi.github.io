@@ -44,12 +44,15 @@ body {
 }
 @media only screen and (max-width: 35em) {
     .sub-blog-sidebar-left {
-        display: none;
+        display: none !important;
+    }
+    .blog-sidebar {
+        font-size: 80% !important;
     }
 }
 @media only screen and (max-width: 25em) {
     .sub-blog-sidebar-right {
-        display: none;
+        display: none !important;
     }
     .fallback-home{
         display: block !important;
@@ -94,8 +97,8 @@ body {
 #profile-picture {
     width: auto;
     height: auto;
-    max-width: 60%;
-    max-height: 60%;
+    max-width: 40%;
+    max-height: 40%;
     border-radius: 100%;
     object-fit: contain;
 }
