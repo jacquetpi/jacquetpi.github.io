@@ -8,7 +8,7 @@ body {
 }
 .cv-sidebar {
     width: 21%;
-    min-width:5.6em;
+    min-width:5em;
     max-width:14em;
     color: white;
     background-color: #333;
@@ -26,31 +26,24 @@ body {
     background: none;
     font-style: italic;
 }
-@media only screen and (max-width: 30em){
-    .cv-sidebar {
-        font-size: 80% !important;
-    }
-    #colorSwitchButton {
-        font-size: 80% !important;
-    }
+.cv-sidebar-ext-link {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+}
+.cv-svg-icon {
+    margin-left: 0.4em;
+    margin-right: 0.4em;
+    fill: white; 
 }
 .cv-content {
     flex: 1;
     max-width: 1200px;
-    padding-top: 5px;
-    padding-left: min(max(2%,4px),30px);
-    margin-left: min(max(21%,5.6em),14em);
-}
-@media only screen and ((max-width: 25em) or (max-height: 18em)){
-    .cv-sidebar {
-        display: none;
-    }
-    .cv-content {
-        margin-left: 0px;
-    }
-    #fallback-link {
-        display: flex !important;
-    }
+    margin-left: min(max(21%,5em),14em);
+    padding-left: min(max(2%,0.1em),30px);
 }
 .theme-contrast {
     color: black;
@@ -69,16 +62,6 @@ body {
     margin-bottom: 10px;
     display: block;
 }
-@media only screen and (max-height: 36em) {
-    .cv-sidebar-link {
-        display: none !important;
-    }
-}
-@media only screen and (max-height: 25em) {
-    .height-optional {
-        display: none !important;
-    }
-}
 #profile-picture {
     margin-top: 1em;
     width: auto;
@@ -89,27 +72,6 @@ body {
     min-height: 4em;
     border-radius: 100%;
     object-fit: contain;
-}
-.cv-sidebar-ext-link {
-    margin-top: 20px;
-    margin-bottom: 10px;
-    display: flex;
-    flex-direction: row;
-    text-align: center;
-    align-items: center;
-}
-.cv-svg-icon {
-    margin-left: 0.4em;
-    margin-right: 0.4em;
-    fill: white; 
-}
-@media only screen and (max-width: 35em) {
-    .cv-sidebar-ext-link {
-        display: none !important;
-    }
-    #fallback-link {
-        display: flex !important;
-    }
 }
 #fallback-link{
     display: none;
@@ -126,4 +88,41 @@ body {
 .article {
     font-style: italic;
     color: inherit;
+}
+/* Adapt horizontally (from the least to the most restrictive */
+@media only screen and (max-width: 32em){
+    .cv-sidebar {
+        font-size: 75% !important;
+    }
+    #colorSwitchButton {
+        font-size: 75% !important;
+    }
+    .cv-sidebar-ext-link {
+        display: none !important;
+    }
+    #fallback-link {
+        display: flex !important;
+    }
+}
+@media only screen and ((max-width: 20em) or (max-height: 18em)){
+    .cv-sidebar {
+        display: none;
+    }
+    .cv-content {
+        margin-left: 0px;
+    }
+    #fallback-link {
+        display: flex !important;
+    }
+}
+/* Adapt vertically (from the least to the most restrictive */
+@media only screen and (max-height: 32em) {
+    .cv-sidebar-link {
+        display: none !important;
+    }
+}
+@media only screen and (max-height: 20em) {
+    .height-optional {
+        display: none !important;
+    }
 }
