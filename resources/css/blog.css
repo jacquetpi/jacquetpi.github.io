@@ -68,8 +68,15 @@ body {
     margin: 0 auto;
     padding-left: min(max(2%,4px),30px);
 }
+.theme-color {
+    color: white !important;
+}
 .theme-contrast {
     color: black;
+    fill: black;
+}
+.background-contrast {
+    background-color: black !important;
 }
 .theme-grey {
     color: #5a5a5a;

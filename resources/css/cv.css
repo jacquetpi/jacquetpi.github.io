@@ -45,6 +45,9 @@ body {
     margin-left: min(max(21%,5em),14em);
     padding-left: min(max(1%,0.1em),30px);
 }
+.theme-color {
+    color: white !important;
+}
 .theme-contrast {
     color: black;
     fill: black;
@@ -52,6 +55,9 @@ body {
 .theme-grey {
     color: #5a5a5a;
     fill: #5a5a5a;
+}
+.background-contrast {
+    background-color: black !important;
 }
 .cv-section {
     margin-bottom: 20px;

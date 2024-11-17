@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>P. Jacquet</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Pierre Jacquet's Blog">
+    <meta name="author" content="Pierre Jacquet">
+    <link rel="stylesheet" href="/resources/css/blog.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/resources/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/resources/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/resources/favicon/favicon-16x16.png">
+    <style>
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 1rem;
+            max-width: 70rem;
+            align-items: center;
+        }
+        .box {
+            padding: 1rem;
+            text-align: center;
+            flex: 1 1 20rem; /* Flexible width, minimum of 20rem */
+
+        }
+        @media (max-width: 30rem) {
+            .box {
+                flex: 1 1 100%; /* Single column on small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="/blog.html">Go back</a> | 
+    <button id="colorSwitchButton">Switch Colors</button>
+    
+    <div class="blog-content">
+        <h1 class="theme-contrast">Dashboard</h1>
+        ICT annual impact:
+        <div class="container">
+            <div class="box background-contrast theme-color" id="stat1">JavaScript is required to display this page</div>
+            <div class="box background-contrast theme-color" id="stat2"></div>
+            <div class="box background-contrast theme-color" id="stat3"></div>
+            <div class="box background-contrast theme-color" id="stat4"></div>
+            <div class="box background-contrast theme-color" id="stat5"></div>
+            <div class="box background-contrast theme-color" id="stat6"></div>
+        </div>
+        <hr style="width:0%; margin-top:5em">
+        These figures are just naive prediction from different data sources. This is a work in progress and it's subject to mistakes. Check the page embedded JS code for more details
+
+    </div>
+
+    <script src="/resources/script/theme.js"></script> 
+    <script>
+        // Constants
+        const CO2_EMISSIONS_PER_MILLISECOND = 567_000_000 / (365 * 24 * 60 * 60 * 1000); // (567 million tons per year), Ericsson
+        const EQUIVALENCE_FLIGHT_PARIS_NY = 1.7; // tons, Carbone4
+
+        const ELECTRICITY_CONSUMPTION_PER_MILLISECOND = 1_183_000_000 / (365 * 24 * 60 * 60 * 1000); // (1183 TWh per year), Ericsson
+        const EQUIVALENCE_FRENCH_PERSON = 2_223; // kWh, Engie
+
+        const SMARTPHONE_SALES_PER_MILLISECOND = 1_500_000_000 / (365 * 24 * 60 * 60 * 1000); // (1.5 billion per year)
+        const WATER_PER_SMARTPHONE = 900; // Liters, Water Footprint Network
+
+        const PC_SALES_PER_MILLISECOND = 259_500_000 / (365 * 24 * 60 * 60 * 1000); // IDC 2023
+        const WATER_PER_PC = 1_500; // Liters, United Nation University
+
+        const E_WASTE_PER_MILLISECOND = 59_000_000 / (365 * 24 * 60 * 60 * 1000); // tons Global E-waste Monitor 2020
+        const E_WASTE_RECYCLING = 0.174; // 2019 United Nations University
+
+        const COPPER_PER_MILLISECOND = 0.2  *5_180_000 / (365 * 24 * 60 * 60 * 1000); // tons, 20% of copper demand for ICT, Deloitte United States
+        const ORE_GRADE = 0.006; // 0.6%, for 100kg of ore, one kilo of Copper, Plot data from table to map. -Calculate ore grade
+
+        function getMillisecondsSinceNewYear() {
+            const now = new Date();
+            const startOfYear = new Date(now.getFullYear(), 0, 1); // January 1st of the current year
+            const diff = now - startOfYear; 
+            return diff;
+        }
+
+        function calculateCumulativeMetrics(milliseconds) {
+            const cumulativeCO2 = CO2_EMISSIONS_PER_MILLISECOND * milliseconds;
+            const flightEquivalence = cumulativeCO2 / EQUIVALENCE_FLIGHT_PARIS_NY;
+
+            const cumulativeElectricity = ELECTRICITY_CONSUMPTION_PER_MILLISECOND * milliseconds;
+            const personEquivalence = cumulativeElectricity / EQUIVALENCE_FRENCH_PERSON;
+
+            const cumulativeSmartphone = SMARTPHONE_SALES_PER_MILLISECOND * milliseconds;
+            const cumulativeSmartphoneWater = cumulativeSmartphone * WATER_PER_SMARTPHONE;
+
+            const cumulativePC = PC_SALES_PER_MILLISECOND * milliseconds;
+            const cumulativePCWater = cumulativePC * WATER_PER_PC;
+
+            const cumulativeEWaste = E_WASTE_PER_MILLISECOND * milliseconds;
+            const cumulativeEWasteNonRecycled = cumulativeEWaste * (1-E_WASTE_RECYCLING);
+
+            const cumulativeCopper = COPPER_PER_MILLISECOND * milliseconds;
+            const cumulativeCopperOre = cumulativeCopper * (1/ORE_GRADE)
+
+            return {
+                cumulativeCO2: Math.round(cumulativeCO2).toLocaleString(),
+                flightEquivalence: Math.round(flightEquivalence).toLocaleString(),
+                cumulativeElectricity: Math.round(cumulativeElectricity).toLocaleString(),
+                personEquivalence: Math.round(personEquivalence).toLocaleString(),
+                cumulativeSmartphone: Math.round(cumulativeSmartphone).toLocaleString(),
+                cumulativeSmartphoneWater: Math.round(cumulativeSmartphoneWater).toLocaleString(),
+                cumulativePC: Math.round(cumulativePC).toLocaleString(),
+                cumulativePCWater: Math.round(cumulativePCWater).toLocaleString(),
+                cumulativeEWaste: Math.round(cumulativeEWaste).toLocaleString(),
+                cumulativeEWasteNonRecycled: Math.round(cumulativeEWasteNonRecycled).toLocaleString(),
+                cumulativeCopper: Math.round(cumulativeCopper).toLocaleString(),
+                cumulativeCopperOre: Math.round(cumulativeCopperOre).toLocaleString()
+            };
+        }
+
+        // Elements to update
+        const stat1 = document.getElementById("stat1");
+        const stat2 = document.getElementById("stat2");
+        const stat3 = document.getElementById("stat3");
+        const stat4 = document.getElementById("stat4");
+        const stat5 = document.getElementById("stat5");
+        const stat6 = document.getElementById("stat6");
+
+        function getRandomDelay(delayed) {
+            if (delayed) return Math.random() * 1000; // [0;1000[ ms
+            return 0;
+        }
+
+        function updateDisplay(delayed = true) {
+            const millisecondsSinceNewYear = getMillisecondsSinceNewYear();
+            const metrics = calculateCumulativeMetrics(millisecondsSinceNewYear);
+            
+            setTimeout(function(){ stat1.innerHTML = `CO2 Emissions: ${metrics.cumulativeCO2} tons<br>Equivalent to ${metrics.flightEquivalence} Paris-NY flight ticketsCO2 Emissions: ${metrics.cumulativeCO2} tons<br>Equivalent to ${metrics.flightEquivalence} Paris-NY flight tickets`;}, getRandomDelay(delayed));
+            setTimeout(function(){ stat2.innerHTML = `Electricity Consumption: ${metrics.cumulativeElectricity} kWh<br>Equivalent to the annual consumption of ${metrics.personEquivalence} people`;}, getRandomDelay(delayed));
+            setTimeout(function(){ stat3.innerHTML = `E-Waste produced: ${metrics.cumulativeEWaste} tons<br>Including ${metrics.cumulativeEWasteNonRecycled} tons not recycled (${Math.round((1-E_WASTE_RECYCLING)*100)}%)` ;}, getRandomDelay(delayed));
+            setTimeout(function(){ stat4.innerHTML = `Smartphones Sold: ${metrics.cumulativeSmartphone} units<br>Using ${metrics.cumulativeSmartphoneWater} liters of water`;}, getRandomDelay(delayed));
+            setTimeout(function(){ stat5.innerHTML = `Laptops and PCs Sold: ${metrics.cumulativePC} units<br>Using ${metrics.cumulativePCWater} liters of water`;}, getRandomDelay(delayed));
+            setTimeout(function(){ stat6.innerHTML = `Ore mined for copper in ICT : ${metrics.cumulativeCopperOre} tons<br>Produced ${metrics.cumulativeCopper} tons of Copper`;}, getRandomDelay(delayed));
+
+        }
+        updateDisplay(delayed=false); // Init
+        const interval = setInterval(updateDisplay, 2000);
+    </script>
+</body>
+</html>
