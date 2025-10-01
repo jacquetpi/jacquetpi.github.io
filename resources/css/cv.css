@@ -41,7 +41,7 @@ body {
 }
 .cv-content {
     flex: 1;
-    max-width: 1200px;
+    max-width: 1080px;
     margin-left: min(max(21%,5em),14em);
     padding-left: min(max(1%,0.1em),30px);
 }
