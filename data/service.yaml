@@ -1,0 +1,30 @@
+# Service entries: categories with nested item lists.
+# Each item: text (required); optional link: { label, url }; optional suffix (e.g. " Workshop");
+# optional years: [2025, 2027] for multiple years (renders " 2025, 2027" after suffix).
+# Use suffix for single year (e.g. " 2026") or suffix + years for multiple (e.g. suffix: " Workshop", years: [2025, 2027]).
+
+categories:
+  - name: "Committees"
+    items:
+      - text: "PC member of Artifact track, "
+        link: { label: "DSN", url: "https://dsn2026.github.io/cfartifacts.html" }
+        suffix: " 2026"
+      - text: "Web Chair & PC member of "
+        link: { label: "INFRASTRUCTURE", url: "https://infrastructure.web.deuxfleurs.fr/2025" }
+        suffix: " Workshop"
+        years: [2025, 2026]
+      - text: "PC member of Artifact track, "
+        link: { label: "CASCON", url: "https://conf.researchr.org/track/cascon-2025/artifacts-track" }
+        suffix: " 2025"
+      - text: "PC member of "
+        link: { label: "Compas", url: "https://2025.compas-conference.fr/comites/" }
+        suffix: " 2025"
+
+  - name: "Reviews"
+    items:
+      - text: "ACM Transactions on Autonomous and Adaptive Systems"
+      - text: "IEEE Internet Computing"
+      - text: "GreenNet 2025"
+      - text: "IEEE/IFIP 2024"
+      - text: "ACM Middleware 2023"
+      - text: "IEEE Cluster 2023"

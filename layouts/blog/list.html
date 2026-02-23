@@ -1,0 +1,19 @@
+{{ define "main" }}
+{{ partial "sidebar-blog.html" (dict "midTitle" "Boring blog" "midHref" "/blog/" "Site" .Site) }}
+<div class="blog-content">
+  <a class="fallback-home" href="/">Back to home</a>
+  <h1 class="theme-contrast">Last articles</h1>
+
+  {{ range .Pages.ByDate.Reverse }}
+  <div class="blog-section-wrapper" onclick="location.href='{{ .RelPermalink }}';">
+    <div class="blog-section-line theme-contrast"></div>
+    <div class="blog-section">
+      <h2 class="theme-grey">{{ .Title }}</h2>
+      <p>> {{ .Params.summary | default .Description }}</p>
+    </div>
+  </div>
+  {{ end }}
+
+  <hr style="width:0%; margin-top:1em">
+</div>
+{{ end }}

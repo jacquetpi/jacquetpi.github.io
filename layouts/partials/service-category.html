@@ -1,0 +1,8 @@
+{{ $cat := . }}
+<li>{{ $cat.name }}
+  <ul>
+    {{ range $cat.items }}
+      <li>{{ .text }}{{ with .link }}<a class="article" href="{{ .url }}">{{ .label }}</a>{{ end }}{{ with .suffix }}{{ . }}{{ end }}{{ with .years }} {{ delimit . ", " }}{{ end }}</li>
+    {{ end }}
+  </ul>
+</li>

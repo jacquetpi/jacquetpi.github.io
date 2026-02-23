@@ -1,0 +1,3 @@
+{{ $t := . }}
+{{ $t.title }}{{ with $t.note }} <span class="theme-grey">({{ . }})</span>{{ end }}{{ if $t.links }}{{ range $t.links }} ~ <a class="article" href="{{ .url }}">{{ .label }}</a>{{ end }}, {{ else }}, {{ end }}
+{{ $t.venue }}{{ with $t.location }}, {{ . }}{{ end }} ({{ $t.year }})

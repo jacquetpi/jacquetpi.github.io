@@ -1,0 +1,12 @@
+{{ $cat := .category }}
+{{ $limit := .limit | default 999 }}
+{{ $items := first $limit $cat.items }}
+{{ if $items }}
+<li>{{ $cat.name }}
+  <ul>
+    {{ range $items }}
+      <li>{{ .text }}{{ with .link }}<a class="article" href="{{ .url }}">{{ .label }}</a>{{ end }}{{ with .suffix }}{{ . }}{{ end }}{{ with .years }} {{ delimit . ", " }}{{ end }}</li>
+    {{ end }}
+  </ul>
+</li>
+{{ end }}

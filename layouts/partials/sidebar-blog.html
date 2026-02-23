@@ -1,0 +1,16 @@
+{{ $midTitle := .midTitle | default "Boring blog" }}
+{{ $midHref := .midHref | default "/blog/" }}
+<div class="blog-sidebar">
+  <div class="sub-blog-sidebar-left">
+    <img id="profile-picture" style="cursor: pointer" src="{{ site.Params.profileImage }}" alt="Profile Picture" width="128" height="128">
+    <span style="margin-top:0.5em; margin-bottom:0.5em; text-align: center;"><small>{{ site.Params.profileCredit }}</small></span>
+  </div>
+  <div class="sub-blog-sidebar-mid">
+    <h1 style="color: white"><a class="blog-sidebar-link" href="{{ $midHref }}">{{ $midTitle }}</a></h1>
+  </div>
+  <div class="sub-blog-sidebar-right">
+    <a class="blog-sidebar-link" href="/">Home</a>
+    <span>&nbsp;| </span>
+    <button id="colorSwitchButton" aria-label="Switch color theme"><span style="cursor: pointer; text-decoration:underline;">Switch Colors</span></button>
+  </div>
+</div>

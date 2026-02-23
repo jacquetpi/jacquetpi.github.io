@@ -1,0 +1,15 @@
+{{ define "main" }}
+{{ partial "sidebar-blog.html" (dict "midTitle" "Service" "midHref" "/service/" "Site" .Site) }}
+<div class="blog-content">
+  <a class="fallback-home" href="/">Back to home</a>
+  <h1 class="theme-contrast">Service</h1>
+
+  <ul>
+    {{ range .Site.Data.service.categories }}
+      {{ partial "service-category.html" . }}
+    {{ end }}
+  </ul>
+
+  <hr style="width:0%; margin-top:5em">
+</div>
+{{ end }}

@@ -68,6 +68,17 @@ body {
     margin-bottom: 10px;
     display: block;
 }
+/* Unclassed links in content: white, italic, underlined (same when visited) */
+.cv-content a:not([class]) {
+    color: inherit;
+    font-style: italic;
+    text-decoration: underline;
+}
+.cv-content a:not([class]):visited {
+    color: inherit;
+    font-style: italic;
+    text-decoration: underline;
+}
 #profile-picture {
     margin-top: 1em;
     width: auto;
@@ -94,6 +105,9 @@ body {
 .article {
     font-style: italic;
     color: inherit;
+}
+.author-me {
+    text-decoration: underline dotted;
 }
 /* Adapt horizontally (from the least to the most restrictive */
 @media only screen and (max-width: 32em){

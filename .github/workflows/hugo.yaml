@@ -1,0 +1,44 @@
+name: Hugo Build and deploy
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: github-pages
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Install Hugo Manually
+        run: |
+          wget -O /tmp/hugo.deb https://github.com/gohugoio/hugo/releases/download/v0.156.0/hugo_0.156.0_linux-amd64.deb
+          sudo dpkg -i /tmp/hugo.deb
+
+      - name: Debug config
+        run: |
+          ls -la
+          hugo config
+
+      - name: Build Site
+        run: hugo --minify
+
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
