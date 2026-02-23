@@ -1,0 +1,115 @@
+# type: paper | press | thesis
+# selected: true means show on homepage "Selected Publications"
+# links: list of { label: "[Paper]", url: "..." }
+
+papers:
+  - title: "Larger Cloud Servers, Fewer Hosts? On the Evolution of VM Sizes in IaaS Platforms"
+    authors: "P. Jacquet, C. Coti, M. Dias de Assunção"
+    venue: "IEEE International Symposium on Cluster, Cloud and Internet Computing"
+    abbr: "CCGrid"
+    year: 2026
+    selected: true
+
+  - title: "Untangling GPU Power Consumption: Job-Level Inference in Cloud Shared Settings"
+    authors: "P. Jacquet, M. Agusti, E. Caron, C. Coti, M. Dias de Assunção, L. Lefèvre, A. Orgerie"
+    venue: "European Conference on Computer Systems"
+    abbr: "EuroSys"
+    year: 2026
+    selected: true
+    links:
+      - label: "[Paper]"
+        url: "https://hal.science/hal-05291033"
+      - label: "[Code]"
+        url: "https://zenodo.org/records/16981547"
+
+  - title: "The Case for Time-Shared Computing Resources"
+    authors: "P. Jacquet, A. Luxey-Bitri"
+    venue: "Computing Within Limits"
+    abbr: "LIMITS"
+    year: 2025
+    selected: true
+    links:
+      - label: "[Paper]"
+        url: "https://hal.science/hal-05130125"
+
+  - title: "CINERGY: Reasoning over the Worst Case Power Consumption of Cloud Virtual Machines"
+    authors: "P. Jacquet, C. Coti, M. Dias de Assunção, R. Rouvoy"
+    venue: "IEEE International Symposium on Cluster, Cloud and Internet Computing"
+    abbr: "CCGrid"
+    year: 2025
+    links:
+      - label: "[Short Paper]"
+        url: "https://hal.science/hal-04981001"
+      - label: "[Code]"
+        url: "https://github.com/jacquetpi/cinergy-models"
+
+  - title: "SlackVM: Packing Virtual Machines in Oversubscribed Cloud Infrastructure"
+    authors: "P. Jacquet, T. Ledoux, R. Rouvoy"
+    venue: "IEEE International Conference on Cluster Computing"
+    abbr: "CLUSTER"
+    year: 2024
+    links:
+      - label: "[Paper]"
+        url: "https://hal.science/hal-04636648"
+      - label: "[Code]"
+        url: "https://github.com/jacquetpi/slackvm"
+
+  - title: "SweetspotVM: Oversubscribing CPU without Sacrificing VM Performance"
+    authors: "P. Jacquet, T. Ledoux, R. Rouvoy"
+    venue: "IEEE/ACM International Symposium on Cluster, Cloud and Internet Computing"
+    abbr: "CCGrid"
+    year: 2024
+    selected: true
+    links:
+      - label: "[Paper]"
+        url: "https://hal.science/hal-04454043"
+      - label: "[Code]"
+        url: "https://github.com/jacquetpi/sweetspotvm"
+
+  - title: "SCROOGEVM: Boosting Cloud Resource Utilization with Dynamic Oversubscription"
+    authors: "P. Jacquet, T. Ledoux, R. Rouvoy"
+    venue: "IEEE Transactions on Sustainable Computing"
+    abbr: "TSUSC"
+    year: 2024
+    links:
+      - label: "[Paper]"
+        url: "https://hal.science/hal-04466538"
+      - label: "[Code]"
+        url: "https://github.com/jacquetpi/scroogevm"
+
+  - title: "CLOUDFACTORY: An Open Toolkit to Generate Production-like Workloads for Cloud Infrastructures"
+    authors: "P. Jacquet, T. Ledoux, R. Rouvoy"
+    venue: "IEEE International Conference on Cloud Engineering"
+    abbr: "IC2E"
+    year: 2023
+    links:
+      - label: "[Paper]"
+        url: "https://hal.science/hal-04168667"
+      - label: "[Code]"
+        url: "https://github.com/jacquetpi/cloudfactory"
+
+press:
+  - title: "La chasse au gaspillage dans le cloud et les data centers"
+    authors: "P. Jacquet, T. Ledoux, R. Rouvoy"
+    venue: "The Conversation"
+    year: 2023
+    links:
+      - label: "[Press article]"
+        url: "https://theconversation.com/la-chasse-au-gaspillage-dans-le-cloud-et-les-data-centers-196669"
+
+theses:
+  - title: "Enhancing IaaS Consolidation with Resource Oversubscription"
+    authors: "P. Jacquet"
+    venue: "Ph.D. Thesis"
+    year: 2024
+    links:
+      - label: "[Thesis]"
+        url: "https://theses.fr/2024ULILB015"
+
+  - title: "Mainframe footprint and consumption, an evaluation based on sustainable IT approach"
+    authors: "P. Jacquet"
+    venue: "Master Thesis"
+    year: 2021
+    links:
+      - label: "[Thesis]"
+        url: "https://raw.githubusercontent.com/jacquetpi/jacquetpi.github.io/refs/heads/master/static/mainframe-consumption-unamed.pdf"

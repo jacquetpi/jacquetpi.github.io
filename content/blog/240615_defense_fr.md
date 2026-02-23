@@ -1,0 +1,91 @@
+---
+title: "Soutenance de thèse"
+date: 2024-07-19
+summary: "[French] My PhD defense took place on **Wednesday, 19th July 2024**"
+---
+
+<p>
+Ma soutenance de thèse a eu lieu le <span style='font-weight: bold;'>Vendredi 19 juillet 2024</span> au <a href="https://www.inria.fr/fr/centre-inria-de-luniversite-de-lille#a6">Centre Inria de l'Université de Lille</a> (Villeneuve d'Ascq, France).
+La thèse, intitulée <span style='font-style: italic;'>"Améliorer la sur-allocation des ressources pour une meilleure consolidation des IaaS"</span>, a été défendue en français.
+Elle a mis en valeur <a href='/articles/240615_share_fr.html'>comment et pourquoi partager les ressources du Cloud.</a>
+</p>
+
+<ul>
+  <li><a href='https://theses.fr/2024ULILB015'>Lien vers le manuscript</a> (1.8MB, 127 pages)</li>
+  <li><a href='https://media.githubusercontent.com/media/jacquetpi/jacquetpi.github.io/master/static/202407_Thesis.pdf'>Lien vers les slides de présentation</a> (6.8MB)</li>
+</ul>
+
+<h2 class="theme-grey">Composition du Jury</h2>
+
+<ul>
+  <li>M. Pascal FELBER, <strong>Rapporteur</strong>, Université de Neuchâtel</li>
+  <li>M. Gaël THOMAS, <strong>Rapporteur</strong>, Inria</li>
+  <li>M. Laurent LEFEVRE, <strong>Examinateur</strong>, Inria, ENS Lyon</li>
+  <li>Mme. Anne-Cécile ORGERIE, <strong>Examinateur</strong>, CNRS</li>
+  <li>M. Thomas LEDOUX, <strong>Directeur de thèse</strong>, IMT Atlantique</li>
+  <li>M. Romain ROUVOY, <strong>Directeur de thèse</strong>, Université de Lille</li>
+</ul>
+
+<h2 class="theme-grey">Résumé en Français</h2>
+<p>
+En migrant sa charge de travail vers des centres de données plus grands, le numérique a pu améliorer
+son efficacité énergétique. La consommation liée à l'augmentation des usages a ainsi été atténuée par
+de nettes améliorations de l'infrastructure mutualisée (appelée communément Cloud Computing), ce
+qui est visible via des indicateurs tels que le Power Usage Efficiency (PUE).<br>
+L'infrastructure n'est cependant pas le seul point à optimiser. Le serveur en lui même, et les tâches
+qu'il exécute, reste un axe important de la recherche. Le taux d'usage est notamment particulièrement
+étudié car sa valeur relativement faible représente un gain potentiel non-négligeable. Ainsi, d'un point
+de vue énergétique (consommation) et matériel (coût environnemental et financier), l'utilisation d'un
+serveur chargé à 100% est préférable à celle de 3 serveurs chargés à 30%. Je propose donc d'étudier
+ces taux d'usages au travers de quatre contributions complémentaires:
+</p>
+<ol>
+  <li>La création d'expériences contrôlées réalistes dans un contexte Infrastructure-as-a-Service
+    (IaaS). Alors que les plateformes supportant les infrastructures Cloud sont particulièrement
+    étudiées, la génération de charges de travail réalistes est primordiale. Chaque Cloud provider
+    ayant ses propres caractéristiques (distribution de tailles de Virtual Machines (VMs), taux
+    d'usage individuels), nous proposons un outil permettant de générer ces charges réalistes.</li>
+  <li>L'amélioration du calcul du taux de surréservation individuel des serveurs. En tenant en
+    compte de la stabilité individuelle des serveurs, il est possible d'affiner le calcul de ce taux sans
+    causer de violations supplémentaires.</li>
+  <li>L'introduction d'un nouveau paradigme de surréservation. En démontrant tout d'abord que
+    les vCPUs des VMs ne sont pas uniformément utilisés en conditions réelles, nous exposons aux
+    VMs des coeurs de différentes puissances (car surréservés à différents niveaux) et démontrons
+    que ce paradigme peut améliorer les performances globales.</li>
+  <li>La complémentarité des taux de surréservation pour réduire les ressources non-allouées.
+    La comparaison des VMs dites premium et des VMs surréservées permet d'identifier qu'elles
+    tendent à saturer différemment les ressources de leur hôtes. En les hébergeant sur les mêmes
+    serveurs, il est ainsi possible de bénéficier de synergies, et de réduire jusqu'à 9.6% la taille du
+    parc.</li>
+</ol>
+
+<h2 class="theme-grey">Abstract in English</h2>
+<p>
+By migrating its workload to larger Data Centers (DCs), the digital realm has been able to improve its
+energy efficiency. The consumption due to the increase in usage has thus been mitigated by significant
+improvements in shared infrastructure (commonly referred to as Cloud Computing), which is evident
+through indicators such as Power Usage Efficiency (PUE).<br>
+However, infrastructure is not the sole point of optimization. The server itself, and the tasks it
+executes, remain an important focus of research. Usage rate, in particular, is closely studied because
+its relatively low value also represents a considerable potential gain. Thus, from both an energy
+(consumption) and material (environmental and financial cost) standpoint, the use of a server loaded
+at 100% is preferable to that of 3 servers loaded at 30%. I propose to examine these usage rates along
+four complementary contributions:
+</p>
+<ol>
+  <li>The creation of realistic controlled experiments in an Infrastructure-as-a-Service (IaaS)
+    context. While platforms supporting Cloud infrastructures are extensively studied, generating
+    realistic workloads is crucial. As each Cloud Provider has its characteristics (distribution of
+    VM sizes, individual usage rates), we propose a tool to generate these workloads.</li>
+  <li>The calculation of individual server oversubscription ratio. By considering the individual
+    stability of servers, it is possible to fine-tune the calculation of this ratio without causing
+    additional violations.</li>
+  <li>The introduction of a new oversubscription paradigm. By first demonstrating that Virtual
+    Machine (VM) vCPUs are not uniformly used in a real-world context, we expose to VMs cores
+    of different powers (by oversubscribing them to different amounts) and demonstrate that this
+    paradigm can improve overall performance.</li>
+  <li>The complementarity of oversubscription techniques to reduce unallocated resources.
+    Comparing so-called premium VMs and oversubscribed VMs identifies that they tend to saturate
+    their hosts' resources differently. By hosting them on the same servers, it is thus possible to
+    benefit from synergies and reduce the number of servers by up to 9.6%.</li>
+</ol>

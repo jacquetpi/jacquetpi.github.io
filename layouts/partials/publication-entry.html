@@ -1,0 +1,11 @@
+{{ $entry := . }}
+<article class="publication">
+  <p>
+    <b>{{ $entry.title }}</b>,{{ " " -}}
+    {{- ($entry.authors | replaceRE `\bP\. Jacquet\b` `<span class="author-me">P. Jacquet</span>`) | safeHTML -}}
+    <br>{{ $entry.venue }}{{ with $entry.abbr }} (<b>{{ . }}</b>){{ end }}, {{ $entry.year }}
+    {{ with $entry.links }}
+    <br><span class="publication-links">{{ range . }}<a class="article" href="{{ .url }}">{{ .label }}</a> {{ end }}</span>
+    {{ end }}
+  </p>
+</article>

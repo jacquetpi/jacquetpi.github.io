@@ -1,0 +1,3 @@
+{{ $c := .course | default . }}
+{{ $showInst := .show_institution | default true }}
+<p>{{ $c.title }}{{ if $showInst }}: {{ $c.institution }}{{ end }} ({{ $c.period }})</p>

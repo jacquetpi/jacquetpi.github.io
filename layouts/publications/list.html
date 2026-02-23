@@ -1,0 +1,23 @@
+{{ define "main" }}
+{{ partial "sidebar-blog.html" (dict "midTitle" "Publications" "midHref" "/publications/" "Site" .Site) }}
+<div class="blog-content">
+  <a class="fallback-home" href="/">Back to home</a>
+  <h1 class="theme-contrast">Published Work</h1>
+
+  {{ range .Site.Data.publications.papers }}
+    {{ partial "publication-entry.html" . }}
+  {{ end }}
+
+  <h1 class="theme-contrast">Press</h1>
+  {{ range .Site.Data.publications.press }}
+    {{ partial "publication-entry.html" . }}
+  {{ end }}
+
+  <h1 class="theme-contrast">Theses</h1>
+  {{ range .Site.Data.publications.theses }}
+    {{ partial "publication-entry.html" . }}
+  {{ end }}
+
+  <hr style="width:0%; margin-top:5em">
+</div>
+{{ end }}

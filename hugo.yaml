@@ -1,0 +1,26 @@
+baseURL: "https://jacquetpi.github.io/"
+languageCode: "en-us"
+title: "P. Jacquet"
+
+disableKinds:
+  - taxonomy
+  - term
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
+permalinks:
+  blog: "/articles/:slug.html"
+
+params:
+  profileImage: "https://avatars.githubusercontent.com/u/44034432?v=4"
+  profileCredit: "© Inria / B. Fourrier"
+  githubURL: "https://github.com/jacquetpi?tab=repositories"
+  scholarURL: "https://scholar.google.com/citations?user=-rhxcoYAAAAJ"
+  linkedinURL: "https://www.linkedin.com/in/pierre-jacquet/"
+
+caches:
+  images:
+    dir: ":cacheDir/images"

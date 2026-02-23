@@ -1,0 +1,121 @@
+# selected: true means show on homepage "Selected Talks"
+# links: optional list of { label: "Slides", url: "..." }
+
+talks:
+  - title: "Datacenter Environmental Impact"
+    venue: "Colloque Numérique Responsable"
+    location: "ÉTS, Montréal, Canada"
+    year: 2025
+    selected: true
+    links:
+      - label: "Event"
+        url: "https://www.linkedin.com/posts/etsmtl_colloque-le-g%C3%A9nie-du-num%C3%A9rique-responsable-activity-7391829272489005057-yLVX"
+
+  - title: "Dynamic Overcommitment in OpenStack"
+    venue: "OpenInfra Summit"
+    location: "École polytechnique (X), France"
+    year: 2025
+    selected: true
+    links:
+      - label: "Schedule"
+        url: "https://summit2025.openinfra.org/a/schedule#view=list&title=Beyond%20Overcommit"
+
+  - title: "DataMove (Inria) seminar"
+    venue: "DataMove seminar"
+    location: "en ligne, France"
+    year: 2025
+    selected: false
+
+  - title: "Shared Computing: Why and How?"
+    venue: "SEMTL seminar"
+    location: "Concordia University, Montréal, Canada"
+    year: 2025
+    selected: true
+    links:
+      - label: "Meeting"
+        url: "https://semtl.github.io/meeting/2025/02/01/Concordia/"
+
+  - title: "Calcul Québec seminar"
+    venue: "Calcul Québec seminar"
+    location: "Montréal, Canada"
+    year: 2025
+    selected: false
+
+  - title: "The Last Frontier: Sharing Cloud Resources"
+    venue: "Eco-ICT Autumn School"
+    location: "Beg Meil, France"
+    year: 2024
+    selected: true
+    links:
+      - label: "Slides"
+        url: "http://perso.ens-lyon.fr/laurent.lefevre/Eco-ICT2024_school/Eco-ICT-2024_Pierre_Jacquet.pdf"
+
+  - title: "COMPAS 2024"
+    venue: "COMPAS"
+    location: "Nantes, France"
+    year: 2024
+    selected: false
+
+  - title: "A less brown Cloud: How to use less resources?"
+    venue: "Green Days"
+    location: "Toulouse, France"
+    year: 2024
+    selected: true
+    links:
+      - label: "Video"
+        url: "https://graal.ens-lyon.fr/~llefevre/greendays2024/GreenDays2024_Jacquet.mp4"
+
+  - title: "École d'hiver GDR RSD et ASF"
+    venue: "GDR RSD et ASF"
+    location: "Les 7 Laux, France"
+    year: 2024
+    selected: false
+
+  - title: "A less brown Cloud using oversubscription"
+    venue: "Epiférence"
+    location: "EPISEN"
+    year: 2024
+    selected: true
+
+  - title: "COMPAS 2023"
+    venue: "COMPAS"
+    location: "Annecy, France"
+    year: 2023
+    selected: false
+
+  - title: "École d'hiver GDR RSD et ASF"
+    venue: "GDR RSD et ASF"
+    location: "Les 7 Laux, France"
+    year: 2023
+    selected: false
+
+  - title: "Journées Cloud/Edge"
+    venue: "Journées Cloud/Edge"
+    location: "Télécom Paris, Paris, France"
+    year: 2022
+    selected: false
+
+  - title: "LUCS–PACE Summer School"
+    venue: "LUCS–PACE Summer School"
+    location: "Sundvolden, Norvège"
+    year: 2022
+    selected: false
+
+  - title: "Sampling Resource Requirements to Optimize VM Sizing"
+    venue: "EuroSys"
+    location: "Rennes, France"
+    note: "Poster"
+    year: 2022
+    selected: false
+
+  - title: "École d'hiver GDR RSD et ASF"
+    venue: "GDR RSD et ASF"
+    location: "Les 7 Laux, France"
+    year: 2022
+    selected: false
+
+  - title: "LUCS–PACE Research Workshop on Energy Informatics"
+    venue: "LUCS–PACE Research Workshop"
+    location: "Munich, Allemagne"
+    year: 2022
+    selected: false

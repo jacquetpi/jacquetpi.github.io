@@ -1,0 +1,22 @@
+{{ define "main" }}
+{{ partial "sidebar-blog.html" (dict "midTitle" "Talks" "midHref" "/talks/" "Site" .Site) }}
+<div class="blog-content">
+  <a class="fallback-home" href="/">Back to home</a>
+  <h1 class="theme-contrast">Talks &amp; presentations</h1>
+
+  {{ $talks := .Site.Data.talks.talks }}
+  {{ $years := slice }}
+  {{ range $talks }}
+    {{ $years = $years | append .year }}
+  {{ end }}
+  {{ range sort (uniq $years) "value" "desc" }}
+    {{ $y := . }}
+    <h1 class="theme-contrast">{{ $y }}</h1>
+    {{ range where $talks "year" $y }}
+    <p>{{ partial "talk-entry.html" . }}</p>
+    {{ end }}
+  {{ end }}
+
+  <hr style="width:0%; margin-top:5em">
+</div>
+{{ end }}
