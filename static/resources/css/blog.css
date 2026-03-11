@@ -160,3 +160,51 @@ a:visited {
 .publication-links {
     margin-top: 0.25em;
 }
+/* Console article */
+#console-wrapper {
+    max-width: 700px;
+    margin: 2em auto;
+}
+#console-terminal {
+    background: black;
+    border: 1px solid white;
+    font-family: monospace;
+    font-size: 14px;
+    color: #0f0;
+    padding: 1em;
+    min-height: 15em;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    cursor: text;
+}
+#console-output {
+    white-space: pre-wrap;
+}
+.console-line {
+    min-height: 1.2em;
+}
+#console-input-line {
+    display: flex;
+    margin-top: 0.25em;
+}
+#console-prompt {
+    white-space: pre;
+}
+#console-input {
+    background: transparent;
+    border: none;
+    color: #0f0;
+    font-family: monospace;
+    font-size: 14px;
+    outline: none;
+    flex: 1;
+    padding: 0;
+    caret-color: #0f0;
+}
+#console-chart {
+    display: block;
+    margin: 1em auto;
+    max-width: 700px;
+    width: 100%;
+}
