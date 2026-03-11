@@ -1,0 +1,22 @@
+commands:
+  - name: "who"
+    help: "Display user information"
+    output: "a nice guy"
+
+  - name: "stress-ng"
+    help: "Launch stress-ng with CPU percentage (25, 50, 75, 100)"
+    params:
+      - value: "25"
+        output: "stress-ng launched"
+        power: 10
+      - value: "50"
+        output: "stress-ng launched"
+        power: 15
+      - value: "75"
+        output: "stress-ng launched"
+        power: 20
+      - value: "100"
+        output: "stress-ng launched"
+        power: 20
+        default: true
+    replace_message: "replacing previous stress-ng"
