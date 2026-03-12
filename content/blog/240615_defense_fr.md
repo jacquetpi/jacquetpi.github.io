@@ -12,7 +12,7 @@ Elle a mis en valeur <a href='/articles/240615_share_fr.html'>comment et pourquo
 
 <ul>
   <li><a href='https://theses.fr/2024ULILB015'>Lien vers le manuscript</a> (1.8MB, 127 pages)</li>
-  <li><a href='https://media.githubusercontent.com/media/jacquetpi/jacquetpi.github.io/master/static/202407_Thesis.pdf'>Lien vers les slides de présentation</a> (6.8MB)</li>
+  <li><a href='https://jacquetpi.github.io/slides/2407_Thesis_compressed.pdf'>Lien vers les slides de présentation</a> (6.8MB)</li>
 </ul>
 
 <h2 class="theme-grey">Composition du Jury</h2>

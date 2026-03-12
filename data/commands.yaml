@@ -8,15 +8,15 @@ commands:
     params:
       - value: "25"
         output: "stress-ng launched"
-        power: 10
+        power: 15
       - value: "50"
         output: "stress-ng launched"
-        power: 15
+        power: 25
       - value: "75"
         output: "stress-ng launched"
-        power: 20
+        power: 30
       - value: "100"
         output: "stress-ng launched"
-        power: 20
+        power: 30
         default: true
     replace_message: "replacing previous stress-ng"
