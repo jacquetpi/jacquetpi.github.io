@@ -3,6 +3,18 @@
 # links: list of { label: "[Paper]", url: "..." }
 
 papers:
+  - title: "CINERGY: Deterministic Power Monitoring for Carbon Accounting in the Cloud"
+    authors: "P. Jacquet, C. Coti, M. Dias de Assunção, R. Rouvoy"
+    venue: "IEEE Transactions on Cloud Computing"
+    abbr: "TCC"
+    year: 2026
+    selected: true
+    links:
+      - label: "[Paper]"
+        url: "https://hal.science/hal-05551692"
+      - label: "[Code]"
+        url: "https://github.com/jacquetpi/cinergy-models"
+
   - title: "Larger Cloud Servers, Fewer Hosts? On the Evolution of VM Sizes in IaaS Platforms"
     authors: "P. Jacquet, C. Coti, M. Dias de Assunção"
     venue: "IEEE International Symposium on Cluster, Cloud and Internet Computing"
@@ -27,7 +39,7 @@ papers:
     venue: "Computing Within Limits"
     abbr: "LIMITS"
     year: 2025
-    selected: true
+    selected: false
     links:
       - label: "[Paper]"
         url: "https://hal.science/hal-05130125"
@@ -112,4 +124,4 @@ theses:
     year: 2021
     links:
       - label: "[Thesis]"
-        url: "https://raw.githubusercontent.com/jacquetpi/jacquetpi.github.io/refs/heads/master/static/mainframe-consumption-unamed.pdf"
+        url: "https://jacquetpi.github.io/pdf/mainframe-consumption.pdf"
