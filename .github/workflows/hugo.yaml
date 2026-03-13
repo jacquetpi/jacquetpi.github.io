@@ -26,13 +26,34 @@ jobs:
           wget -O /tmp/hugo.deb https://github.com/gohugoio/hugo/releases/download/v0.156.0/hugo_0.156.0_linux-amd64.deb
           sudo dpkg -i /tmp/hugo.deb
 
-      - name: Debug config
+      - name: Generate CV Sources
         run: |
-          ls -la
-          hugo config
+          pip install pyyaml
+          python3 scripts/generate_cv.py
+
+      - name: Compile LaTeX
+        continue-on-error: true
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: cv.tex
+          working_directory: latex
+          args: "-pdf -bibtex -interaction=nonstopmode"
 
       - name: Build Site
         run: hugo --minify
+
+      - name: Deploy CV assets to public
+        run: |
+          mkdir -p public/cv
+          if [ -f latex/cv.tex ]; then
+            cp latex/cv.tex public/cv/
+          fi
+          if [ -f latex/cv.bib ]; then
+            cp latex/cv.bib public/cv/
+          fi
+          if [ -f latex/cv.pdf ]; then
+            cp latex/cv.pdf public/cv/
+          fi
 
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3

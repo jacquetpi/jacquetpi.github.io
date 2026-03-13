@@ -59,11 +59,11 @@ Then open http://localhost:1313 .
 
 All publications (papers, press, theses) live in **`data/publications.yaml`**.
 
-- **Papers:** Append or edit entries under `papers:`. Use `selected: true` to show the item in the “Selected Publications” block on the home page. Optional `abbr` is the venue abbreviation in parentheses (e.g. `CCGrid`). Example:
+- **Papers:** Append or edit entries under `papers:`. Use `selected: true` to show the item in the “Selected Publications” block on the home page. Use full first names in `authors`; the site abbreviates for display (e.g. P. Jacquet) and underlines the site author. Optional `abbr` is the venue abbreviation in parentheses (e.g. `CCGrid`). Example:
 
   ```yaml
   - title: "Paper title"
-    authors: "P. Jacquet, Co-author"
+    authors: "Pierre Jacquet, Co-author"
     venue: "Full venue name"
     abbr: "SHORT"
     year: 2026
@@ -122,7 +122,7 @@ Then run `hugo --minify`. The home page and `/teaching/` read from this file.
 
 All service entries (committees, reviews, etc.) live in **`data/service.yaml`**. The display uses a **nested list**: each category (e.g. “Committees”, “Reviews”) is a top-level list item with its own sub-list of items. **On the home page, only the first 5 items per category** (e.g. first 5 committees, first 5 reviews) are shown; the full list is at `/service/`.
 
-- **Structure:** `categories:` is a list of `name` + `items`. Each item has `text` (required); optional `link: { label, url }`; optional `suffix` (e.g. `" Workshop"`); optional **`years`** (list, e.g. `[2025, 2027]`) for multiple years—renders as “ 2025, 2027” after the link/suffix.
+- **Structure:** `categories:` is a list of `name` + `items`. Each item has `text` (required); optional `link: { label, url }`; optional `suffix` (e.g. `" Workshop"`); optional **`years`** (list, e.g. `[2025, 2027]`) for multiple years—renders as “ 2025, 2027” after the link/suffix. Set **`displayed_on_site: false`** on an item to show it only in the generated LaTeX CV, not on the website.
 - Example (single year via suffix, or multiple years via `years`):
 
   ```yaml
@@ -142,6 +142,15 @@ All service entries (committees, reviews, etc.) live in **`data/service.yaml`**.
   ```
 
 Then run `hugo --minify`. The home page shows the first 5 items per category; `/service/` shows the full nested list.
+
+### LaTeX CV (PDF)
+
+A LaTeX CV is generated from the same data and served at **`/cv/cv.pdf`** (and sources at `/cv/cv.tex`, `/cv/cv.bib`). The generator script **`scripts/generate_cv.py`** reads `data/publications.yaml`, `data/interviews.yaml`, `data/service.yaml`, `data/talks.yaml`, and `data/artifacts.yaml`, then fills the skeleton **`cv/cv_skeleton.tex`** and writes **`cv/cv.bib`** and **`cv/cv.tex`**. CI builds the PDF and copies it (with the generated `.tex` and `.bib`) into `public/cv/` on deploy.
+
+- **To regenerate locally:** `pip install -r scripts/requirements.txt` then `python3 scripts/generate_cv.py`. Build with `cd cv && pdflatex cv.tex && bibtex cv && pdflatex cv.tex && pdflatex cv.tex`.
+- **Publications:** Use `bib_key`, `entry_type` (`journal` or `conference`), `section` (`main` or `workshop`), and optional `doi` in `data/publications.yaml`; order in the CV follows the file order.
+- **Interviews:** `data/interviews.yaml` (each entry: `bib_key`, `title`, `authors`, `year`, optional `note` for URL or text).
+- **Artifacts:** `data/artifacts.yaml` (each entry: `name`, `family`, `audience`, `evolution`, `duration`, `contribution`, `url`, `description`).
 
 ### Changing site metadata
 
@@ -163,7 +172,11 @@ Then run `hugo --minify`. The home page shows the first 5 items per category; `/
 | `data/publications.yaml` | Single source for all publications |
 | `data/talks.yaml` | Single source for all talks |
 | `data/teaching.yaml` | Single source for all teaching/courses |
-| `data/service.yaml` | Single source for service (categories + items) |
+| `data/service.yaml` | Single source for service (categories + items); `displayed_on_site: false` hides item on site but keeps it in CV |
+| `data/interviews.yaml` | Interviews (for CV bib and outreach section) |
+| `data/artifacts.yaml` | Research artifacts (for CV “Research artifacts” section) |
+| `cv/cv_skeleton.tex` | LaTeX CV template with placeholders; filled by `scripts/generate_cv.py` |
+| `scripts/generate_cv.py` | Generates `cv/cv.tex` and `cv/cv.bib` from data/*.yaml |
 | `layouts/index.html` | Home (CV) layout |
 | `layouts/blog/list.html`, `single.html` | Blog list and post layout |
 | `layouts/publications/list.html` | Publications page layout |

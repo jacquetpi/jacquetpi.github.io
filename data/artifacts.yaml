@@ -1,0 +1,48 @@
+# Research artifacts for CV "Research artifacts" section.
+# Each entry: name, family, audience, evolution, duration, contribution, url, description
+
+artifacts:
+  - name: "CloudFactory"
+    family: "Research"
+    audience: "Partners"
+    evolution: "Basic"
+    duration: "2 years"
+    contribution: "Leader"
+    url: "https://github.com/jacquetpi/cloudfactory"
+    description: "CloudFactory is a tool designed for researchers to reproduce realistic IaaS workloads (sets of virtual machines) on one or multiple servers. Virtual machines arrive dynamically and exhibit realistic usage profiles, inspired by statistical traces from cloud operators."
+
+  - name: "ScroogeVM"
+    family: "Vehicle"
+    audience: "Partners"
+    evolution: "No future"
+    duration: "1 year"
+    contribution: "Leader"
+    url: "https://github.com/jacquetpi/scroogevm"
+    description: "ScroogeVM is a prototype orchestrator estimating node overcommitment ratios based on workload usage and stability."
+
+  - name: "SlackVM"
+    family: "Vehicle"
+    audience: "Partners"
+    evolution: "No future"
+    duration: "1 year"
+    contribution: "Leader"
+    url: "https://github.com/jacquetpi/slackvm"
+    description: "SlackVM is a prototype orchestrator dynamically partitioning CPU cores of a node across different overcommitment levels."
+
+  - name: "SweetSpotVM"
+    family: "Vehicle"
+    audience: "Partners"
+    evolution: "No future"
+    duration: "1 year"
+    contribution: "Leader"
+    url: "https://github.com/jacquetpi/sweetspotvm"
+    description: "SweetSpotVM is a prototype orchestrator introducing heterogeneous vCPU performance levels for virtual machines under different overcommitment ratios."
+
+  - name: "Untangling GPU Power Consumption"
+    family: "Vehicle"
+    audience: "Partners"
+    evolution: "No future"
+    duration: "1 year"
+    contribution: "Leader"
+    url: "https://zenodo.org/records/17339127"
+    description: "Software suite enabling energy measurements of GPUs shared across concurrent workloads."

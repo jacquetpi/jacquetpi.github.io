@@ -1,6 +1,7 @@
 {{ $cat := .category }}
 {{ $limit := .limit | default 999 }}
-{{ $items := first $limit $cat.items }}
+{{ $visible := where $cat.items "displayed_on_site" "!=" false }}
+{{ $items := first $limit $visible }}
 {{ if $items }}
 <li>{{ $cat.name }}
   <ul>

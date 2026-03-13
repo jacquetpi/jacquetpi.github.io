@@ -17,11 +17,11 @@ talks:
     year: 2025
     selected: true
     links:
-      - label: "Schedule"
+      - label: "Program"
         url: "https://summit2025.openinfra.org/a/schedule#view=list&title=Beyond%20Overcommit"
 
-  - title: "DataMove (Inria) seminar"
-    venue: "DataMove seminar"
+  - title: "Orchestrating the Sharing of Cloud Resources"
+    venue: "DataMove (Inria) seminar"
     location: "en ligne, France"
     year: 2025
     selected: false
@@ -32,13 +32,25 @@ talks:
     year: 2025
     selected: true
     links:
-      - label: "Meeting"
+      - label: "Program"
         url: "https://semtl.github.io/meeting/2025/02/01/Concordia/"
 
-  - title: "Calcul Québec seminar"
+  - title: "Untangling GPU Power Consumption"
     venue: "Calcul Québec seminar"
     location: "Montréal, Canada"
     year: 2025
+    selected: false
+
+  - title: "On the Sharing of Cloud Computing resources"
+    venue: "Avalon (Inria) seminar"
+    location: "Lyon, France"
+    year: 2024
+    selected: false
+
+  - title: "Le partage des ressources de calcul du Cloud"
+    venue: "Aneo (invited by a private consulting company)"
+    location: "Paris, France"
+    year: 2024
     selected: false
 
   - title: "The Last Frontier: Sharing Cloud Resources"
@@ -47,14 +59,19 @@ talks:
     year: 2024
     selected: true
     links:
+      - label: "Program"
+        url: "https://perso.ens-lyon.fr/laurent.lefevre/Eco-ICT2024_school/ecoict.html"
       - label: "Slides"
         url: "http://perso.ens-lyon.fr/laurent.lefevre/Eco-ICT2024_school/Eco-ICT-2024_Pierre_Jacquet.pdf"
 
-  - title: "COMPAS 2024"
+  - title: "SlackVM, Joindre les taux de surallocation pour mieux remplir les infrastructures Cloud"
     venue: "COMPAS"
     location: "Nantes, France"
     year: 2024
     selected: false
+    links:
+      - label: "Program"
+        url: https://2024.compas-conference.fr/"
 
   - title: "A less brown Cloud: How to use less resources?"
     venue: "Green Days"
@@ -65,41 +82,56 @@ talks:
       - label: "Video"
         url: "https://graal.ens-lyon.fr/~llefevre/greendays2024/GreenDays2024_Jacquet.mp4"
 
-  - title: "École d'hiver GDR RSD et ASF"
-    venue: "GDR RSD et ASF"
+  - title: "Cloud Computing, doing more with less using oversubcription"
+    venue: "GDR RSD and ASF Winter School"
     location: "Les 7 Laux, France"
     year: 2024
     selected: false
+    links:
+      - label: "Program"
+        url: https://sites.google.com/site/rsdwinterschool/last-editions/asf-winter-school-2024"
 
   - title: "A less brown Cloud using oversubscription"
-    venue: "Epiférence"
-    location: "EPISEN"
+    venue: "Epiférence (EPISEN school)"
+    location: "Créteil, France"
     year: 2024
     selected: true
 
-  - title: "COMPAS 2023"
+  - title: "SCROOGEVM : Accroître l’utilisation des ressources du cloud en ajustant dynamiquement la surallocation"
     venue: "COMPAS"
     location: "Annecy, France"
     year: 2023
     selected: false
+    links:
+      - label: "Program"
+        url: https://202.compas-conference.fr/"
 
-  - title: "École d'hiver GDR RSD et ASF"
-    venue: "GDR RSD et ASF"
+  - title: "Improve cloud resource utilization with dynamic oversubscription"
+    venue: "GDR RSD and ASF Winter School"
     location: "Les 7 Laux, France"
     year: 2023
     selected: false
+    links:
+      - label: "Program"
+        url: https://sites.google.com/site/rsdwinterschool/last-editions/asf-winter-school-2023"
 
-  - title: "Journées Cloud/Edge"
+  - title: "Boosting Cloud Resource Utilization with Greedy Oversubscription"
     venue: "Journées Cloud/Edge"
     location: "Télécom Paris, Paris, France"
     year: 2022
     selected: false
+    links:
+      - label: "Program"
+        url: "https://journeescloud2022.wp.imt.fr/session-ii-applications-et-iot/"
 
-  - title: "LUCS–PACE Summer School"
+  - title: "Sampling Resource Requirements to Optimize VM Sizing"
     venue: "LUCS–PACE Summer School"
     location: "Sundvolden, Norvège"
     year: 2022
     selected: false
+    links:
+      - label: "Program"
+        url: "https://www.simulamet.no/about/news/final-lucs-pace-summer-school"
 
   - title: "Sampling Resource Requirements to Optimize VM Sizing"
     venue: "EuroSys"
@@ -107,15 +139,33 @@ talks:
     note: "Poster"
     year: 2022
     selected: false
+    links:
+      - label: "Program"
+        url: "https://2022.eurosys.org/index.html"
 
-  - title: "École d'hiver GDR RSD et ASF"
-    venue: "GDR RSD et ASF"
+  - title: "Improve cloud efficiency with better VM sizing"
+    venue: "GDR RSD and ASF Winter School"
     location: "Les 7 Laux, France"
     year: 2022
     selected: false
+    links:
+      - label: "Program"
+        url: https://sites.google.com/site/rsdwinterschool/last-editions/asf-winter-school-2022"
 
-  - title: "LUCS–PACE Research Workshop on Energy Informatics"
+  - title: "Sampling Resource Requirements to Optimize VM Sizing"
     venue: "LUCS–PACE Research Workshop"
     location: "Munich, Allemagne"
     year: 2022
     selected: false
+    links:
+      - label: "Program"
+        url: "https://www.simulamet.no/about/news/final-lucs-pace-research-workshop-energy-informatics"
+
+  - title: "Mainframe Carbon footprint"
+    venue: "LUCS–PACE Research Workshop on Green Computing"
+    location: "Lille, France"
+    year: 2021
+    selected: false
+    links:
+      - label: "Program"
+        url: "https://www.simulamet.no/about/news/green-computing-meets-green-energy"

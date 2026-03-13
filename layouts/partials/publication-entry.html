@@ -1,8 +1,20 @@
 {{ $entry := . }}
+{{/* Abbreviate full first names for display (data stores full names); then highlight P. Jacquet */}}
+{{ $display := $entry.authors }}
+{{ $display = replace $display "Pierre Jacquet" "P. Jacquet" }}
+{{ $display = replace $display "Camille Coti" "C. Coti" }}
+{{ $display = replace $display "Marcos Dias de Assunção" "M. Dias de Assunção" }}
+{{ $display = replace $display "Romain Rouvoy" "R. Rouvoy" }}
+{{ $display = replace $display "Maxime Agusti" "M. Agusti" }}
+{{ $display = replace $display "Eddy Caron" "E. Caron" }}
+{{ $display = replace $display "Laurent Lefèvre" "L. Lefèvre" }}
+{{ $display = replace $display "Anne-Cécile Orgerie" "A. Orgerie" }}
+{{ $display = replace $display "Adrien Luxey-Bitri" "A. Luxey-Bitri" }}
+{{ $display = replace $display "Thomas Ledoux" "T. Ledoux" }}
 <article class="publication">
   <p>
     <b>{{ $entry.title }}</b>,{{ " " -}}
-    {{- ($entry.authors | replaceRE `\bP\. Jacquet\b` `<span class="author-me">P. Jacquet</span>`) | safeHTML -}}
+    {{- ($display | replaceRE `\bP\. Jacquet\b` `<span class="author-me">P. Jacquet</span>`) | safeHTML -}}
     <br>{{ $entry.venue }}{{ with $entry.abbr }} (<b>{{ . }}</b>){{ end }}, {{ $entry.year }}
     {{ with $entry.links }}
     <br><span class="publication-links">{{ range . }}<a class="article" href="{{ .url }}">{{ .label }}</a> {{ end }}</span>
