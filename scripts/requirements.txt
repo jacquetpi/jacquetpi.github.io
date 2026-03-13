@@ -1,0 +1,2 @@
+# For generate_cv.py (CV generation from data/*.yaml)
+pyyaml>=6.0

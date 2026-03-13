@@ -1,14 +1,21 @@
 # type: paper | press | thesis
 # selected: true means show on homepage "Selected Publications"
 # links: list of { label: "[Paper]", url: "..." }
+# For papers: bib_key (for CV bib), entry_type (journal | conference), section (main | workshop); optional doi, pages, publisher (default IEEE)
 
 papers:
   - title: "CINERGY: Deterministic Power Monitoring for Carbon Accounting in the Cloud"
-    authors: "P. Jacquet, C. Coti, M. Dias de Assunção, R. Rouvoy"
+    authors: "Pierre Jacquet, Camille Coti, Marcos Dias de Assunção, and Romain Rouvoy"
     venue: "IEEE Transactions on Cloud Computing"
     abbr: "TCC"
     year: 2026
+    publisher: "IEEE"
+    bib_key: "cinergytcc"
+    entry_type: "journal"
+    section_cv: "main"
     selected: true
+    doi: "10.1109/TCC.2026.3674370"
+    pages: "1-12"
     links:
       - label: "[Paper]"
         url: "https://hal.science/hal-05551692"
@@ -16,18 +23,28 @@ papers:
         url: "https://github.com/jacquetpi/cinergy-models"
 
   - title: "Larger Cloud Servers, Fewer Hosts? On the Evolution of VM Sizes in IaaS Platforms"
-    authors: "P. Jacquet, C. Coti, M. Dias de Assunção"
+    authors: "Pierre Jacquet, Camille Coti, and Marcos Dias de Assunção"
     venue: "IEEE International Symposium on Cluster, Cloud and Internet Computing"
     abbr: "CCGrid"
     year: 2026
+    publisher: "IEEE"
+    bib_key: "cloudevolutionccgrid26"
+    entry_type: "conference"
+    section_cv: "main"
     selected: true
+    pages: "1-10"
 
   - title: "Untangling GPU Power Consumption: Job-Level Inference in Cloud Shared Settings"
-    authors: "P. Jacquet, M. Agusti, E. Caron, C. Coti, M. Dias de Assunção, L. Lefèvre, A. Orgerie"
+    authors: "Pierre Jacquet, Maxime Agusti, Eddy Caron, Camille Coti, Marcos Dias de Assunção, Laurent Lefèvre, and Anne-Cécile Orgerie"
     venue: "European Conference on Computer Systems"
     abbr: "EuroSys"
     year: 2026
+    publisher: "ACM"
+    bib_key: "eurosys26"
+    entry_type: "conference"
+    section_cv: "main"
     selected: true
+    pages: "1-14"
     links:
       - label: "[Paper]"
         url: "https://hal.science/hal-05291033"
@@ -35,20 +52,30 @@ papers:
         url: "https://zenodo.org/records/16981547"
 
   - title: "The Case for Time-Shared Computing Resources"
-    authors: "P. Jacquet, A. Luxey-Bitri"
+    authors: "Pierre Jacquet and Adrien Luxey-Bitri"
     venue: "Computing Within Limits"
     abbr: "LIMITS"
     year: 2025
-    selected: false
+    bib_key: "sharinglimits"
+    entry_type: "conference"
+    section_cv: "workshop"
+    selected: true
+    pages: "1-8"
     links:
       - label: "[Paper]"
         url: "https://hal.science/hal-05130125"
 
   - title: "CINERGY: Reasoning over the Worst Case Power Consumption of Cloud Virtual Machines"
-    authors: "P. Jacquet, C. Coti, M. Dias de Assunção, R. Rouvoy"
+    authors: "Pierre Jacquet, Camille Coti, Marcos Dias de Assunção, and Romain Rouvoy"
     venue: "IEEE International Symposium on Cluster, Cloud and Internet Computing"
     abbr: "CCGrid"
     year: 2025
+    publisher: "IEEE"
+    bib_key: "jacquet:hal-04981001"
+    entry_type: "conference"
+    section_cv: "workshop"
+    doi: "10.1109/CCGRID64434.2025.00024"
+    pages: "586-589"
     links:
       - label: "[Short Paper]"
         url: "https://hal.science/hal-04981001"
@@ -56,10 +83,16 @@ papers:
         url: "https://github.com/jacquetpi/cinergy-models"
 
   - title: "SlackVM: Packing Virtual Machines in Oversubscribed Cloud Infrastructure"
-    authors: "P. Jacquet, T. Ledoux, R. Rouvoy"
+    authors: "Pierre Jacquet, Thomas Ledoux, and Romain Rouvoy"
     venue: "IEEE International Conference on Cluster Computing"
     abbr: "CLUSTER"
+    publisher: "IEEE"
     year: 2024
+    bib_key: "jacquetslack"
+    entry_type: "conference"
+    section_cv: "main"
+    doi: "10.1109/CLUSTER59578.2024.00024"
+    pages: "190-201"
     links:
       - label: "[Paper]"
         url: "https://hal.science/hal-04636648"
@@ -67,11 +100,16 @@ papers:
         url: "https://github.com/jacquetpi/slackvm"
 
   - title: "SweetspotVM: Oversubscribing CPU without Sacrificing VM Performance"
-    authors: "P. Jacquet, T. Ledoux, R. Rouvoy"
+    authors: "Pierre Jacquet, Thomas Ledoux, and Romain Rouvoy"
     venue: "IEEE/ACM International Symposium on Cluster, Cloud and Internet Computing"
     abbr: "CCGrid"
+    publisher: "IEEE"
     year: 2024
-    selected: true
+    bib_key: "jacquet:hal-04454043"
+    entry_type: "conference"
+    section_cv: "main"
+    doi: "10.1109/CCGrid59990.2024.00026"
+    pages: "148-157"
     links:
       - label: "[Paper]"
         url: "https://hal.science/hal-04454043"
@@ -79,10 +117,16 @@ papers:
         url: "https://github.com/jacquetpi/sweetspotvm"
 
   - title: "SCROOGEVM: Boosting Cloud Resource Utilization with Dynamic Oversubscription"
-    authors: "P. Jacquet, T. Ledoux, R. Rouvoy"
+    authors: "Pierre Jacquet, Thomas Ledoux, and Romain Rouvoy"
     venue: "IEEE Transactions on Sustainable Computing"
     abbr: "TSUSC"
+    publisher: "IEEE"
     year: 2024
+    bib_key: "jacquet:hal-04466538"
+    entry_type: "journal"
+    section_cv: "main"
+    doi: "10.1109/TSUSC.2024.3369333"
+    pages: "754-765"
     links:
       - label: "[Paper]"
         url: "https://hal.science/hal-04466538"
@@ -90,10 +134,16 @@ papers:
         url: "https://github.com/jacquetpi/scroogevm"
 
   - title: "CLOUDFACTORY: An Open Toolkit to Generate Production-like Workloads for Cloud Infrastructures"
-    authors: "P. Jacquet, T. Ledoux, R. Rouvoy"
+    authors: "Pierre Jacquet, Thomas Ledoux, and Romain Rouvoy"
     venue: "IEEE International Conference on Cloud Engineering"
     abbr: "IC2E"
+    publisher: "IEEE"
     year: 2023
+    bib_key: "jacquet2023cloudfactory"
+    entry_type: "conference"
+    section_cv: "main"
+    doi: "10.1109/IC2E59103.2023.00017"
+    pages: "81-91"
     links:
       - label: "[Paper]"
         url: "https://hal.science/hal-04168667"
@@ -102,26 +152,49 @@ papers:
 
 press:
   - title: "La chasse au gaspillage dans le cloud et les data centers"
-    authors: "P. Jacquet, T. Ledoux, R. Rouvoy"
+    authors: "Pierre Jacquet, Thomas Ledoux, and Romain Rouvoy"
     venue: "The Conversation"
+    journal: "Ouest-France"
     year: 2023
+    bib_key: "theconversation"
+    note: "Notes: Plus de 300 000 impressions"
     links:
       - label: "[Press article]"
         url: "https://theconversation.com/la-chasse-au-gaspillage-dans-le-cloud-et-les-data-centers-196669"
+      - label: "[Ouest-France]"
+        url: "https://www.ouest-france.fr/leditiondusoir/2023-02-07/hebergement-concurrence-la-chasse-au-gaspillage-s-organise-dans-les-data-centers-3c7b1bf0-de0e-4e54-95c0-6455af57c95d"
 
+  - title: "Agir face aux enjeux environnementaux, la thèse comme levier"
+    authors: "Pierre Jacquet"
+    venue: "Docteurs SPI"
+    year: 2025
+    bib_key: "redocspi"
+    publisher: "Réseau National des Écoles Doctorales Sciences Pour l'Ingénieur"
+    note: "https://www.docteurs-spi.org/post/agir-face-aux-enjeux-environnementaux-la-thèse-comme-levier"
+    links:
+      - label: "[Article]"
+        url: "https://www.docteurs-spi.org/post/agir-face-aux-enjeux-environnementaux-la-th%C3%A8se-comme-levier"
+
+# For theses: thesis_type (phd | masters) for bib entry; optional school.
 theses:
   - title: "Enhancing IaaS Consolidation with Resource Oversubscription"
-    authors: "P. Jacquet"
+    authors: "Pierre Jacquet"
     venue: "Ph.D. Thesis"
+    thesis_type: "phd"
+    school: "Université de Lille"
     year: 2024
+    bib_key: "phdthesis"
     links:
       - label: "[Thesis]"
         url: "https://theses.fr/2024ULILB015"
 
   - title: "Mainframe footprint and consumption, an evaluation based on sustainable IT approach"
-    authors: "P. Jacquet"
+    authors: "Pierre Jacquet"
     venue: "Master Thesis"
+    thesis_type: "masters"
+    school: "Université Paris 12"
     year: 2021
+    bib_key: "masterthesis"
     links:
       - label: "[Thesis]"
         url: "https://jacquetpi.github.io/pdf/mainframe-consumption.pdf"

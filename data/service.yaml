@@ -1,7 +1,9 @@
 # Service entries: categories with nested item lists.
 # Each item: text (required); optional link: { label, url }; optional suffix (e.g. " Workshop");
 # optional years: [2025, 2027] for multiple years (renders " 2025, 2027" after suffix).
-# Use suffix for single year (e.g. " 2026") or suffix + years for multiple (e.g. suffix: " Workshop", years: [2025, 2027]).
+# displayed_on_site: false = show in CV only, hide on website (default true).
+# note_after: optional text after a category block (e.g. "* Sub-reviewing" for Reviews).
+# sub_reviewing: true = append * to this item (CV only); use for sub-reviewing venues.
 
 categories:
   - name: "Committees"
@@ -24,10 +26,22 @@ categories:
         suffix: " 2025"
 
   - name: "Reviews"
+    note_after: "* Sub-reviewing"
     items:
       - text: "ACM Transactions on Autonomous and Adaptive Systems"
       - text: "IEEE Internet Computing"
+        sub_reviewing: true
       - text: "GreenNet Workshop 2025"
       - text: "IEEE/IFIP DSN 2024"
+        sub_reviewing: true
       - text: "ACM Middleware 2023"
+        sub_reviewing: true
       - text: "IEEE Cluster 2023"
+        sub_reviewing: true
+
+  - name: "Organization"
+    items:
+      - text: "Student volunteer at "
+        link: { label: "IEEE ICC 2025", url: "https://icc2025.ieee-icc.org/" }
+        suffix: " (guide, session chair)"
+        displayed_on_site: false
