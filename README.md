@@ -147,7 +147,7 @@ Then run `hugo --minify`. The home page shows the first 5 items per category; `/
 
 A LaTeX CV is generated from the same data and served at **`/cv/cv.pdf`** (and sources at `/cv/cv.tex`, `/cv/cv.bib`). The generator script **`scripts/generate_cv.py`** reads `data/publications.yaml`, `data/interviews.yaml`, `data/service.yaml`, `data/talks.yaml`, and `data/artifacts.yaml`, then fills the skeleton **`cv/cv_skeleton.tex`** and writes **`cv/cv.bib`** and **`cv/cv.tex`**. CI builds the PDF and copies it (with the generated `.tex` and `.bib`) into `public/cv/` on deploy.
 
-- **To regenerate locally:** `pip install -r scripts/requirements.txt` then `python3 scripts/generate_cv.py`. Build with `cd latex && pdflatex cv.tex && bibtex cv && pdflatex cv.tex && pdflatex cv.tex`. Run tests: `pytest tests/test_generate_cv.py -v`.
+- **To regenerate locally:** `pip install -r scripts/requirements.txt` then `python3 scripts/generate_cv.py`. Build with `cd latex && pdflatex cv.tex && bibtex cv && pdflatex cv.tex && pdflatex cv.tex`. Run tests: `pytest scripts/test_generate_cv.py -v`.
 - **Publications:** Use `bib_key`, `entry_type` (`journal` or `conference`), `section` (`main` or `workshop`), and optional `doi`, `pages`, `publisher` (default IEEE) in `data/publications.yaml`; order in the CV follows the file order. Theses use optional `thesis_type` (`phd` or `masters`) for the bib entry type.
 - **Service:** Categories can have optional `note_after` (e.g. `"* Sub-reviewing"` after Reviews); the generator renders it after that category’s block.
 - **Interviews:** `data/interviews.yaml` (each entry: `bib_key`, `title`, `authors`, `year`, optional `note` for URL or text).
@@ -178,7 +178,7 @@ A LaTeX CV is generated from the same data and served at **`/cv/cv.pdf`** (and s
 | `data/artifacts.yaml` | Research artifacts (for CV “Research artifacts” section) |
 | `cv/cv_skeleton.tex` | LaTeX CV template with placeholders; filled by `scripts/generate_cv.py` |
 | `scripts/generate_cv.py` | Generates `latex/cv.tex` and `latex/cv.bib` from data/*.yaml |
-| `tests/test_generate_cv.py` | Pytest tests for the CV generator |
+| `scripts/test_generate_cv.py` | Pytest tests for the CV generator |
 | `layouts/index.html` | Home (CV) layout |
 | `layouts/blog/list.html`, `single.html` | Blog list and post layout |
 | `layouts/publications/list.html` | Publications page layout |

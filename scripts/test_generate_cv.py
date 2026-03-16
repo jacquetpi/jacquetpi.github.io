@@ -1,12 +1,13 @@
 """
-Tests for scripts/generate_cv.py.
-Run from repo root: pytest tests/test_generate_cv.py -v
+Tests for generate_cv.py (same folder).
+Run from repo root: pytest scripts/test_generate_cv.py -v
 """
 import sys
 from pathlib import Path
 
-REPO_ROOT = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(REPO_ROOT / "scripts"))
+_scripts_dir = Path(__file__).resolve().parent
+if str(_scripts_dir) not in sys.path:
+    sys.path.insert(0, str(_scripts_dir))
 import generate_cv as gen
 
 

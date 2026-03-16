@@ -1,0 +1,323 @@
+\documentclass[10pt,a4paper,roman]{moderncv}
+\moderncvtheme[black]{classic}
+\usepackage[utf8]{inputenc}
+\usepackage[scale=0.85]{geometry} % La taille pris par le contenu, ici on a 15% de marges.
+\usepackage{xcolor}
+\usepackage{natbib}
+\usepackage{bibentry}
+\usepackage[bottom]{footmisc}
+
+\renewcommand*{\namefont}{\fontsize{18}{20}\mdseries\upshape}
+\renewcommand*{\titlefont}{\fontsize{14}{20}\mdseries\upshape}
+
+% Define custom type of list
+\newcounter{pubctr}
+\newenvironment{publist}
+  {%
+    \begin{list}{[\arabic{pubctr}]}%
+      {%
+        \setlength{\leftmargin}{1.5em}%
+        \setlength{\itemsep}{0.3em}%
+        \setlength{\labelsep}{0.5em}%
+      }%
+    \newcommand{\pubitem}{%
+      \refstepcounter{pubctr}%
+      \item
+    }%
+  }
+  {%
+    \end{list}%
+  }
+
+\newcounter{thesisctr}
+\newenvironment{thesislist}
+  {\begin{list}{[\arabic{thesisctr}]}%
+     {\usecounter{thesisctr}
+      \setlength{\leftmargin}{1.5em}
+      \setlength{\itemsep}{0.3em}
+     }}
+  {\end{list}}
+
+\nopagenumbers{} % Permet de masquer les numéros de page
+ 
+\title{Research scientist in cloud computing}
+\firstname{\textcolor{black}{\textbf{Pierre}}}
+\familyname{\textbf{JACQUET}}
+\address{1100 rue Notre Dame Ouest,}{H3C 1K3 Montréal, Canada}
+\mobile{ +(514) 396-8800}
+\email{hidden-mail@domain.com}
+\extrainfo{\href{https://jacquetpi.github.io}{https://jacquetpi.github.io}}
+ 
+\begin{document}
+\maketitle
+
+ 
+\section{Work Experience}
+
+\cventry{Jan. 2025 - Dec. 2026}{École de technologie supérieure}{Montréal}{Canada\newline Postdoctoral Researcher\newline Topic: A Better Sharing of Cloud Resources}{In a partnership with OVHcloud Montréal}{}{}
+\cventry{Oct. 2021 - Sept. 2024}{Université de Lille, Inria}{Lille}{France\newline Ph.D. Candidate\newline Topic: Enhancing IaaS Consolidation with Resource Oversubscription}{}{}{}
+\cventry{Sept. 2018 - Sept. 2021}{Groupe BPCE}{Paris}{France\newline Mainframe Security Architect\newline Apprenticeship. Project management related to the banking security ecosystem}{}{}{}
+\cventry{2018}{Direction Générale des Finances Publiques}{Paris}{France\newline Intern. Java developer}{}{}{}
+
+\section{Education}
+
+\cventry{2024}{Université de Lille}{Lille}{France\newline Ph.D. –Computer Science\newline Advisors: Thomas Ledoux, Romain Rouvoy}{}{}
+\cventry{2021}{Université de Paris-Est}{Créteil}{France\newline Master of Computer Science}{}{}
+ 
+\section{Publications}
+\bibliographystyle{plain}
+\nobibliography{cv}
+
+\textbf{International Journal/Conference\footnote{In distributed systems, conferences are often the primary venues for publishing high-impact research and typically involve rigorous peer review. Author order is determined by individual contribution to the paper.} Publications:}
+
+\begin{publist}
+\pubitem \bibentry{cinergytcc}
+\pubitem \bibentry{cloudevolutionccgrid26}
+\pubitem \bibentry{eurosys26}
+\pubitem \bibentry{jacquetslack}
+\pubitem \bibentry{jacquet:hal-04454043}
+\pubitem \bibentry{jacquet:hal-04466538}
+\pubitem \bibentry{jacquet2023cloudfactory}
+\end{publist}
+
+\newpage
+\textbf{Workshop and Short Papers:}
+
+\begin{publist}
+\pubitem \bibentry{sharinglimits}
+\pubitem \bibentry{jacquet:hal-04981001}
+\end{publist}
+
+\textbf{Thesis:}
+
+\begin{thesislist}
+\item  \bibentry{phdthesis}
+\item  \bibentry{masterthesis}
+\end{thesislist}
+
+\section{Research artifacts}
+
+This section presents a list of software artifacts for which I directly contributed to the implementation and source code. 
+The self-assessment of each artifact follows the criteria defined in the document \href{https://www.inria.fr/sites/default/files/2021-01/Criteria%20software%20self%20assessment.pdf}{Criteria for Software Self-Assessment v3 published by Inria}.\\
+
+\begin{itemize}
+\item Cinergy framework.  
+\textit{Family}: Vehicle; 
+\textit{Audience}: Partners; 
+\textit{Evolution}: No future; 
+\textit{Duration}: 1 year; 
+\textit{Contribution}: Leader; 
+\textit{URL}: \url{github.com/jacquetpi/cinergy-models}.  
+
+Software suite enabling energy measurements of Virtual Machines in a Cloud context.
+
+\item Untangling GPU Power Consumption.  
+\textit{Family}: Vehicle; 
+\textit{Audience}: Partners; 
+\textit{Evolution}: No future; 
+\textit{Duration}: 1 year; 
+\textit{Contribution}: Leader; 
+\textit{URL}: \url{https://zenodo.org/records/17339127}.  
+
+Software suite enabling energy measurements of GPUs shared across concurrent workloads.
+
+\item CloudFactory.  
+\textit{Family}: Research; 
+\textit{Audience}: Partners; 
+\textit{Evolution}: Basic; 
+\textit{Duration}: 2 years; 
+\textit{Contribution}: Leader; 
+\textit{URL}: \url{https://github.com/jacquetpi/cloudfactory}.  
+
+CloudFactory is a tool designed for researchers to reproduce realistic IaaS workloads (sets of virtual machines) on one or multiple servers. Virtual machines arrive dynamically and exhibit realistic usage profiles, inspired by statistical traces from cloud operators.
+
+\item ScroogeVM.  
+\textit{Family}: Vehicle; 
+\textit{Audience}: Partners; 
+\textit{Evolution}: No future; 
+\textit{Duration}: 1 year; 
+\textit{Contribution}: Leader; 
+\textit{URL}: \url{https://github.com/jacquetpi/scroogevm}.  
+
+ScroogeVM is a prototype orchestrator estimating node overcommitment ratios based on workload usage and stability.
+
+\item SlackVM.  
+\textit{Family}: Vehicle; 
+\textit{Audience}: Partners; 
+\textit{Evolution}: No future; 
+\textit{Duration}: 1 year; 
+\textit{Contribution}: Leader; 
+\textit{URL}: \url{https://github.com/jacquetpi/slackvm}.  
+
+SlackVM is a prototype orchestrator dynamically partitioning CPU cores of a node across different overcommitment levels.
+
+\item SweetSpotVM.  
+\textit{Family}: Vehicle; 
+\textit{Audience}: Partners; 
+\textit{Evolution}: No future; 
+\textit{Duration}: 1 year; 
+\textit{Contribution}: Leader; 
+\textit{URL}: \url{https://github.com/jacquetpi/sweetspotvm}.  
+
+SweetSpotVM is a prototype orchestrator introducing heterogeneous vCPU performance levels for virtual machines under different overcommitment ratios.
+
+\end{itemize}
+ 
+\section{Teaching experience}
+ 
+\textbf{Université de Lille}\\
+
+During my PhD, I held two part-time teaching contracts at the University of Lille over the 2022--23 and 2023--24 academic years, for a total of 102 hours of teaching (equivalent TD). 
+My responsibilities consisted in delivering tutorials and practical sessions, grading, and supervising students, based on existing pedagogical material and course content.\\
+ 
+\begin{itemize}
+    \item Introduction to Object-oriented programming. Fall22, Fall23 (Teaching Assistant, 30 students, L2)
+    \item Advanced Object-oriented programming. Spring23 (Teaching Assistant, 20 students, M1)
+    \item Introduction to Software security. Spring23 (Teaching Assistant, 20 students, M1)
+\end{itemize}
+
+\hfill \break
+\textbf{CentraleSupélec}\\
+
+During my postdoctoral fellowship, I designed and supervised a 35-hour student project on the environmental impact of cloud computing, directly grounded in my research. 
+This included the definition of learning objectives, project scope, creation of pedagogical content (software tools and datasets), as well as evaluation criteria and grading.\\
+
+\begin{itemize}
+    \item Environmental Impact of Cloud Computing (Hackathon). Spring26 (Consultant, 30 students, ING1)
+\end{itemize}
+
+% \section{Supervision}
+
+\section{Research Grants} % Grants and fellowships
+
+\begin{itemize}
+    \item {\textbf{Mitacs Elevate Fellowship}, Canada, 2024 — \$120,000 CAD for postdoctoral research on cloud resource optimization in collaboration with OVHcloud.}
+\end{itemize}
+
+\section{Service}
+
+\textbf{Comittees:}\newline
+\begin{itemize}
+    \item PC member, \href{https://clustercomp.org/2026/committees/}{IEEE Cluster 2026}
+    \item PC member of Artifact track, \href{https://dsn2026.github.io/cfartifacts.html}{IEEE/IFIP DSN 2026}
+    \item Web Chair \& PC member of \href{https://infrastructure.web.deuxfleurs.fr/2025}{INFRASTRUCTURE Workshop 2025, 2026}
+    \item PC member of Artifact track, \href{https://conf.researchr.org/track/cascon-2025/artifacts-track}{IEEE CASCON 2025}
+    \item PC member of \href{https://2025.compas-conference.fr/comites/}{Compas 2025}
+\end{itemize}
+\hfill \break
+\textbf{Reviews:}\newline
+\begin{itemize}
+    \item ACM Transactions on Autonomous and Adaptive Systems
+    \item IEEE Internet Computing~*
+    \item GreenNet Workshop 2025
+    \item IEEE/IFIP DSN 2024~*
+    \item ACM Middleware 2023~*
+    \item IEEE Cluster 2023~*
+\end{itemize}
+\textit{* Sub-reviewing}\newline
+\hfill \break
+\textbf{Organization:}\newline
+\begin{itemize}
+    \item Student volunteer at \href{https://icc2025.ieee-icc.org/}{IEEE ICC 2025} (guide, session chair)
+\end{itemize}
+
+\section{Distinctions:}
+
+During my career, I have received the following awards and distinctions:\\
+
+Travel grant, \href{https://2026.eurosys.org/grants.html}{EuroSys 2026} — awarded to present on main track\\
+24-month scholarship, ÉTS Montréal \href{https://www.mitacs.ca/our-programs/elevate/}{(MITACS Elevate program)} — awarded after an application to an excellence fellowship\\
+Best Contribution Award, \href{https://community.ibm.com/community/user/blogs/meredith-stowell1/2021/03/31/announcing-the-2020-master-the-mainframe-winners}{IBM Master the Mainframe} (2020) — international innovation competition with 25{,}000 participants\\
+Jury Prize, \href{https://www.agorize.com/en/challenges/black-out-2/pages/saison-1}{Safran Black-Out Challenge} (2019) — national innovation competition with 650 participants\\
+
+\section{Outreach}
+
+\textbf{Talks:}\\ % Invited talks
+
+I was invited to present my work in the following events:\\
+
+\textit{\href{https://www.linkedin.com/posts/etsmtl_colloque-le-g\%C3\%A9nie-du-num\%C3\%A9rique-responsable-activity-7391829272489005057-yLVX}{Datacenter Environmental Impact}}, Colloque Num{\'e}rique Responsable hosted by {\'E}TS (Montr{\'e}al, Canada, 2025)\\
+\textit{Dynamic Overcommitment in OpenStack}, OpenInfra Summit ({\'E}cole polytechnique (X), France, 2025)\\
+\textit{Orchestrating the Sharing of Cloud Resources}, DataMove (Inria) seminar (en ligne, France, 2025)\\
+\textit{Shared Computing: Why and How?}, SEMTL seminar at Concordia University (Montr{\'e}al, Canada, 2025)\\
+\textit{Untangling GPU Power Consumption}, Calcul Qu{\'e}bec seminar (Montr{\'e}al, Canada, 2025)\\
+\textit{On the Sharing of Cloud Computing resources}, Avalon (Inria) seminar (Lyon, France, 2024)\\
+\textit{Le partage des ressources de calcul du Cloud}, Aneo (invited by a private consulting company) (Paris, France, 2024)\\
+\textit{The Last Frontier: Sharing Cloud Resources}, Eco-ICT Autumn School (Beg Meil, France, 2024)\\
+\textit{SlackVM, Joindre les taux de surallocation pour mieux remplir les infrastructures Cloud}, COMPAS (Nantes, France, 2024)\\
+\textit{\href{https://graal.ens-lyon.fr/~llefevre/greendays2024/GreenDays2024_Jacquet.mp4}{A less brown Cloud: How to use less resources?}}, Green Days (Toulouse, France, 2024)\\
+\textit{Cloud Computing, doing more with less using oversubcription}, GDR RSD and ASF Winter School (Les 7 Laux, France, 2024)\\
+\textit{A less brown Cloud using oversubscription}, Epif{\'e}rence (EPISEN school) (Cr{\'e}teil, France, 2024)\\
+\textit{SCROOGEVM : Accro{\^i}tre l’utilisation des ressources du cloud en ajustant dynamiquement la surallocation}, COMPAS (Annecy, France, 2023)\\
+\textit{Improve cloud resource utilization with dynamic oversubscription}, GDR RSD and ASF Winter School (Les 7 Laux, France, 2023)\\
+\textit{Boosting Cloud Resource Utilization with Greedy Oversubscription}, Journ{\'e}es Cloud/Edge (T{\'e}l{\'e}com Paris, Paris, France, 2022)\\
+\textit{Sampling Resource Requirements to Optimize VM Sizing}, LUCS–PACE Summer School (Sundvolden, Norway, 2022)\\
+\textit{Sampling Resource Requirements to Optimize VM Sizing}, EuroSys (Rennes, France, 2022) — Poster\\
+\textit{Improve cloud efficiency with better VM sizing}, GDR RSD and ASF Winter School (Les 7 Laux, France, 2022)\\
+\textit{Sampling Resource Requirements to Optimize VM Sizing}, LUCS–PACE Research Workshop (Munich, Germany, 2022)\\
+\textit{Mainframe Carbon footprint}, LUCS–PACE Research Workshop on Green Computing (Lille, France, 2021)\\
+
+\hfill \break
+\textbf{Interviews:}\newline
+
+\bibentry{interviewinria}\par
+\bibentry{ecoingenieux}
+
+\hfill \break
+\textbf{Press Articles:}\newline
+
+\bibentry{theconversation}\par
+\bibentry{redocspi}
+
+\hfill \break
+\textbf{Industrial transferts:}\\
+
+\textit{PhD -- Inria Défi project with OVHcloud}\\
+
+My PhD was conducted within an Inria \textit{Défi} project involving OVHcloud as an industrial partner. The collaboration included access to internal datasets and infrastructure metrics, joint definition of research questions, regular technical exchanges, and transfer of research results related to resource management.\\
+Contract type: Inria Défi collaborative framework. \\
+Participants: Inria, OVHcloud.\\
+Duration: 3 years.\\
+
+\textit{Postdoc -- MITACS industrial partnership with OVHcloud}\\
+
+My postdoctoral fellowship was hosted at OVHcloud Montréal under a two-year MITACS contract involving OVHcloud and ÉTS Montréal. The objectives included the integration of research results on orchestration (completed in early 2026), advanced GPU orchestration, and the improvement of carbon accounting methodologies for cloud infrastructures.\\  
+Contract type: MITACS industrial research contract.\\ 
+Participants: ÉTS Montreal, OVHcloud, MITACS.\\ 
+Duration: 2 years.
+
+\section{References}
+
+\begin{tabular}{lll}
+\begin{minipage}[t]{2.5in}
+\textbf{Prof.\ Camille Coti}\\
+1100, rue Notre-Dame Ouest\\
+Montréal (Québec) H3C 1K3, CA\\
+Phone: +1 514 396-8800\\
+\href{mailto:hidden-mail@domain.com}{hidden-mail@domain.com}
+\end{minipage} &
+\begin{minipage}[t]{2.5in}
+\textbf{Prof.\ Marcos Dias De Assunção}\\
+1100, rue Notre-Dame Ouest\\
+Montréal (Québec) H3C 1K3, CA\\
+Phone: +1 514 396-8800\\
+\href{mailto:hidden-mail@domain.com}{hidden-mail@domain.com}
+\end{minipage} &
+\begin{minipage}[t]{2.5in}
+\textbf{Prof.\ Romain Rouvoy}\\
+40, avenue Halley - Bât A\\
+59650 Villeneuve d'Ascq, France\\
+Phone: +33 0 00 00 00 00\\
+\href{mailto:hidden-mail@domain.com}{hidden-mail@domain.com}
+\end{minipage} \\
+\\
+\begin{minipage}[t]{2.5in}
+\textbf{Prof.\ Thomas Ledoux}\\
+4 rue Alfred Kastler\\
+44307 Nantes, France\\
+Phone: +33 0 00 00 00 00\\
+\href{mailto:hidden-mail@domain.com}{hidden-mail@domain.com}
+\end{minipage} &
+\end{tabular}
+
+\end{document}
