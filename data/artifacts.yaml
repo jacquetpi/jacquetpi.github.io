@@ -2,6 +2,24 @@
 # Each entry: name, family, audience, evolution, duration, contribution, url, description
 
 artifacts:
+  - name: "Cinergy framework"
+    family: "Vehicle"
+    audience: "Partners"
+    evolution: "No future"
+    duration: "1 year"
+    contribution: "Leader"
+    url: "github.com/jacquetpi/cinergy-models"
+    description: "Software suite enabling energy measurements of Virtual Machines in a Cloud context."
+
+  - name: "Untangling GPU Power Consumption"
+    family: "Vehicle"
+    audience: "Partners"
+    evolution: "No future"
+    duration: "1 year"
+    contribution: "Leader"
+    url: "https://zenodo.org/records/17339127"
+    description: "Software suite enabling energy measurements of GPUs shared across concurrent workloads."
+
   - name: "CloudFactory"
     family: "Research"
     audience: "Partners"
@@ -37,12 +55,3 @@ artifacts:
     contribution: "Leader"
     url: "https://github.com/jacquetpi/sweetspotvm"
     description: "SweetSpotVM is a prototype orchestrator introducing heterogeneous vCPU performance levels for virtual machines under different overcommitment ratios."
-
-  - name: "Untangling GPU Power Consumption"
-    family: "Vehicle"
-    audience: "Partners"
-    evolution: "No future"
-    duration: "1 year"
-    contribution: "Leader"
-    url: "https://zenodo.org/records/17339127"
-    description: "Software suite enabling energy measurements of GPUs shared across concurrent workloads."
