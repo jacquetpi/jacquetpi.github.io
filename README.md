@@ -84,7 +84,7 @@ Then run `hugo --minify` again. The home page and the `/publications/` page both
 
 All talks live in **`data/talks.yaml`**. Use `selected: true` to show a talk in the “Selected Talks” block on the home page.
 
-- **Fields:** `title`, `venue`, `year`; optional `location`, `note` (e.g. "Poster"), `links` (list of `label`/`url`).
+- **Fields:** `title`, `venue`, `type`, `year`; optional `location`, `note` (e.g. "Poster"), `links` (list of `label`/`url`). Any number of links is shown as `Title ~ Link1, Link2, …`. If `type` is exactly `Keynote` (case-insensitive), it is shown in bold on the site and in the PDF CV.
 - Example:
 
   ```yaml
@@ -92,6 +92,7 @@ All talks live in **`data/talks.yaml`**. Use `selected: true` to show a talk in 
     - title: "Talk title"
       venue: "Event name"
       location: "City or institution"
+      type: "Invited talk"
       year: 2025
       selected: true
       links:
@@ -149,7 +150,7 @@ A LaTeX CV is generated from the same data and served at **`/cv/cv.pdf`** (and s
 
 - **To regenerate locally:** `pip install -r scripts/requirements.txt` then `python3 scripts/generate_cv.py`. Build with `cd latex && pdflatex cv.tex && bibtex cv && pdflatex cv.tex && pdflatex cv.tex`. Run tests: `pytest scripts/test_generate_cv.py -v`.
 - **Publications:** Use `bib_key`, `entry_type` (`journal` or `conference`), `section` (`main` or `workshop`), and optional `doi`, `pages`, `publisher` (default IEEE) in `data/publications.yaml`; order in the CV follows the file order. Theses use optional `thesis_type` (`phd` or `masters`) for the bib entry type.
-- **Service:** Categories can have optional `note_after` (e.g. `"* Sub-reviewing"` after Reviews); the generator renders it after that category’s block.
+- **Service:** Set `sub_reviewing: true` on an item to mark it with `*` on the site (and `~*` in the CV). Optional `note_after` (e.g. `"* Sub-reviewing"`) is shown after that category on the site and in the CV only if at least one item in the category has `sub_reviewing: true`.
 - **Interviews:** `data/interviews.yaml` (each entry: `bib_key`, `title`, `authors`, `year`, optional `note` for URL or text).
 - **Artifacts:** `data/artifacts.yaml` (each entry: `name`, `family`, `audience`, `evolution`, `duration`, `contribution`, `url`, `description`).
 

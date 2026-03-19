@@ -36,7 +36,7 @@
 
   <div class="cv-section" id="talks">
     <h2 class="theme-grey">Selected Talks</h2>
-    <ul>
+    <ul class="talks-list-selected">
       {{ range where .Site.Data.talks.talks "selected" true }}
         <li>{{ partial "talk-entry.html" . }}</li>
       {{ end }}

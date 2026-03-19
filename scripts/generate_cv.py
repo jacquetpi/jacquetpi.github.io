@@ -239,34 +239,61 @@ def generate_service_section(service):
             else:
                 out.append(f"    \\item {text}{suffix}{year_str}{sub_mark}")
         out.append("\\end{itemize}")
-        # Optional note after this category (e.g. "* Sub-reviewing" after Reviews)
+        # Optional note after this category (e.g. "* Sub-reviewing") only if any item is sub-reviewing
+        has_sub_reviewing = any(item.get("sub_reviewing") for item in cat.get("items", []))
         note_after = cat.get("note_after", "").strip()
-        if note_after:
+        if note_after and has_sub_reviewing:
             out.append(f"\\textit{{{latex_escape(note_after)}}}\\newline")
     return "\n".join(out)
 
 
 def generate_talks_section(talks_data):
     talks = talks_data.get("talks", [])
-    # Use order from file; location comes from data as-is
     lines = []
     for t in talks:
         title = t.get("title", "")
+        talk_type = (t.get("type") or "").strip()
         venue = t.get("venue", "")
-        location = t.get("location", "")
+        location = (t.get("location") or "").strip()
         year = t.get("year", "")
-        note = t.get("note", "")
-        links = t.get("links", [])
-        url = get_first_link_url(links)
-        if url and links and links[0].get("label") in ("Schedule", "Event", "Meeting", "Slides", "Video"):
-            title_tex = f"\\textit{{\\href{{{latex_escape_url(url)}}}{{{latex_escape(title)}}}}}"
+        note = (t.get("note") or "").strip()
+        links = t.get("links") or []
+
+        title_esc = latex_escape(title)
+        link_parts = []
+        for link in links:
+            url = (link.get("url") or "").strip()
+            label = (link.get("label") or "").strip()
+            if url and label:
+                link_parts.append(
+                    f"\\href{{{latex_escape_url(url)}}}{{{latex_escape(label)}}}"
+                )
+        if link_parts:
+            title_line = f"\\textit{{{title_esc}}} - " + ", ".join(link_parts)
         else:
-            title_tex = f"\\textit{{{latex_escape(title)}}}"
+            title_line = f"\\textit{{{title_esc}}}"
+
+        if talk_type.lower() == "keynote":
+            type_tex = f"\\textbf{{{latex_escape(talk_type)}}}"
+        elif talk_type:
+            type_tex = latex_escape(talk_type)
+        else:
+            type_tex = ""
+
         loc_tex = latex_escape(location) if location else ""
-        line = f"{title_tex}, {latex_escape(venue)} ({loc_tex}, {year})"
+        meta_parts = []
+        if type_tex:
+            meta_parts.append(type_tex)
+        meta_parts.append(latex_escape(venue))
+        if loc_tex:
+            meta_parts.append(loc_tex)
+        if year != "" and year is not None:
+            meta_parts.append(str(year))
+        meta_line = ", ".join(meta_parts)
         if note:
-            line += f" — {note}"
-        lines.append(line + "\\\\")
+            meta_line += f" — {latex_escape(note)}"
+
+        lines.append(f"    \\item {title_line}\\\\\n    {meta_line}")
     return "\n".join(lines)
 
 

@@ -1,3 +1,3 @@
 {{ $t := . }}
-{{ $t.title }}{{ with $t.note }} <span class="theme-grey">({{ . }})</span>{{ end }}{{ if $t.links }}{{ range $t.links }} ~ <a class="article" href="{{ .url }}">{{ .label }}</a>{{ end }}, {{ else }}, {{ end }}
-{{ $t.venue }}{{ with $t.location }}, {{ . }}{{ end }} ({{ $t.year }})
+<span class="talk-entry-title">{{ $t.title }}{{ with $t.note }} <span class="theme-grey">({{ . }})</span>{{ end }}{{ with $t.links }}{{ range $i, $l := . }}{{ if eq $i 0 }} ~ {{ else }}, {{ end }}<a class="article" href="{{ $l.url }}">{{ $l.label }}</a>{{ end }}{{ end }}</span><br>
+<span class="talk-entry-meta">{{ with $t.type }}{{ if eq (lower .) "keynote" }}<strong>{{ . }}</strong>{{ else }}{{ . }}{{ end }}, {{ end }}{{ $t.venue }}{{ with $t.location }}, {{ . }}{{ end }}, {{ $t.year }}</span>

@@ -181,16 +181,15 @@ def test_generate_service_sub_reviewing():
     assert "* Sub-reviewing" in out
 
 
-def test_generate_service_note_after():
+def test_generate_service_note_after_only_when_sub_reviewing():
+    """Legend note_after is omitted when no item has sub_reviewing."""
     service = {
         "categories": [
             {"name": "Reviews", "items": [{"text": "Journal X"}], "note_after": "* Sub-reviewing"},
         ]
     }
     out = gen.generate_service_section(service)
-    assert "* Sub-reviewing" in out
-    assert "\\textit" in out
-    assert out.index("\\end{itemize}") < out.index("Sub-reviewing")
+    assert "* Sub-reviewing" not in out
 
 
 # --- generate_talks_section: location as-is ---
@@ -226,6 +225,30 @@ def test_generate_talks_location_other():
     }
     out = gen.generate_talks_section(talks_data)
     assert "Sundvolden, Norway" in out
+
+
+def test_generate_talks_two_lines_keynote_and_links():
+    talks_data = {
+        "talks": [
+            {
+                "title": "My Keynote",
+                "type": "Keynote",
+                "venue": "Conf",
+                "location": "Paris, France",
+                "year": 2025,
+                "links": [
+                    {"label": "Slides", "url": "https://x.example/s.pdf"},
+                    {"label": "Video", "url": "https://x.example/v"},
+                ],
+            }
+        ]
+    }
+    out = gen.generate_talks_section(talks_data)
+    assert "    \\item " in out
+    assert "\\textit{My Keynote} ~ " in out
+    assert "\\href{https://x.example/s.pdf}{Slides}" in out
+    assert "\\textbf{Keynote}" in out
+    assert "Conf, Paris, France, 2025" in out
 
 
 # --- latex_escape_url ---

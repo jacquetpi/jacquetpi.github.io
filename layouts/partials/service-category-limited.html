@@ -2,12 +2,17 @@
 {{ $limit := .limit | default 999 }}
 {{ $visible := where $cat.items "displayed_on_site" "!=" false }}
 {{ $items := first $limit $visible }}
+{{ $subInShown := where $items "sub_reviewing" true }}
+{{ $hasSubReviewing := gt (len $subInShown) 0 }}
 {{ if $items }}
 <li>{{ $cat.name }}
   <ul>
     {{ range $items }}
-      <li>{{ .text }}{{ with .link }}<a class="article" href="{{ .url }}">{{ .label }}</a>{{ end }}{{ with .suffix }}{{ . }}{{ end }}{{ with .years }} {{ delimit . ", " }}{{ end }}</li>
+      <li>{{ .text }}{{ with .link }}<a class="article" href="{{ .url }}">{{ .label }}</a>{{ end }}{{ with .suffix }}{{ . }}{{ end }}{{ with .years }} {{ delimit . ", " }}{{ end }}{{ if .sub_reviewing }}<span class="theme-grey" title="Sub-reviewing">*</span>{{ end }}</li>
     {{ end }}
   </ul>
+  {{ if and $cat.note_after $hasSubReviewing }}
+  <p class="theme-grey service-subreview-footnote">{{ $cat.note_after }}</p>
+  {{ end }}
 </li>
 {{ end }}
