@@ -5,12 +5,12 @@
 interviews:
   - bib_key: "interviewinria"
     title: "Pas de panique, je vous explique ! l'optimisation du cloud"
-    authors: "Centre Inria de l'Université de Lille and P. Jacquet"
+    authors: "Centre Inria de l'Université de Lille and Pierre Jacquet"
     year: 2024
     note: "https://www.canal-u.tv/chaines/inria/pas-de-panique-je-vous-explique-l-optimisation-du-cloud"
 
   - bib_key: "ecoingenieux"
     title: "Podcast Éco-Ingénieux: Optimiser les ressources de l'IA"
-    authors: "A. Chodorge and P. Jacquet"
+    authors: "Amélie Chodorge and Pierre Jacquet"
     year: 2025
     note: "https://beacons.ai/ecoingenieux"

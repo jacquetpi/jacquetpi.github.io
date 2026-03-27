@@ -13,7 +13,7 @@
 {{ $display = replace $display "Thomas Ledoux" "T. Ledoux" }}
 <article class="publication">
   <p>
-    <b>{{ $entry.title }}</b>,{{ " " -}}
+    <b{{ if $entry.keynote }} class="talk-type-keynote"{{ end }}>{{ $entry.title }}</b>,{{ " " -}}
     {{- ($display | replaceRE `\bP\. Jacquet\b` `<span class="author-me">P. Jacquet</span>`) | safeHTML -}}
     <br>{{ $entry.venue }}{{ with $entry.abbr }} (<b>{{ . }}</b>){{ end }}, {{ $entry.year }}
     {{ with $entry.links }}

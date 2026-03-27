@@ -59,7 +59,7 @@ Then open http://localhost:1313 .
 
 All publications (papers, press, theses) live in **`data/publications.yaml`**.
 
-- **Papers:** Append or edit entries under `papers:`. Use `selected: true` to show the item in the “Selected Publications” block on the home page. Use full first names in `authors`; the site abbreviates for display (e.g. P. Jacquet) and underlines the site author. Optional `abbr` is the venue abbreviation in parentheses (e.g. `CCGrid`). Example:
+- **Papers:** Append or edit entries under `papers:`. Use `selected: true` to show the item in the “Selected Publications” block on the home page. Use full first names in `authors`; the site abbreviates for display (e.g. P. Jacquet) and underlines the site author. Optional `abbr` is the venue abbreviation in parentheses (e.g. `CCGrid`). Optional `keynote: true` adds the same bold + dotted underline title styling as keynote talks (on both home and `/publications/`; non-home pages use `blog.css`). Example:
 
   ```yaml
   - title: "Paper title"
@@ -84,7 +84,8 @@ Then run `hugo --minify` again. The home page and the `/publications/` page both
 
 All talks live in **`data/talks.yaml`**. Use `selected: true` to show a talk in the “Selected Talks” block on the home page.
 
-- **Fields:** `title`, `venue`, `type`, `year`; optional `location`, `note` (e.g. "Poster"), `links` (list of `label`/`url`). Any number of links is shown as `Title ~ Link1, Link2, …`. If `type` is exactly `Keynote` (case-insensitive), it is shown in bold on the site and in the PDF CV.
+- **Fields:** `title`, `venue`, `type`, `year`; optional `location`, `month` (English month name, e.g. `November`), `note` (e.g. "Poster"), `links` (list of `label`/`url`). Any number of links is shown as `Title ~ Link1, Link2, …`. If `type` is exactly `Keynote` (case-insensitive), it is shown in **bold** with a **dotted underline** on the site and in bold in the PDF CV.
+- **Order:** Talks are listed by **year** then **month** (newest first; unknown month sorts after known months in the same year). Same year/month keeps the order of entries in the file. Month names are resolved via [`data/_talk_month_order.yaml`](data/_talk_month_order.yaml) (lowercase keys `january`–`december`).
 - Example:
 
   ```yaml
@@ -94,6 +95,7 @@ All talks live in **`data/talks.yaml`**. Use `selected: true` to show a talk in 
       location: "City or institution"
       type: "Invited talk"
       year: 2025
+      month: "April"
       selected: true
       links:
         - label: "Slides"

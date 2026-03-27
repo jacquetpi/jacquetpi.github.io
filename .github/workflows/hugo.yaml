@@ -26,6 +26,9 @@ jobs:
           wget -O /tmp/hugo.deb https://github.com/gohugoio/hugo/releases/download/v0.156.0/hugo_0.156.0_linux-amd64.deb
           sudo dpkg -i /tmp/hugo.deb
 
+      - name: Build Site
+        run: hugo --minify
+
       - name: Generate CV Sources
         run: |
           pip install pyyaml
@@ -38,9 +41,6 @@ jobs:
           root_file: cv.tex
           working_directory: latex
           args: "-pdf -bibtex -interaction=nonstopmode"
-
-      - name: Build Site
-        run: hugo --minify
 
       - name: Deploy CV assets to public
         run: |

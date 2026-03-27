@@ -251,6 +251,38 @@ def test_generate_talks_two_lines_keynote_and_links():
     assert "Conf, Paris, France, 2025" in out
 
 
+def test_generate_talks_includes_month_in_meta_line():
+    talks_data = {
+        "talks": [
+            {
+                "title": "T",
+                "venue": "Venue",
+                "location": "Here",
+                "year": 2025,
+                "month": "November",
+            }
+        ]
+    }
+    out = gen.generate_talks_section(talks_data)
+    assert "November" in out
+    assert "Venue, Here, November, 2025" in out
+
+
+def test_generate_talks_sorted_by_year_month_preserves_tie_order():
+    talks_data = {
+        "talks": [
+            {"title": "AprilTalk", "venue": "V", "year": 2025, "month": "April"},
+            {"title": "OctoberTalk", "venue": "V", "year": 2025, "month": "October"},
+            {"title": "JuneA", "venue": "V", "year": 2024, "month": "June"},
+            {"title": "JuneB", "venue": "V", "year": 2024, "month": "June"},
+        ]
+    }
+    out = gen.generate_talks_section(talks_data)
+    assert out.index("OctoberTalk") < out.index("AprilTalk")
+    assert out.index("AprilTalk") < out.index("JuneA")
+    assert out.index("JuneA") < out.index("JuneB")
+
+
 # --- latex_escape_url ---
 
 

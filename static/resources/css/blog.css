@@ -84,6 +84,9 @@ a:visited {
 .theme-grey {
     color: #5a5a5a;
 }
+.talk-type-keynote {
+    text-decoration: underline dotted;
+}
 .blog-section-wrapper{
     display: flex;
     margin-top: 2.5em;

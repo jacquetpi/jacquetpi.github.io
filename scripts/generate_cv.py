@@ -91,6 +91,40 @@ def latex_escape_url(url):
     return url.replace("%", "\\%").replace("#", "\\#")
 
 
+_MONTH_ORDER_CACHE = None
+
+
+def _month_name_to_sort_num(month):
+    """Map optional month field to 1–12; 0 = missing/unknown (after dated talks in same year)."""
+    global _MONTH_ORDER_CACHE
+    if month is None or month == "":
+        return 0
+    if isinstance(month, int):
+        return month if 1 <= month <= 12 else 0
+    if _MONTH_ORDER_CACHE is None:
+        path = DATA_DIR / "_talk_month_order.yaml"
+        with open(path, encoding="utf-8") as f:
+            raw = yaml.safe_load(f) or {}
+        _MONTH_ORDER_CACHE = {str(k).lower(): int(v) for k, v in raw.items()}
+    return _MONTH_ORDER_CACHE.get(str(month).strip().lower(), 0)
+
+
+def _sort_talks_list(talks):
+    """Reverse chronological by year then month; ties keep YAML file order."""
+
+    def sort_key(ie):
+        i, t = ie
+        y = t.get("year")
+        try:
+            yi = int(y)
+        except (TypeError, ValueError):
+            yi = 0
+        mn = _month_name_to_sort_num(t.get("month"))
+        return (-yi, -mn, i)
+
+    return [t for _, t in sorted(enumerate(talks), key=sort_key)]
+
+
 def generate_bib(pub=None, interviews=None):
     """Generate bib content. If pub/interviews are None, load from data/ (allows injecting data in tests)."""
     if pub is None:
@@ -248,13 +282,14 @@ def generate_service_section(service):
 
 
 def generate_talks_section(talks_data):
-    talks = talks_data.get("talks", [])
+    talks = _sort_talks_list(list(talks_data.get("talks", [])))
     lines = []
     for t in talks:
         title = t.get("title", "")
         talk_type = (t.get("type") or "").strip()
         venue = t.get("venue", "")
         location = (t.get("location") or "").strip()
+        month_raw = t.get("month")
         year = t.get("year", "")
         note = (t.get("note") or "").strip()
         links = t.get("links") or []
@@ -269,11 +304,11 @@ def generate_talks_section(talks_data):
                     f"\\href{{{latex_escape_url(url)}}}{{{latex_escape(label)}}}"
                 )
         if link_parts:
-            title_line = f"\\textit{{{title_esc}}} - " + ", ".join(link_parts)
+            title_line = f"\\textit{{{title_esc}}} ~ " + ", ".join(link_parts)
         else:
             title_line = f"\\textit{{{title_esc}}}"
 
-        if talk_type.lower() == "keynote":
+        if talk_type and talk_type.lower() == "keynote":
             type_tex = f"\\textbf{{{latex_escape(talk_type)}}}"
         elif talk_type:
             type_tex = latex_escape(talk_type)
@@ -287,6 +322,8 @@ def generate_talks_section(talks_data):
         meta_parts.append(latex_escape(venue))
         if loc_tex:
             meta_parts.append(loc_tex)
+        if month_raw not in (None, ""):
+            meta_parts.append(latex_escape(str(month_raw).strip()))
         if year != "" and year is not None:
             meta_parts.append(str(year))
         meta_line = ", ".join(meta_parts)

@@ -1,0 +1,5 @@
+{{- with . -}}
+  {{- return (index (index site.Data "_talk_month_order") (lower (string .))) | default 0 -}}
+{{- else -}}
+  {{- return 0 -}}
+{{- end -}}

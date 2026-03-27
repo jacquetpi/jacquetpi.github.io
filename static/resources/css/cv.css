@@ -41,7 +41,7 @@ body {
 }
 .cv-content {
     flex: 1;
-    max-width: 1080px;
+    max-width: 80em;
     margin-left: min(max(21%,5em),14em);
     padding-left: min(max(1%,0.1em),30px);
 }
@@ -64,6 +64,9 @@ body {
 }
 .talks-list-selected > li + li {
     margin-top: 1em;
+}
+.talk-type-keynote {
+    text-decoration: underline dotted;
 }
 .service-subreview-footnote {
     margin: 0.4em 0 0 1.2em;

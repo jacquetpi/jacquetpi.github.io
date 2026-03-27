@@ -2,11 +2,34 @@
 # links: optional list of { label: "Slides", url: "..." }
 
 talks:
+  - title: "Cloud Instances and Power Consumption: Measuring Energy in Hyperscale Cloud Environments"
+    venue: "4th TDIS workshop (Testing Distributed Internet of Things Systems), held with EuroSys'26"
+    location: "Edinburgh, UK"
+    type: "Keynote"
+    year: 2026
+    month: "April"
+    selected: true
+    links:
+      - label: "Program"
+        url: "https://tdis.gitlab.io/tdis26/"
+
+  - title: "Panel on Industrial Opportunities After a PhD"
+    venue: "Université du Quebec (ÉTS)"
+    location: "Montréal, Canada"
+    type: "Invited Talk"
+    year: 2026
+    month: "April"
+    selected: false
+    links:
+      - label: "Program"
+        url: "https://www.etsmtl.ca/evenement/conference-debouches-carriere-apres-doctorat?date=2026-04-07"
+
   - title: "Datacenter Environmental Impact"
     venue: "Colloque Numérique Responsable hosted by ÉTS"
     location: "Montréal, Canada"
     type: "Invited talk"
     year: 2025
+    month: "November"
     selected: true
     links:
       - label: "Program"
@@ -17,6 +40,7 @@ talks:
     location: "École polytechnique (X), France"
     type: "Invited talk"
     year: 2025
+    month: "October"
     selected: true
     links:
       - label: "Program"
@@ -27,30 +51,34 @@ talks:
     location: "en ligne, France"
     type: "Invited talk"
     year: 2025
+    month: "October"
     selected: false
-
-  - title: "Shared Computing: Why and How?"
-    venue: "SEMTL seminar at Concordia University"
-    location: "Montréal, Canada"
-    type: "Invited talk"
-    year: 2025
-    selected: true
-    links:
-      - label: "Program"
-        url: "https://semtl.github.io/meeting/2025/02/01/Concordia/"
 
   - title: "Untangling GPU Power Consumption"
     venue: "Calcul Québec seminar"
     location: "Montréal, Canada"
     type: "Invited talk"
     year: 2025
+    month: "May"
+    selected: false
+
+  - title: "Shared Computing: Why and How?"
+    venue: "SEMTL seminar hosted by Concordia University"
+    location: "Montréal, Canada"
+    type: "Invited talk"
+    year: 2025
+    month: "February"
     selected: true
+    links:
+      - label: "Program"
+        url: "https://semtl.github.io/meeting/2025/02/01/Concordia/"
 
   - title: "On the Sharing of Cloud Computing resources"
     venue: "Avalon (Inria) seminar"
     location: "Lyon, France"
     type: "Invited talk"
     year: 2024
+    month: "November"
     selected: false
 
   - title: "Le partage des ressources de calcul du Cloud"
@@ -58,6 +86,7 @@ talks:
     location: "Paris, France"
     type: "Invited talk"
     year: 2024
+    month: "November"
     selected: false
 
   - title: "The Last Frontier: Sharing Cloud Resources"
@@ -65,6 +94,7 @@ talks:
     location: "Beg Meil, France"
     type: "Invited talk"
     year: 2024
+    month: "October"
     selected: false
     links:
       - label: "Program"
@@ -77,6 +107,7 @@ talks:
     location: "Nantes, France"
     type: "Talk"
     year: 2024
+    month: "July"
     selected: false
     links:
       - label: "Program"
@@ -87,6 +118,7 @@ talks:
     location: "Toulouse, France"
     type: "Talk"
     year: 2024
+    month: "March"
     selected: false
     links:
       - label: "Video"
@@ -97,6 +129,7 @@ talks:
     location: "Les 7 Laux, France"
     type: "Talk"
     year: 2024
+    month: "February"
     selected: false
     links:
       - label: "Program"
@@ -107,6 +140,7 @@ talks:
     location: "Créteil, France"
     type: "Seminar"
     year: 2024
+    month: "February"
     selected: false
 
   - title: "SCROOGEVM : Accroître l’utilisation des ressources du cloud en ajustant dynamiquement la surallocation"
@@ -114,6 +148,7 @@ talks:
     location: "Annecy, France"
     type: "Talk"
     year: 2023
+    month: "July"
     selected: false
     links:
       - label: "Program"
@@ -124,6 +159,7 @@ talks:
     location: "Les 7 Laux, France"
     type: "Talk"
     year: 2023
+    month: "February"
     selected: false
     links:
       - label: "Program"
@@ -134,6 +170,7 @@ talks:
     location: "Télécom Paris, Paris, France"
     type: "Talk"
     year: 2022
+    month: "December"
     selected: false
     links:
       - label: "Program"
@@ -144,6 +181,7 @@ talks:
     location: "Sundvolden, Norway"
     type: "Talk"
     year: 2022
+    month: "April"
     selected: false
     links:
       - label: "Program"
@@ -154,6 +192,7 @@ talks:
     location: "Rennes, France"
     type: "Poster"
     year: 2022
+    month: "April"
     selected: false
     links:
       - label: "Program"
@@ -165,6 +204,7 @@ talks:
     location: "Les 7 Laux, France"
     type: "Talk"
     year: 2022
+    month: "March"
     selected: false
     links:
       - label: "Program"
@@ -175,6 +215,7 @@ talks:
     location: "Munich, Germany"
     type: "Talk"
     year: 2022
+    month: "March"
     selected: false
     links:
       - label: "Program"
@@ -185,6 +226,7 @@ talks:
     location: "Lille, France"
     type: "Talk"
     year: 2021
+    month: "September"
     selected: false
     links:
       - label: "Program"

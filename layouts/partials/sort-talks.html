@@ -1,0 +1,18 @@
+{{- $talks := . -}}
+{{- $ranked := slice -}}
+{{- range $i, $t := $talks -}}
+  {{- $y := 0 -}}
+  {{- with $t.year -}}
+    {{- $y = int . -}}
+  {{- end -}}
+  {{- $mn := partial "talk-month-num.html" $t.month -}}
+  {{- $base := mul (add (mul $y 100) $mn) 1000 -}}
+  {{- $key := add $base (sub 1000 $i) -}}
+  {{- $ranked = $ranked | append (dict "sortKey" $key "talk" $t) -}}
+{{- end -}}
+{{- $sortedRanked := sort $ranked "sortKey" "desc" -}}
+{{- $out := slice -}}
+{{- range $sortedRanked -}}
+  {{- $out = $out | append .talk -}}
+{{- end -}}
+{{- return $out -}}
