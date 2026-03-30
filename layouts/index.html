@@ -24,16 +24,6 @@
     </div>
   </div>
 
-  <div class="cv-section" id="teaching">
-    <h2 class="theme-grey">Teaching</h2>
-    {{ range where .Site.Data.teaching.courses "selected" true }}
-      {{ partial "teaching-entry.html" . }}
-    {{ end }}
-    <div>
-      <a class="article" href="/teaching/">Full teaching list</a>
-    </div>
-  </div>
-
   <div class="cv-section" id="talks">
     <h2 class="theme-grey">Selected Talks</h2>
     <ul class="talks-list-selected">
@@ -46,13 +36,28 @@
     </div>
   </div>
 
+  <div class="cv-section" id="teaching">
+    <h2 class="theme-grey">Teaching</h2>
+    <div class="cv-teaching-preview">
+      {{ range where .Site.Data.teaching.courses "selected" true }}
+        {{ partial "teaching-entry.html" . }}
+      {{ end }}
+    </div>
+    <div>
+      <a class="article" href="/teaching/">Full teaching list</a>
+    </div>
+  </div>
+
   <div class="cv-section" id="service">
     <h2 class="theme-grey">Service</h2>
-    <ul>
-      {{ range .Site.Data.service.categories }}
-        {{ partial "service-category-limited.html" (dict "category" . "limit" 5) }}
-      {{ end }}
-    </ul>
+    {{ $serviceCategories := partial "service-categories.html" (dict "entries" .Site.Data.service.entries "selected_only" true) }}
+    <div class="cv-service-preview">
+      <ul class="cv-list-service">
+        {{ range $serviceCategories }}
+          {{ partial "service-category-limited.html" (dict "category" . "limit" 5) }}
+        {{ end }}
+      </ul>
+    </div>
     <div>
       <a class="article" href="/service/">Full service list</a>
     </div>

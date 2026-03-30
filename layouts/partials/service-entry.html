@@ -1,0 +1,30 @@
+{{- $venue := .venue | default "" -}}
+{{- $url := .url | default "" -}}
+{{- $note := .note | default "" -}}
+{{- $rolePrefix := .role_prefix | default "" -}}
+
+{{- $yearText := "" -}}
+{{- with .years -}}
+  {{- $yearText = delimit . ", " -}}
+{{- else -}}
+  {{- with .year -}}
+    {{- $yearText = printf "%v" . -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if $rolePrefix -}}
+  <span class="theme-grey">{{ $rolePrefix }}: </span>
+{{- end -}}
+{{- if $url -}}
+  <a class="article" href="{{ $url }}">{{ $venue }}</a>
+{{- else -}}
+  {{ $venue }}
+{{- end -}}
+{{- $meta := slice -}}
+{{- if $note -}}
+  {{- $meta = $meta | append (printf "(%s)" $note) -}}
+{{- end -}}
+{{- if $yearText -}}
+  {{- $meta = $meta | append $yearText -}}
+{{- end -}}
+{{- if gt (len $meta) 0 -}}, {{ delimit $meta ", " }}{{- end -}}

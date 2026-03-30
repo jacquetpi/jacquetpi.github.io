@@ -156,40 +156,126 @@ def test_generate_bib_thesis_type_masters():
     assert "@mastersthesis{ms" in bib
 
 
-# --- generate_service_section: note_after and sub_reviewing ---
+# --- generate_service_section: typed entries and formatting ---
 
 
 def test_generate_service_sub_reviewing():
-    """Items with sub_reviewing: true get ~* in CV output; others do not."""
+    """Typed sub-reviewing entries are listed without legacy star legend."""
     service = {
-        "categories": [
+        "entries": [
+            {"domain": "journal", "role_type": "Reviewer", "role_group": "reviewer", "venue": "Journal A"},
             {
-                "name": "Reviews",
-                "note_after": "* Sub-reviewing",
-                "items": [
-                    {"text": "Journal A"},
-                    {"text": "IEEE Internet Computing", "sub_reviewing": True},
-                ],
+                "domain": "journal/conference",
+                "role_type": "Sub-reviewer",
+                "role_group": "sub_reviewer",
+                "venue": "IEEE Internet Computing",
+                "sub_reviewing": True,
+            },
+        ]
+    }
+    out = gen.generate_service_section(service)
+    assert "Journal - Reviewer" in out
+    assert "Journal - Sub-reviewer" in out
+    assert "Journal A" in out
+    assert "IEEE Internet Computing" in out
+    assert "~*" not in out
+    assert "* Sub-reviewing" not in out
+
+
+def test_generate_service_conference_reviewer_group():
+    """Conference reviewer entries appear in Conference - Reviewer."""
+    service = {
+        "entries": [
+            {"domain": "conference", "role_type": "Reviewer", "role_group": "reviewer", "venue": "GreenNet Workshop", "year": 2025},
+        ]
+    }
+    out = gen.generate_service_section(service)
+    assert "Conference - Reviewer" in out
+    assert "GreenNet Workshop 2025" in out
+    assert "Journal - Reviewer" not in out
+
+
+def test_generate_service_organization_group():
+    """Organization entries are rendered when present."""
+    service = {
+        "entries": [
+            {
+                "domain": "organization",
+                "role_type": "Volunteer",
+                "role_group": "volunteer",
+                "venue": "IEEE ICC",
+                "year": 2025,
             }
         ]
     }
     out = gen.generate_service_section(service)
-    assert "Journal A" in out
-    assert "~*" not in out.split("Journal A")[0]  # first item has no *
-    assert "IEEE Internet Computing" in out
-    assert "~*" in out
-    assert "* Sub-reviewing" in out
+    assert "Organization" in out
+    assert "IEEE ICC 2025" in out
 
 
 def test_generate_service_note_after_only_when_sub_reviewing():
-    """Legend note_after is omitted when no item has sub_reviewing."""
+    """No legacy sub-reviewing legend is rendered."""
     service = {
-        "categories": [
-            {"name": "Reviews", "items": [{"text": "Journal X"}], "note_after": "* Sub-reviewing"},
+        "entries": [
+            {"domain": "journal/conference", "role_type": "Sub-reviewer", "role_group": "sub_reviewer", "venue": "Journal X"},
         ]
     }
     out = gen.generate_service_section(service)
     assert "* Sub-reviewing" not in out
+
+
+def test_generate_service_no_whitespace_hack_needed():
+    """Service formatting is deterministic without relying on trailing spaces."""
+    service = {
+        "entries": [
+            {
+                "domain": "conference",
+                "role_type": "PC Member",
+                "role_group": "pc_member",
+                "venue": "IEEE Cluster",
+                "url": "https://cluster.example",
+                "note": "  Workshop  ",
+                "years": [2025, 2026],
+            }
+        ]
+    }
+    out = gen.generate_service_section(service)
+    assert "\\href{https://cluster.example}{IEEE Cluster (Workshop) 2025, 2026}" in out
+
+
+def test_generate_service_entry_role_prefix_is_explicit():
+    service = {
+        "entries": [
+            {
+                "domain": "conference",
+                "role_type": "General Chair",
+                "role_group": "general_chair",
+                "role_prefix": "Web Chair",
+                "venue": "INFRASTRUCTURE",
+                "year": 2026,
+            }
+        ]
+    }
+    out = gen.generate_service_section(service)
+    assert "Conference - General Chair" in out
+    assert "Web Chair: INFRASTRUCTURE 2026" in out
+
+
+def test_generate_service_custom_role_type_with_explicit_group_renders():
+    service = {
+        "entries": [
+            {
+                "domain": "conference",
+                "role_type": "Mentor",
+                "role_group": "reviewer",
+                "venue": "Community Event",
+                "year": 2025,
+            }
+        ]
+    }
+    out = gen.generate_service_section(service)
+    assert "Conference - Reviewer" in out
+    assert "Community Event 2025" in out
 
 
 # --- generate_talks_section: location as-is ---
@@ -236,6 +322,7 @@ def test_generate_talks_two_lines_keynote_and_links():
                 "venue": "Conf",
                 "location": "Paris, France",
                 "year": 2025,
+                "month_num": 6,
                 "links": [
                     {"label": "Slides", "url": "https://x.example/s.pdf"},
                     {"label": "Video", "url": "https://x.example/v"},
@@ -248,7 +335,7 @@ def test_generate_talks_two_lines_keynote_and_links():
     assert "\\textit{My Keynote} ~ " in out
     assert "\\href{https://x.example/s.pdf}{Slides}" in out
     assert "\\textbf{Keynote}" in out
-    assert "Conf, Paris, France, 2025" in out
+    assert "Conf, Paris, France, June, 2025" in out
 
 
 def test_generate_talks_includes_month_in_meta_line():
@@ -259,7 +346,7 @@ def test_generate_talks_includes_month_in_meta_line():
                 "venue": "Venue",
                 "location": "Here",
                 "year": 2025,
-                "month": "November",
+                "month_num": 11,
             }
         ]
     }
@@ -271,10 +358,10 @@ def test_generate_talks_includes_month_in_meta_line():
 def test_generate_talks_sorted_by_year_month_preserves_tie_order():
     talks_data = {
         "talks": [
-            {"title": "AprilTalk", "venue": "V", "year": 2025, "month": "April"},
-            {"title": "OctoberTalk", "venue": "V", "year": 2025, "month": "October"},
-            {"title": "JuneA", "venue": "V", "year": 2024, "month": "June"},
-            {"title": "JuneB", "venue": "V", "year": 2024, "month": "June"},
+            {"title": "AprilTalk", "venue": "V", "year": 2025, "month_num": 4},
+            {"title": "OctoberTalk", "venue": "V", "year": 2025, "month_num": 10},
+            {"title": "JuneA", "venue": "V", "year": 2024, "month_num": 6},
+            {"title": "JuneB", "venue": "V", "year": 2024, "month_num": 6},
         ]
     }
     out = gen.generate_talks_section(talks_data)

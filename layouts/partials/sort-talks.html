@@ -5,7 +5,10 @@
   {{- with $t.year -}}
     {{- $y = int . -}}
   {{- end -}}
-  {{- $mn := partial "talk-month-num.html" $t.month -}}
+  {{- $mn := 0 -}}
+  {{- with $t.month_num -}}
+    {{- $mn = int . -}}
+  {{- end -}}
   {{- $base := mul (add (mul $y 100) $mn) 1000 -}}
   {{- $key := add $base (sub 1000 $i) -}}
   {{- $ranked = $ranked | append (dict "sortKey" $key "talk" $t) -}}

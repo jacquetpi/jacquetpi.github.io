@@ -1,0 +1,33 @@
+{{- $entries := .entries | default (slice) -}}
+{{- $selectedOnly := .selected_only | default false -}}
+
+{{- $groups := slice
+  (dict "domains" (slice "conference") "role_groups" (slice "pc_member" "pc_chair") "name" "Conference - PC Member")
+  (dict "domains" (slice "conference") "role_groups" (slice "artifact_pc_member" "artifact_chair") "name" "Conference - Artifact PC Member")
+  (dict "domains" (slice "conference") "role_groups" (slice "general_chair") "name" "Conference - General Chair")
+  (dict "domains" (slice "conference" "journal/conference") "role_groups" (slice "reviewer") "name" "Conference - Reviewer")
+  (dict "domains" (slice "journal") "role_groups" (slice "reviewer" "editor") "name" "Journal - Reviewer")
+  (dict "domains" (slice "journal" "journal/conference") "role_groups" (slice "sub_reviewer") "name" "Journal - Sub-reviewer")
+  (dict "domains" (slice "organization") "role_groups" (slice "volunteer" "chair" "other") "name" "Organization")
+-}}
+
+{{- $categories := slice -}}
+{{- range $group := $groups -}}
+  {{- $items := slice -}}
+  {{- range $entry := $entries -}}
+    {{- $rawRoleGroup := $entry.role_group | default $entry.role_type | default "" -}}
+    {{- $resolvedRoleGroup := lower (replace (replace $rawRoleGroup "-" "_") " " "_") -}}
+    {{- if and (in $group.domains $entry.domain) (in $group.role_groups $resolvedRoleGroup) -}}
+      {{- if or (not $selectedOnly) (eq $entry.selected true) -}}
+        {{- if ne $entry.displayed_on_site false -}}
+          {{- $items = $items | append $entry -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if gt (len $items) 0 -}}
+    {{- $categories = $categories | append (dict "name" $group.name "items" $items) -}}
+  {{- end -}}
+{{- end -}}
+
+{{- return $categories -}}

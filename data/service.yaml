@@ -1,47 +1,140 @@
-# Service entries: categories with nested item lists.
-# Each item: text (required); optional link: { label, url }; optional suffix (e.g. " Workshop");
-# optional years: [2025, 2027] for multiple years (renders " 2025, 2027" after suffix).
-# displayed_on_site: false = show in CV only, hide on website (default true).
-# note_after: optional text after a category block (e.g. "* Sub-reviewing" for Reviews).
-# sub_reviewing: true = append * to this item (CV only); use for sub-reviewing venues.
+# Service entries (flat, typed schema).
+#
+# Required:
+# - domain: conference | journal | organization
+# - role_type: free-text role label used for display
+# - role_group: grouping key used by website/CV sections
+# - venue: display name
+#
+# Optional:
+# - url: link to venue/event page
+# - year: single year
+# - years: list of years
+# - role_prefix: optional text prefix before venue for a specific entry (e.g., "Web Chair")
+# - note: free-form detail ("Workshop", "guide, session chair", etc.)
+# - sub_reviewing: true marks a sub-reviewing entry (legend appears in CV/site section)
+# - displayed_on_site: false hides entry on website (default true)
+# - selected: true includes entry in homepage service block (selected-only behavior)
+#
+# role_group values:
+# - conference: pc_member, pc_chair, artifact_pc_member, artifact_chair,
+#               general_chair, reviewer
+# - journal: reviewer, editor
+# - journal/conference: reviewer, sub_reviewer
+# - organization: volunteer, chair, other
+#
+# role_type examples (display text): General Chair, PC Member, Reviewer, etc.
 
-categories:
-  - name: "Committees"
-    items:
-      - text: "PC member, "
-        link: { label: "IEEE Cluster", url: "https://clustercomp.org/2026/committees/" }
-        suffix: " 2026"
-      - text: "PC member of Artifact track, "
-        link: { label: "IEEE/IFIP DSN", url: "https://dsn2026.github.io/cfartifacts.html" }
-        suffix: " 2026"
-      - text: "Web Chair & PC member of "
-        link: { label: "INFRASTRUCTURE", url: "https://infrastructure.web.deuxfleurs.fr/2025" }
-        suffix: " Workshop"
-        years: [2025, 2026]
-      - text: "PC member of Artifact track, "
-        link: { label: "IEEE CASCON", url: "https://conf.researchr.org/track/cascon-2025/artifacts-track" }
-        suffix: " 2025"
-      - text: "PC member of "
-        link: { label: "Compas", url: "https://2025.compas-conference.fr/comites/" }
-        suffix: " 2025"
+entries:
+  - domain: "conference"
+    role_type: "PC Member"
+    role_group: "pc_member"
+    venue: "IEEE CloudCom"
+    url: "https://www.cloudcom2026.org/committees"
+    year: 2026
+    selected: true
 
-  - name: "Reviews"
-    note_after: "* Sub-reviewing"
-    items:
-      - text: "ACM Transactions on Autonomous and Adaptive Systems"
-      - text: "IEEE Internet Computing"
-        sub_reviewing: true
-      - text: "GreenNet Workshop 2025"
-      - text: "IEEE/IFIP DSN 2024"
-        sub_reviewing: true
-      - text: "ACM Middleware 2023"
-        sub_reviewing: true
-      - text: "IEEE Cluster 2023"
-        sub_reviewing: true
+  - domain: "conference"
+    role_type: "PC Member"
+    role_group: "pc_member"
+    venue: "IEEE Cluster"
+    url: "https://clustercomp.org/2026/committees/"
+    year: 2026
+    selected: true
 
-  - name: "Organization"
-    items:
-      - text: "Student volunteer at "
-        link: { label: "IEEE ICC 2025", url: "https://icc2025.ieee-icc.org/" }
-        suffix: " (guide, session chair)"
-        displayed_on_site: false
+  - domain: "conference"
+    role_type: "Artifact PC Member"
+    role_group: "artifact_pc_member"
+    venue: "IEEE/IFIP DSN"
+    url: "https://dsn2026.github.io/cfartifacts.html"
+    year: 2026
+    selected: true
+
+  - domain: "conference"
+    role_type: "General Chair"
+    role_group: "general_chair"
+    role_prefix: "Web Chair"
+    venue: "INFRASTRUCTURE"
+    url: "https://infrastructure.web.deuxfleurs.fr/2025"
+    note: "Workshop"
+    years: [2025, 2026]
+    selected: true
+
+  - domain: "conference"
+    role_type: "PC Member"
+    role_group: "pc_member"
+    venue: "INFRASTRUCTURE"
+    url: "https://infrastructure.web.deuxfleurs.fr/2025"
+    note: "Workshop"
+    years: [2025, 2026]
+    selected: false
+
+  - domain: "conference"
+    role_type: "Artifact PC Member"
+    role_group: "artifact_pc_member"
+    venue: "IEEE CASCON"
+    url: "https://conf.researchr.org/track/cascon-2025/artifacts-track"
+    year: 2025
+    selected: true
+
+  - domain: "conference"
+    role_type: "PC Member"
+    role_group: "pc_member"
+    venue: "Compas"
+    url: "https://2025.compas-conference.fr/comites/"
+    year: 2025
+    selected: true
+
+  - domain: "journal"
+    role_type: "Reviewer"
+    role_group: "reviewer"
+    venue: "ACM Transactions on Autonomous and Adaptive Systems"
+    selected: false
+
+  - domain: "journal/conference"
+    role_type: "Sub-reviewer"
+    role_group: "sub_reviewer"
+    venue: "IEEE Internet Computing"
+    sub_reviewing: true
+    selected: false
+
+  - domain: "conference"
+    role_type: "Reviewer"
+    role_group: "reviewer"
+    venue: "GreenNet Workshop"
+    year: 2025
+    selected: false
+
+  - domain: "journal/conference"
+    role_type: "Sub-reviewer"
+    role_group: "sub_reviewer"
+    venue: "IEEE/IFIP DSN"
+    year: 2024
+    sub_reviewing: true
+    selected: false
+
+  - domain: "journal/conference"
+    role_type: "Sub-reviewer"
+    role_group: "sub_reviewer"
+    venue: "ACM Middleware"
+    year: 2023
+    sub_reviewing: true
+    selected: false
+
+  - domain: "journal/conference"
+    role_type: "Sub-reviewer"
+    role_group: "sub_reviewer"
+    venue: "IEEE Cluster"
+    year: 2023
+    sub_reviewing: true
+    selected: false
+
+  - domain: "organization"
+    role_type: "Volunteer"
+    role_group: "volunteer"
+    venue: "IEEE ICC"
+    url: "https://icc2025.ieee-icc.org/"
+    year: 2025
+    note: "guide, session chair"
+    displayed_on_site: true
+    selected: false

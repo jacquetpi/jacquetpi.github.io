@@ -8,7 +8,7 @@ artifacts:
     evolution: "No future"
     duration: "1 year"
     contribution: "Leader"
-    url: "github.com/jacquetpi/cinergy-models"
+    url: "https://github.com/jacquetpi/cinergy-models"
     description: "Software suite enabling energy measurements of Virtual Machines in a Cloud context."
 
   - name: "Untangling GPU Power Consumption"

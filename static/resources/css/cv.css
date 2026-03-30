@@ -62,6 +62,17 @@ body {
 .cv-section {
     margin-bottom: 20px;
 }
+.cv-list-service,
+.talks-list-selected {
+    padding-left: 2.5em;
+}
+.cv-list-service ul {
+    margin: 0.2em 0 0.4em;
+    padding-left: 1.2em;
+}
+.cv-list-service li {
+    margin: 0.2em 0;
+}
 .talks-list-selected > li + li {
     margin-top: 1em;
 }
@@ -130,8 +141,21 @@ body {
     .cv-sidebar-ext-link {
         display: none !important;
     }
+    .cv-teaching-preview,
+    .cv-service-preview {
+        display: none;
+    }
     #fallback-link {
         display: flex !important;
+    }
+}
+@media only screen and (max-width: 52em){
+    .cv-list-service,
+    .talks-list-selected {
+        padding-left: clamp(1em, calc((100vw - 32em) / 8), 2.5em);
+    }
+    .cv-list-service ul {
+        padding-left: clamp(1em, calc((100vw - 32em) / 10), 1.2em);
     }
 }
 @media only screen and ((max-width: 20em) or (max-height: 18em)){

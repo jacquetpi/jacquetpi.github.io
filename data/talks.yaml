@@ -1,13 +1,14 @@
 # selected: true means show on homepage "Selected Talks"
 # links: optional list of { label: "Slides", url: "..." }
+# month_num: optional month number (1-12) used for ordering/display
 
 talks:
-  - title: "Cloud Instances and Power Consumption: Measuring Energy in Hyperscale Cloud Environments"
-    venue: "4th TDIS workshop (Testing Distributed Internet of Things Systems), held with EuroSys'26"
+  - title: "Measuring Energy in Hyperscale Cloud Environments"
+    venue: "4th TDIS workshop, held with EuroSys'26"
     location: "Edinburgh, UK"
     type: "Keynote"
     year: 2026
-    month: "April"
+    month_num: 4
     selected: true
     links:
       - label: "Program"
@@ -18,7 +19,7 @@ talks:
     location: "Montréal, Canada"
     type: "Invited Talk"
     year: 2026
-    month: "April"
+    month_num: 4
     selected: false
     links:
       - label: "Program"
@@ -29,8 +30,8 @@ talks:
     location: "Montréal, Canada"
     type: "Invited talk"
     year: 2025
-    month: "November"
-    selected: true
+    month_num: 11
+    selected: false
     links:
       - label: "Program"
         url: "https://www.linkedin.com/posts/etsmtl_colloque-le-g%C3%A9nie-du-num%C3%A9rique-responsable-activity-7391829272489005057-yLVX"
@@ -40,7 +41,7 @@ talks:
     location: "École polytechnique (X), France"
     type: "Invited talk"
     year: 2025
-    month: "October"
+    month_num: 10
     selected: true
     links:
       - label: "Program"
@@ -51,7 +52,7 @@ talks:
     location: "en ligne, France"
     type: "Invited talk"
     year: 2025
-    month: "October"
+    month_num: 10
     selected: false
 
   - title: "Untangling GPU Power Consumption"
@@ -59,7 +60,7 @@ talks:
     location: "Montréal, Canada"
     type: "Invited talk"
     year: 2025
-    month: "May"
+    month_num: 5
     selected: false
 
   - title: "Shared Computing: Why and How?"
@@ -67,7 +68,7 @@ talks:
     location: "Montréal, Canada"
     type: "Invited talk"
     year: 2025
-    month: "February"
+    month_num: 2
     selected: true
     links:
       - label: "Program"
@@ -78,7 +79,7 @@ talks:
     location: "Lyon, France"
     type: "Invited talk"
     year: 2024
-    month: "November"
+    month_num: 11
     selected: false
 
   - title: "Le partage des ressources de calcul du Cloud"
@@ -86,7 +87,7 @@ talks:
     location: "Paris, France"
     type: "Invited talk"
     year: 2024
-    month: "November"
+    month_num: 11
     selected: false
 
   - title: "The Last Frontier: Sharing Cloud Resources"
@@ -94,7 +95,7 @@ talks:
     location: "Beg Meil, France"
     type: "Invited talk"
     year: 2024
-    month: "October"
+    month_num: 10
     selected: false
     links:
       - label: "Program"
@@ -107,7 +108,7 @@ talks:
     location: "Nantes, France"
     type: "Talk"
     year: 2024
-    month: "July"
+    month_num: 7
     selected: false
     links:
       - label: "Program"
@@ -118,7 +119,7 @@ talks:
     location: "Toulouse, France"
     type: "Talk"
     year: 2024
-    month: "March"
+    month_num: 3
     selected: false
     links:
       - label: "Video"
@@ -129,7 +130,7 @@ talks:
     location: "Les 7 Laux, France"
     type: "Talk"
     year: 2024
-    month: "February"
+    month_num: 2
     selected: false
     links:
       - label: "Program"
@@ -140,7 +141,7 @@ talks:
     location: "Créteil, France"
     type: "Seminar"
     year: 2024
-    month: "February"
+    month_num: 2
     selected: false
 
   - title: "SCROOGEVM : Accroître l’utilisation des ressources du cloud en ajustant dynamiquement la surallocation"
@@ -148,7 +149,7 @@ talks:
     location: "Annecy, France"
     type: "Talk"
     year: 2023
-    month: "July"
+    month_num: 7
     selected: false
     links:
       - label: "Program"
@@ -159,7 +160,7 @@ talks:
     location: "Les 7 Laux, France"
     type: "Talk"
     year: 2023
-    month: "February"
+    month_num: 2
     selected: false
     links:
       - label: "Program"
@@ -170,7 +171,7 @@ talks:
     location: "Télécom Paris, Paris, France"
     type: "Talk"
     year: 2022
-    month: "December"
+    month_num: 12
     selected: false
     links:
       - label: "Program"
@@ -181,7 +182,7 @@ talks:
     location: "Sundvolden, Norway"
     type: "Talk"
     year: 2022
-    month: "April"
+    month_num: 4
     selected: false
     links:
       - label: "Program"
@@ -192,7 +193,7 @@ talks:
     location: "Rennes, France"
     type: "Poster"
     year: 2022
-    month: "April"
+    month_num: 4
     selected: false
     links:
       - label: "Program"
@@ -204,7 +205,7 @@ talks:
     location: "Les 7 Laux, France"
     type: "Talk"
     year: 2022
-    month: "March"
+    month_num: 3
     selected: false
     links:
       - label: "Program"
@@ -215,7 +216,7 @@ talks:
     location: "Munich, Germany"
     type: "Talk"
     year: 2022
-    month: "March"
+    month_num: 3
     selected: false
     links:
       - label: "Program"
@@ -226,7 +227,7 @@ talks:
     location: "Lille, France"
     type: "Talk"
     year: 2021
-    month: "September"
+    month_num: 9
     selected: false
     links:
       - label: "Program"

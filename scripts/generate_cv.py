@@ -91,22 +91,51 @@ def latex_escape_url(url):
     return url.replace("%", "\\%").replace("#", "\\#")
 
 
-_MONTH_ORDER_CACHE = None
+def normalize_role_group(item):
+    """
+    Resolve the grouping key for a service entry.
+    Prefer explicit role_group, with a backward-compatible fallback to role_type.
+    """
+    role_group = item.get("role_group")
+    if role_group is not None and str(role_group).strip():
+        return str(role_group).strip().lower()
+    role_type = item.get("role_type")
+    if role_type is None:
+        return ""
+    return re.sub(r"_+", "_", str(role_type).strip().lower().replace("-", "_").replace(" ", "_")).strip("_")
 
 
-def _month_name_to_sort_num(month):
-    """Map optional month field to 1–12; 0 = missing/unknown (after dated talks in same year)."""
-    global _MONTH_ORDER_CACHE
-    if month is None or month == "":
+_MONTH_LABELS = {
+    1: "January",
+    2: "February",
+    3: "March",
+    4: "April",
+    5: "May",
+    6: "June",
+    7: "July",
+    8: "August",
+    9: "September",
+    10: "October",
+    11: "November",
+    12: "December",
+}
+
+
+def _month_num_to_sort_num(month_num):
+    """Map optional month_num field to 1–12; 0 = missing/unknown."""
+    if month_num is None or month_num == "":
         return 0
-    if isinstance(month, int):
-        return month if 1 <= month <= 12 else 0
-    if _MONTH_ORDER_CACHE is None:
-        path = DATA_DIR / "_talk_month_order.yaml"
-        with open(path, encoding="utf-8") as f:
-            raw = yaml.safe_load(f) or {}
-        _MONTH_ORDER_CACHE = {str(k).lower(): int(v) for k, v in raw.items()}
-    return _MONTH_ORDER_CACHE.get(str(month).strip().lower(), 0)
+    try:
+        mn = int(month_num)
+    except (TypeError, ValueError):
+        return 0
+    return mn if 1 <= mn <= 12 else 0
+
+
+def _month_num_to_label(month_num):
+    """Map month_num to display month label."""
+    mn = _month_num_to_sort_num(month_num)
+    return _MONTH_LABELS.get(mn, "")
 
 
 def _sort_talks_list(talks):
@@ -119,7 +148,7 @@ def _sort_talks_list(talks):
             yi = int(y)
         except (TypeError, ValueError):
             yi = 0
-        mn = _month_name_to_sort_num(t.get("month"))
+        mn = _month_num_to_sort_num(t.get("month_num"))
         return (-yi, -mn, i)
 
     return [t for _, t in sorted(enumerate(talks), key=sort_key)]
@@ -235,49 +264,67 @@ def generate_publications_thesis(pub):
 
 
 def generate_service_section(service):
-    categories = service.get("categories", [])
+    entries = service.get("entries", [])
+    groups = [
+        ({"conference"}, {"pc_member", "pc_chair"}, "Conference - PC Member", ""),
+        ({"conference"}, {"artifact_pc_member", "artifact_chair"}, "Conference - Artifact PC Member", ""),
+        ({"conference"}, {"general_chair"}, "Conference - General Chair", ""),
+        ({"conference", "journal/conference"}, {"reviewer"}, "Conference - Reviewer", ""),
+        ({"journal"}, {"reviewer", "editor"}, "Journal - Reviewer", ""),
+        ({"journal", "journal/conference"}, {"sub_reviewer"}, "Journal - Sub-reviewer", ""),
+        ({"organization"}, {"volunteer", "chair", "other"}, "Organization", ""),
+    ]
+
     out = []
-    for i, cat in enumerate(categories):
-        name = cat["name"]
-        if name == "Committees":
-            label = "Comittees"
-        elif name == "Reviews":
-            label = "Reviews"
-        else:
-            label = name
-        # \hfill \break before new subsections (no \\ on last list item)
+    visible_groups = []
+    for domains, role_groups, label, note_after in groups:
+        group_items = [
+            item
+            for item in entries
+            if item.get("domain") in domains
+            and normalize_role_group(item) in role_groups
+        ]
+        if group_items:
+            visible_groups.append((label, group_items, note_after))
+
+    for i, (label, group_items, note_after) in enumerate(visible_groups):
         if i > 0:
             out.append("\\hfill \\break")
-        out.append(f"\\textbf{{{label}:}}\\newline")
+        out.append(f"\\textbf{{{latex_escape(label)}:}}\\newline")
         out.append("\\begin{itemize}")
-        for item in cat.get("items", []):
-            text = latex_escape(item.get("text", ""))
-            link = item.get("link")
-            suffix = (item.get("suffix") or "").strip()
+        for item in group_items:
+            venue = latex_escape(item.get("venue", ""))
+            url = (item.get("url") or "").strip()
+            note = (item.get("note") or "").strip()
             years = item.get("years")
-            year_str = (" " + ", ".join(str(y) for y in years)) if years else ""
-            sub_mark = "~*" if item.get("sub_reviewing") else ""
-            if link:
-                link_label = latex_escape(link["label"])
-                # Committees: suffix and years go inside link label (e.g. "IEEE Cluster 2026")
-                if name != "Organization" and (suffix or years):
-                    if suffix:
-                        link_label = link_label + " " + suffix
-                    if years:
-                        link_label = link_label + year_str
-                link_tex = f"\\href{{{latex_escape_url(link['url'])}}}{{{link_label}}}"
-                if name == "Organization" and suffix:
-                    out.append(f"    \\item {text}{link_tex} {suffix}{sub_mark}")
-                else:
-                    out.append(f"    \\item {text}{link_tex}{sub_mark}")
+            year = item.get("year")
+            if years:
+                year_text = ", ".join(str(y) for y in years)
+            elif year is not None and year != "":
+                year_text = str(year)
             else:
-                out.append(f"    \\item {text}{suffix}{year_str}{sub_mark}")
+                year_text = ""
+
+            label_text = venue
+            role_prefix = (item.get("role_prefix") or "").strip()
+            if role_prefix:
+                label_text = f"{latex_escape(role_prefix)}: {label_text}"
+            if note:
+                label_text += f" ({latex_escape(note)})"
+            if year_text:
+                label_text += f" {latex_escape(year_text)}"
+
+            if url:
+                item_text = f"\\href{{{latex_escape_url(url)}}}{{{label_text}}}"
+            else:
+                item_text = label_text
+
+            out.append(f"    \\item {item_text}")
+
         out.append("\\end{itemize}")
-        # Optional note after this category (e.g. "* Sub-reviewing") only if any item is sub-reviewing
-        has_sub_reviewing = any(item.get("sub_reviewing") for item in cat.get("items", []))
-        note_after = cat.get("note_after", "").strip()
-        if note_after and has_sub_reviewing:
+        if note_after:
             out.append(f"\\textit{{{latex_escape(note_after)}}}\\newline")
+
     return "\n".join(out)
 
 
@@ -289,7 +336,7 @@ def generate_talks_section(talks_data):
         talk_type = (t.get("type") or "").strip()
         venue = t.get("venue", "")
         location = (t.get("location") or "").strip()
-        month_raw = t.get("month")
+        month_label = _month_num_to_label(t.get("month_num"))
         year = t.get("year", "")
         note = (t.get("note") or "").strip()
         links = t.get("links") or []
@@ -322,8 +369,8 @@ def generate_talks_section(talks_data):
         meta_parts.append(latex_escape(venue))
         if loc_tex:
             meta_parts.append(loc_tex)
-        if month_raw not in (None, ""):
-            meta_parts.append(latex_escape(str(month_raw).strip()))
+        if month_label:
+            meta_parts.append(latex_escape(month_label))
         if year != "" and year is not None:
             meta_parts.append(str(year))
         meta_line = ", ".join(meta_parts)
