@@ -3,6 +3,17 @@
 # month_num: optional month number (1-12) used for ordering/display
 
 talks:
+  - title: "Monitoring GPUs in Cloud Platforms: Challenges & Opportunities"
+    venue: "2nd GreenSys workshop, held with EuroSys'26"
+    location: "Edinburgh, UK"
+    type: "Keynote"
+    year: 2026
+    month_num: 4
+    selected: true
+    links:
+      - label: "Program"
+        url: "https://greensys-org.github.io/workshop/speakers/"
+
   - title: "Measuring Energy in Hyperscale Cloud Environments"
     venue: "4th TDIS workshop, held with EuroSys'26"
     location: "Edinburgh, UK"
@@ -69,7 +80,7 @@ talks:
     type: "Invited talk"
     year: 2025
     month_num: 2
-    selected: true
+    selected: false
     links:
       - label: "Program"
         url: "https://semtl.github.io/meeting/2025/02/01/Concordia/"
