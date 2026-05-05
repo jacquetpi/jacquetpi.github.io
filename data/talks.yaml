@@ -3,6 +3,14 @@
 # month_num: optional month number (1-12) used for ordering/display
 
 talks:
+  - title: "Fewer server, Lower Footprint: Orchestration for Cloud Efficiency"
+    venue: "Laboratoire d'Informatique et de Parallélisme (LIP)"
+    location: "Lyon, France"
+    type: "Invited talk"
+    year: 2026
+    month_num: 5
+    selected: false
+
   - title: "Monitoring GPUs in Cloud Platforms: Challenges & Opportunities"
     venue: "2nd GreenSys workshop, held with EuroSys'26"
     location: "Edinburgh, UK"
