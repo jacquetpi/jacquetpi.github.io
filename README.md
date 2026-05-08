@@ -84,7 +84,7 @@ Then run `hugo --minify` again. The home page and the `/publications/` page both
 
 All talks live in **`data/talks.yaml`**. Use `selected: true` to show a talk in the “Selected Talks” block on the home page.
 
-- **Fields:** `title`, `venue`, `type`, `year`; optional `location`, `month_num` (1-12), `note` (e.g. "Poster"), `links` (list of `label`/`url`). Any number of links is shown as `Title ~ Link1, Link2, …`. If `type` is exactly `Keynote` (case-insensitive), it is shown in **bold** with a **dotted underline** on the site and in bold in the PDF CV.
+- **Fields:** `title`, `venue`, `type`, `year`; optional `location`, `month_num` (1-12), `note` (e.g. "Poster"), `links` (list of `label`/`url`), `highlighted` (default `false`). Any number of links is shown as `Title ~ Link1, Link2, …`. If `highlighted: true`, the talk `type` is shown in **bold** with a **dotted underline** on the site and in **bold** in the PDF CV.
 - **Order:** Talks are listed by **year** then **month_num** (newest first; unknown month sorts after known months in the same year). Same year/month keeps the order of entries in the file.
 - Example:
 
@@ -94,6 +94,7 @@ All talks live in **`data/talks.yaml`**. Use `selected: true` to show a talk in 
       venue: "Event name"
       location: "City or institution"
       type: "Invited talk"
+      highlighted: false
       year: 2025
       month_num: 4
       selected: true

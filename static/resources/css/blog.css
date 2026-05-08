@@ -84,7 +84,8 @@ a:visited {
 .theme-grey {
     color: #5a5a5a;
 }
-.talk-type-keynote {
+.talk-type-keynote,
+.talk-highlighted {
     text-decoration: underline dotted;
 }
 .blog-section-wrapper{

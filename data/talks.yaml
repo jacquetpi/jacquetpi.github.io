@@ -1,6 +1,7 @@
 # selected: true means show on homepage "Selected Talks"
 # links: optional list of { label: "Slides", url: "..." }
 # month_num: optional month number (1-12) used for ordering/display
+# highlighted: optional boolean (default false), bold+dotted-underline type on site and bold type in PDF CV
 
 talks:
   - title: "Fewer server, Lower Footprint: Orchestration for Cloud Efficiency"
@@ -15,6 +16,7 @@ talks:
     venue: "2nd GreenSys workshop, held with EuroSys'26"
     location: "Edinburgh, UK"
     type: "Keynote"
+    highlighted: true
     year: 2026
     month_num: 4
     selected: true
@@ -26,6 +28,7 @@ talks:
     venue: "4th TDIS workshop, held with EuroSys'26"
     location: "Edinburgh, UK"
     type: "Keynote"
+    highlighted: true
     year: 2026
     month_num: 4
     selected: true

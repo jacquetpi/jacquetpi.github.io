@@ -1,4 +1,4 @@
 {{ $t := . }}
 {{ $monthLabel := partial "talk-month-label.html" $t.month_num }}
 <span class="talk-entry-title">{{ $t.title }}{{ with $t.note }} <span class="theme-grey">({{ . }})</span>{{ end }}{{ with $t.links }}{{ range $i, $l := . }}{{ if eq $i 0 }} ~ {{ else }}, {{ end }}<a class="article" href="{{ $l.url }}">{{ $l.label }}</a>{{ end }}{{ end }}</span><br>
-<span class="talk-entry-meta">{{ with $t.type }}{{ if eq (lower .) "keynote" }}<strong class="talk-type-keynote">{{ . }}</strong>{{ else }}{{ . }}{{ end }}, {{ end }}{{ $t.venue }}{{ with $t.location }}, {{ . }}{{ end }}{{ with $monthLabel }}, {{ . }}{{ end }}, {{ $t.year }}</span>
+<span class="talk-entry-meta">{{ with $t.type }}{{ if $t.highlighted }}<strong class="talk-highlighted">{{ . }}</strong>{{ else }}{{ . }}{{ end }}, {{ end }}{{ $t.venue }}{{ with $t.location }}, {{ . }}{{ end }}{{ with $monthLabel }}, {{ . }}{{ end }}, {{ $t.year }}</span>

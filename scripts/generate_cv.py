@@ -138,6 +138,17 @@ def _month_num_to_label(month_num):
     return _MONTH_LABELS.get(mn, "")
 
 
+def _is_true(value):
+    """Interpret booleans from YAML and common string/int forms."""
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, int):
+        return value != 0
+    if isinstance(value, str):
+        return value.strip().lower() in {"1", "true", "yes", "y", "on"}
+    return False
+
+
 def _sort_talks_list(talks):
     """Reverse chronological by year then month; ties keep YAML file order."""
 
@@ -355,7 +366,7 @@ def generate_talks_section(talks_data):
         else:
             title_line = f"\\textit{{{title_esc}}}"
 
-        if talk_type and talk_type.lower() == "keynote":
+        if talk_type and _is_true(t.get("highlighted", False)):
             type_tex = f"\\textbf{{{latex_escape(talk_type)}}}"
         elif talk_type:
             type_tex = latex_escape(talk_type)

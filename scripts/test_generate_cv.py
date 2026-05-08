@@ -313,12 +313,13 @@ def test_generate_talks_location_other():
     assert "Sundvolden, Norway" in out
 
 
-def test_generate_talks_two_lines_keynote_and_links():
+def test_generate_talks_two_lines_highlighted_and_links():
     talks_data = {
         "talks": [
             {
-                "title": "My Keynote",
-                "type": "Keynote",
+                "title": "My Talk",
+                "type": "Invited talk",
+                "highlighted": True,
                 "venue": "Conf",
                 "location": "Paris, France",
                 "year": 2025,
@@ -332,10 +333,27 @@ def test_generate_talks_two_lines_keynote_and_links():
     }
     out = gen.generate_talks_section(talks_data)
     assert "    \\item " in out
-    assert "\\textit{My Keynote} ~ " in out
+    assert "\\textit{My Talk} ~ " in out
     assert "\\href{https://x.example/s.pdf}{Slides}" in out
-    assert "\\textbf{Keynote}" in out
+    assert "\\textbf{Invited talk}" in out
     assert "Conf, Paris, France, June, 2025" in out
+
+
+def test_generate_talks_keynote_not_bold_without_highlighted():
+    talks_data = {
+        "talks": [
+            {
+                "title": "My Keynote",
+                "type": "Keynote",
+                "venue": "Conf",
+                "location": "Paris, France",
+                "year": 2025,
+            }
+        ]
+    }
+    out = gen.generate_talks_section(talks_data)
+    assert "\\textbf{Keynote}" not in out
+    assert "Keynote, Conf, Paris, France, 2025" in out
 
 
 def test_generate_talks_includes_month_in_meta_line():

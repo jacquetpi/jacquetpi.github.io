@@ -76,7 +76,8 @@ body {
 .talks-list-selected > li + li {
     margin-top: 1em;
 }
-.talk-type-keynote {
+.talk-type-keynote,
+.talk-highlighted {
     text-decoration: underline dotted;
 }
 .service-subreview-footnote {
