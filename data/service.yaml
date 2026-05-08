@@ -132,6 +132,16 @@ entries:
   - domain: "organization"
     role_type: "Volunteer"
     role_group: "volunteer"
+    venue: "IEEE CCGrid"
+    url: "https://ccgrid2026.cdms.westernsydney.edu.au/"
+    year: 2026
+    note: "session chair"
+    displayed_on_site: true
+    selected: false
+
+  - domain: "organization"
+    role_type: "Volunteer"
+    role_group: "volunteer"
     venue: "IEEE ICC"
     url: "https://icc2025.ieee-icc.org/"
     year: 2025
