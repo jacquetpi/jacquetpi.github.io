@@ -1,3 +1,15 @@
 {{ $c := .course | default . }}
 {{ $showInst := .show_institution | default true }}
-<p>{{ $c.title }}{{ if $showInst }}: {{ $c.institution }}{{ end }} ({{ $c.period }})</p>
+{{ $showDesc := .show_description | default false }}
+{{ if $showDesc }}
+  <li class="teaching-item">
+    <p class="teaching-item-title">
+      <strong>{{ $c.title }}</strong>{{ if $showInst }}: {{ $c.institution }}{{ end }} ({{ $c.period }})
+    </p>
+    {{ if $c.description }}
+      <p class="teaching-item-description">{{ $c.description }}</p>
+    {{ end }}
+  </li>
+{{ else }}
+  <p>{{ $c.title }}{{ if $showInst }}: {{ $c.institution }}{{ end }} ({{ $c.period }})</p>
+{{ end }}

@@ -1,7 +1,7 @@
 # type: paper | press | thesis
 # selected: true means show on homepage "Selected Publications"
 # links: list of { label: "[Paper]", url: "..." }
-# For papers: bib_key (for CV bib), entry_type (journal | conference), section (main | workshop); optional doi, pages, publisher (default IEEE)
+# For papers: bib_key (for CV bib), entry_type (journal | conference), section (main | workshop); optional doi, pages, publisher (default IEEE), ranking
 
 papers:
   - title: "CINERGY: Deterministic Power Monitoring for Carbon Accounting in the Cloud"
@@ -13,9 +13,10 @@ papers:
     bib_key: "cinergytcc"
     entry_type: "journal"
     section_cv: "main"
+    ranking: "Q1"
     selected: true
     doi: "10.1109/TCC.2026.3674370"
-    pages: "1-12"
+    pages: "822-833"
     links:
       - label: "[Paper]"
         url: "https://hal.science/hal-05551692"
@@ -31,8 +32,10 @@ papers:
     bib_key: "cloudevolutionccgrid26"
     entry_type: "conference"
     section_cv: "main"
+    ranking: "25%"
     selected: true
-    pages: "1-10"
+    doi: "10.1109/CCGrid68966.2026.00037"
+    pages: "287-296"
 
   - title: "Untangling GPU Power Consumption: Job-Level Inference in Cloud Shared Settings"
     authors: "Pierre Jacquet, Maxime Agusti, Eddy Caron, Camille Coti, Marcos Dias de Assunção, Laurent Lefèvre, and Anne-Cécile Orgerie"
@@ -43,8 +46,10 @@ papers:
     bib_key: "eurosys26"
     entry_type: "conference"
     section_cv: "main"
+    ranking: "16.9%"
+    doi: "10.1145/3767295.3769333"
     selected: true
-    pages: "1-14"
+    pages: "624-640"
     links:
       - label: "[Paper]"
         url: "https://hal.science/hal-05291033"
@@ -91,6 +96,7 @@ papers:
     bib_key: "jacquetslack"
     entry_type: "conference"
     section_cv: "main"
+    ranking: "28%"
     doi: "10.1109/CLUSTER59578.2024.00024"
     pages: "190-201"
     links:
@@ -108,6 +114,7 @@ papers:
     bib_key: "jacquet:hal-04454043"
     entry_type: "conference"
     section_cv: "main"
+    ranking: "26%"
     doi: "10.1109/CCGrid59990.2024.00026"
     pages: "148-157"
     links:
@@ -125,6 +132,7 @@ papers:
     bib_key: "jacquet:hal-04466538"
     entry_type: "journal"
     section_cv: "main"
+    ranking: "Q1"
     doi: "10.1109/TSUSC.2024.3369333"
     pages: "754-765"
     links:
@@ -142,6 +150,7 @@ papers:
     bib_key: "jacquet2023cloudfactory"
     entry_type: "conference"
     section_cv: "main"
+    ranking: "33%"
     doi: "10.1109/IC2E59103.2023.00017"
     pages: "81-91"
     links:

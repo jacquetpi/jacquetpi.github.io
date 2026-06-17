@@ -6,6 +6,23 @@ disableKinds:
   - taxonomy
   - term
 
+mediaTypes:
+  application/rss+xml:
+    suffixes:
+      - xml
+
+outputFormats:
+  feed:
+    mediaType: "application/rss+xml"
+    baseName: "feed"
+    isPlainText: true
+    noUgly: false
+
+outputs:
+  home:
+    - html
+    - feed
+
 markup:
   goldmark:
     renderer:

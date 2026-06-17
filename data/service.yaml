@@ -89,6 +89,7 @@ entries:
     role_type: "Reviewer"
     role_group: "reviewer"
     venue: "ACM Transactions on Autonomous and Adaptive Systems"
+    year: 2024
     selected: false
 
   - domain: "journal/conference"
@@ -96,6 +97,7 @@ entries:
     role_group: "sub_reviewer"
     venue: "IEEE Internet Computing"
     sub_reviewing: true
+    year: 2024
     selected: false
 
   - domain: "conference"

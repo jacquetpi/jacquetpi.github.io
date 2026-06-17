@@ -12,9 +12,11 @@
   {{ range $institutions | uniq }}
     {{ $inst := . }}
     <h2 class="theme-contrast">{{ $inst }}</h2>
+    <ul class="teaching-list">
     {{ range where $courses "institution" $inst }}
-      {{ partial "teaching-entry.html" (dict "course" . "show_institution" false) }}
+      {{ partial "teaching-entry.html" (dict "course" . "show_institution" false "show_description" true) }}
     {{ end }}
+    </ul>
   {{ end }}
 
   <hr style="width:0%; margin-top:5em">
