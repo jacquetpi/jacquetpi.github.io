@@ -5,6 +5,7 @@ const themeGrey = document.getElementsByClassName('theme-grey');
 const backgroundConstrat = document.getElementsByClassName('background-contrast');
 
 function lightOn() {
+    document.documentElement.setAttribute('data-theme', 'light');
     body.style.backgroundColor = 'white';
     for (var i = 0; i < themeColor.length; i++){themeColor[i].style.setProperty('color', 'white', 'important');};
 
@@ -16,6 +17,7 @@ function lightOn() {
 }
 
 function lightOff() {
+    document.documentElement.setAttribute('data-theme', 'dark');
     body.style.backgroundColor = 'black';
     for (var i = 0; i < themeColor.length; i++){themeColor[i].style.setProperty('color', 'black', 'important');};
 

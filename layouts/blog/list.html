@@ -5,7 +5,7 @@
   <h1 class="theme-contrast">Last articles</h1>
 
   {{ range .Pages.ByDate.Reverse }}
-  <div class="blog-section-wrapper" onclick="location.href='{{ .RelPermalink }}';">
+  <div class="blog-section-wrapper" onclick="location.href='{{ .Params.link | default .RelPermalink }}';">
     <div class="blog-section-line theme-contrast"></div>
     <div class="blog-section">
       <h2 class="theme-grey">{{ .Title }}</h2>

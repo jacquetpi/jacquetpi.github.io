@@ -1,16 +1,19 @@
 # Interviews for CV bib and outreach section.
 # bib_key: citation key for cv.bib
 # note: optional note text; if it contains a URL it is rendered as \url{...} in bib
+# month_num: optional month number (1-12), used for RSS dating
 
 interviews:
   - bib_key: "interviewinria"
     title: "Pas de panique, je vous explique ! l'optimisation du cloud"
     authors: "Centre Inria de l'Université de Lille and Pierre Jacquet"
     year: 2024
+    month_num: 9
     note: "https://www.canal-u.tv/chaines/inria/pas-de-panique-je-vous-explique-l-optimisation-du-cloud"
 
   - bib_key: "ecoingenieux"
     title: "Podcast Éco-Ingénieux: Optimiser les ressources de l'IA"
     authors: "Amélie Chodorge and Pierre Jacquet"
     year: 2025
+    month_num: 4
     note: "https://beacons.ai/ecoingenieux"

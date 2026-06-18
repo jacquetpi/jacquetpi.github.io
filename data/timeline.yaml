@@ -1,0 +1,22 @@
+# Time ranges ("eras") displayed as parallel dashed vertical lines on /timeline.
+# Each range is drawn in its own lane (one color per range) to the left of the
+# central timeline. Hovering / clicking a range line reveals the "detail" text.
+#
+# Fields:
+# - label:   short name shown along the dashed line and in the legend (required)
+# - start:   "YYYY-MM" start of the period (required)
+# - end:     "YYYY-MM" end of the period (omit for ongoing periods, e.g. "since ...")
+# - color:   optional hex color; if omitted a default palette color is assigned
+# - detail:  free text shown on hover/click (overlap)
+
+ranges:
+  - label: "PhD at Inria"
+    start: "2021-10"
+    end: "2024-09"
+    color: "#C9191E"
+    detail: "Ph.D. candidate at Inria / Université de Lille — \"Enhancing IaaS Consolidation with Resource Oversubscription\". Defended July 2024."
+
+  - label: "Research Scientist at OVHcloud"
+    start: "2025-01"
+    color: "#000E9C"
+    detail: "Research Scientist in Applied Science and Postdoctoral Fellow at ETS Montréal, Canada"

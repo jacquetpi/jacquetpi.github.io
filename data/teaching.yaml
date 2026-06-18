@@ -1,12 +1,14 @@
 # selected: true means show on homepage "Teaching" block
 # description is optional and displayed only on the full teaching page
 # year is optional and used for RSS date
+# month_num is optional and used for RSS date
 
 courses:
   - title: "Environmental Impact of Virtual Cloud Resources"
     institution: "CentraleSupélec"
     period: "2025/26"
     year: 2025
+    month_num: 9
     description: "Course created on the environmental impact of virtual cloud instances, with objectives to understand the materiality of cloud infrastructures, sector trends, and the impact of operator and user choices."
     selected: true
 
@@ -14,6 +16,7 @@ courses:
     institution: "Lille University"
     period: "2023/24, 2022/23"
     year: 2023
+    month_num: 9
     description: "Compiled-language course for undergraduate Computer Science students at the University of Lille, introducing core object-oriented programming concepts."
     selected: true
 
@@ -21,6 +24,7 @@ courses:
     institution: "Lille University"
     period: "2022/23"
     year: 2022
+    month_num: 10
     description: "Introduction to software security for master students with a development-oriented background, covering Unix security fundamentals (authentication, access rights, confidentiality, cryptography) and associated risks."
     selected: false
 
@@ -28,5 +32,6 @@ courses:
     institution: "Lille University"
     period: "2022/23"
     year: 2022
+    month_num: 9
     description: "Advanced object-oriented design course for master students focused on programming with C/C++."
     selected: false

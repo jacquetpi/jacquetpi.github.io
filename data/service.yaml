@@ -10,6 +10,7 @@
 # - url: link to venue/event page
 # - year: single year
 # - years: list of years
+# - month_num: optional month number (1-12), used for RSS dating
 # - role_prefix: optional text prefix before venue for a specific entry (e.g., "Web Chair")
 # - note: free-form detail ("Workshop", "guide, session chair", etc.)
 # - sub_reviewing: true marks a sub-reviewing entry (legend appears in CV/site section)
@@ -32,6 +33,7 @@ entries:
     venue: "IEEE CloudCom"
     url: "https://www.cloudcom2026.org/committees"
     year: 2026
+    month_num: 10
     selected: true
 
   - domain: "conference"
@@ -40,6 +42,7 @@ entries:
     venue: "IEEE Cluster"
     url: "https://clustercomp.org/2026/committees/"
     year: 2026
+    month_num: 9
     selected: true
 
   - domain: "conference"
@@ -48,6 +51,7 @@ entries:
     venue: "IEEE/IFIP DSN"
     url: "https://dsn2026.github.io/cfartifacts.html"
     year: 2026
+    month_num: 6
     selected: true
 
   - domain: "conference"
@@ -58,6 +62,7 @@ entries:
     url: "https://infrastructure.web.deuxfleurs.fr/2025"
     note: "Workshop"
     years: [2025, 2026]
+    month_num: 1
     selected: true
 
   - domain: "conference"
@@ -67,6 +72,7 @@ entries:
     url: "https://infrastructure.web.deuxfleurs.fr/2025"
     note: "Workshop"
     years: [2025, 2026]
+    month_num: 1
     selected: false
 
   - domain: "conference"
@@ -75,6 +81,7 @@ entries:
     venue: "IEEE CASCON"
     url: "https://conf.researchr.org/track/cascon-2025/artifacts-track"
     year: 2025
+    month_num: 10
     selected: true
 
   - domain: "conference"
@@ -83,6 +90,7 @@ entries:
     venue: "Compas"
     url: "https://2025.compas-conference.fr/comites/"
     year: 2025
+    month_num: 6
     selected: true
 
   - domain: "journal"
@@ -90,6 +98,7 @@ entries:
     role_group: "reviewer"
     venue: "ACM Transactions on Autonomous and Adaptive Systems"
     year: 2024
+    month_num: 4
     selected: false
 
   - domain: "journal/conference"
@@ -98,6 +107,7 @@ entries:
     venue: "IEEE Internet Computing"
     sub_reviewing: true
     year: 2024
+    month_num: 5
     selected: false
 
   - domain: "conference"
@@ -105,6 +115,7 @@ entries:
     role_group: "reviewer"
     venue: "GreenNet Workshop"
     year: 2025
+    month_num: 6
     selected: false
 
   - domain: "journal/conference"
@@ -112,6 +123,7 @@ entries:
     role_group: "sub_reviewer"
     venue: "IEEE/IFIP DSN"
     year: 2024
+    month_num: 6
     sub_reviewing: true
     selected: false
 
@@ -120,6 +132,7 @@ entries:
     role_group: "sub_reviewer"
     venue: "ACM Middleware"
     year: 2023
+    month_num: 12
     sub_reviewing: true
     selected: false
 
@@ -128,6 +141,7 @@ entries:
     role_group: "sub_reviewer"
     venue: "IEEE Cluster"
     year: 2023
+    month_num: 9
     sub_reviewing: true
     selected: false
 
@@ -137,6 +151,7 @@ entries:
     venue: "IEEE CCGrid"
     url: "https://ccgrid2026.cdms.westernsydney.edu.au/"
     year: 2026
+    month_num: 5
     note: "session chair"
     displayed_on_site: true
     selected: false
@@ -147,6 +162,7 @@ entries:
     venue: "IEEE ICC"
     url: "https://icc2025.ieee-icc.org/"
     year: 2025
+    month_num: 6
     note: "guide, session chair"
     displayed_on_site: true
     selected: false

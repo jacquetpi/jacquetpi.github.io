@@ -1,0 +1,128 @@
+{{ define "main" }}
+{{ partial "sidebar-blog.html" (dict "midTitle" "Timeline" "midHref" "/" "Site" .Site) }}
+<div class="blog-content">
+  <a class="fallback-home" href="/">Back to home</a>
+  <h1 class="theme-contrast">Timeline</h1>
+
+  {{ $items := slice }}
+
+  {{/* Publications (papers, press, theses) -> blue */}}
+  {{ range .Site.Data.publications.papers }}
+    {{ $items = $items | append (dict
+      "cat" "publication"
+      "year" .year
+      "month" (.month_num | default 1)
+      "label" (printf "Paper: %s" .title)
+      "title" .title
+      "detail" (printf "%s. %s (%d)." .authors .venue .year)
+      "link" "/publications/") }}
+  {{ end }}
+  {{ range .Site.Data.publications.press }}
+    {{ $items = $items | append (dict
+      "cat" "publication"
+      "year" .year
+      "month" (.month_num | default 1)
+      "label" (printf "Press: %s" .title)
+      "title" .title
+      "detail" (printf "%s. %s (%d)." .authors .venue .year)
+      "link" "/publications/") }}
+  {{ end }}
+  {{ range .Site.Data.publications.theses }}
+    {{ $items = $items | append (dict
+      "cat" "publication"
+      "year" .year
+      "month" (.month_num | default 1)
+      "label" (printf "Thesis: %s" .title)
+      "title" .title
+      "detail" (printf "%s. %s (%d)." .authors .venue .year)
+      "link" "/publications/") }}
+  {{ end }}
+
+  {{/* Artifacts -> purple */}}
+  {{ range .Site.Data.artifacts.artifacts }}
+    {{ $items = $items | append (dict
+      "cat" "artifact"
+      "year" (.year | default 0)
+      "month" (.month_num | default 1)
+      "label" (printf "Artifact: %s" .name)
+      "title" .name
+      "detail" .description
+      "link" (.url | default "/publications/")) }}
+  {{ end }}
+
+  {{/* Talks -> yellow */}}
+  {{ range .Site.Data.talks.talks }}
+    {{ $items = $items | append (dict
+      "cat" "talk"
+      "year" .year
+      "month" (.month_num | default 1)
+      "label" (printf "Talk: %s" .title)
+      "title" .title
+      "detail" (printf "%s at %s, %s (%d)." .type .venue .location .year)
+      "link" "/talks/") }}
+  {{ end }}
+
+  {{/* Teaching -> red */}}
+  {{ range .Site.Data.teaching.courses }}
+    {{ $items = $items | append (dict
+      "cat" "teaching"
+      "year" (.year | default 0)
+      "month" (.month_num | default 1)
+      "label" (printf "Teaching: %s" .title)
+      "title" (printf "%s (%s)" .title .institution)
+      "detail" (.description | default (printf "%s (%s)." .institution .period))
+      "link" "/teaching/") }}
+  {{ end }}
+
+  {{/* Service -> orange */}}
+  {{ range .Site.Data.service.entries }}
+    {{ $year := .year | default 0 }}
+    {{ if and (eq $year 0) .years }}
+      {{ range .years }}{{ if gt . $year }}{{ $year = . }}{{ end }}{{ end }}
+    {{ end }}
+    {{ if gt $year 0 }}
+    {{ $detail := printf "%s - %s" .role_type .venue }}
+    {{ if .note }}{{ $detail = printf "%s (%s)" $detail .note }}{{ end }}
+    {{ $items = $items | append (dict
+      "cat" "service"
+      "year" $year
+      "month" (.month_num | default 1)
+      "label" (printf "Service: %s" .venue)
+      "title" (printf "%s — %s" .role_type .venue)
+      "detail" $detail
+      "link" "/service/") }}
+    {{ end }}
+  {{ end }}
+
+  {{/* Interviews -> grey (others) */}}
+  {{ range .Site.Data.interviews.interviews }}
+    {{ $items = $items | append (dict
+      "cat" "other"
+      "year" .year
+      "month" (.month_num | default 1)
+      "label" (printf "Interview: %s" .title)
+      "title" .title
+      "detail" (printf "%s (%d)." .authors .year)
+      "link" (.note | default "/publications/")) }}
+  {{ end }}
+
+  {{ $ranges := slice }}
+  {{ with .Site.Data.timeline }}
+    {{ range .ranges }}
+      {{ $ranges = $ranges | append (dict
+        "label" .label
+        "start" .start
+        "end" (.end | default "")
+        "color" (.color | default "")
+        "detail" (.detail | default "")) }}
+    {{ end }}
+  {{ end }}
+
+  <div id="timeline-root"></div>
+</div>
+<script>
+window.TIMELINE_EVENTS = {{ $items | jsonify | safeJS }};
+window.TIMELINE_RANGES = {{ $ranges | jsonify | safeJS }};
+</script>
+<script src="/resources/script/timeline.js" defer></script>
+{{ end }}

@@ -9,7 +9,7 @@
     "link" (absURL "publications/")
     "guid" (printf "publication-%s" .bib_key)
     "year" .year
-    "month" 1
+    "month" (.month_num | default 1)
   ) -}}
 {{- end -}}
 
@@ -20,7 +20,7 @@
     "link" (absURL "publications/")
     "guid" (printf "press-%s" .bib_key)
     "year" .year
-    "month" 1
+    "month" (.month_num | default 1)
   ) -}}
 {{- end -}}
 
@@ -31,7 +31,7 @@
     "link" (absURL "publications/")
     "guid" (printf "thesis-%s" .bib_key)
     "year" .year
-    "month" 1
+    "month" (.month_num | default 1)
   ) -}}
 {{- end -}}
 
@@ -55,7 +55,7 @@
     "link" (absURL "teaching/")
     "guid" (printf "teaching-%s-%s" (urlize .title) (urlize .period))
     "year" $year
-    "month" 1
+    "month" (.month_num | default 1)
   ) -}}
 {{- end -}}
 
@@ -79,7 +79,7 @@
       "link" (absURL "service/")
       "guid" (printf "service-%s-%s-%d" (urlize .domain) (urlize .venue) $year)
       "year" $year
-      "month" 1
+      "month" (.month_num | default 1)
     ) -}}
   {{- end -}}
 {{- end -}}
@@ -91,13 +91,13 @@
     "link" (absURL "publications/")
     "guid" (printf "interview-%s" .bib_key)
     "year" .year
-    "month" 1
+    "month" (.month_num | default 1)
   ) -}}
 {{- end -}}
 
 {{- range .Site.Data.artifacts.artifacts -}}
   {{- $year := .year | default 0 -}}
-  {{- $month := .month | default 1 -}}
+  {{- $month := .month_num | default 1 -}}
   {{- $items = $items | append (dict
     "title" (printf "New Artifact: %s" .name)
     "description" .description

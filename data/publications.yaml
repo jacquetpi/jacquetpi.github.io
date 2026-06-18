@@ -1,7 +1,7 @@
 # type: paper | press | thesis
 # selected: true means show on homepage "Selected Publications"
 # links: list of { label: "[Paper]", url: "..." }
-# For papers: bib_key (for CV bib), entry_type (journal | conference), section (main | workshop); optional doi, pages, publisher (default IEEE), ranking
+# For papers: bib_key (for CV bib), entry_type (journal | conference), section (main | workshop); optional doi, pages, publisher (default IEEE), ranking, month_num
 
 papers:
   - title: "CINERGY: Deterministic Power Monitoring for Carbon Accounting in the Cloud"
@@ -9,6 +9,7 @@ papers:
     venue: "IEEE Transactions on Cloud Computing"
     abbr: "TCC"
     year: 2026
+    month_num: 6
     publisher: "IEEE"
     bib_key: "cinergytcc"
     entry_type: "journal"
@@ -28,6 +29,7 @@ papers:
     venue: "IEEE International Symposium on Cluster, Cloud and Internet Computing"
     abbr: "CCGrid"
     year: 2026
+    month_num: 5
     publisher: "IEEE"
     bib_key: "cloudevolutionccgrid26"
     entry_type: "conference"
@@ -42,6 +44,7 @@ papers:
     venue: "European Conference on Computer Systems"
     abbr: "EuroSys"
     year: 2026
+    month_num: 4
     publisher: "ACM"
     bib_key: "eurosys26"
     entry_type: "conference"
@@ -61,6 +64,7 @@ papers:
     venue: "Computing Within Limits"
     abbr: "LIMITS"
     year: 2025
+    month_num: 6
     bib_key: "sharinglimits"
     entry_type: "conference"
     section_cv: "workshop"
@@ -75,6 +79,7 @@ papers:
     venue: "IEEE International Symposium on Cluster, Cloud and Internet Computing"
     abbr: "CCGrid"
     year: 2025
+    month_num: 5
     publisher: "IEEE"
     bib_key: "jacquet:hal-04981001"
     entry_type: "conference"
@@ -93,6 +98,7 @@ papers:
     abbr: "CLUSTER"
     publisher: "IEEE"
     year: 2024
+    month_num: 9
     bib_key: "jacquetslack"
     entry_type: "conference"
     section_cv: "main"
@@ -111,6 +117,7 @@ papers:
     abbr: "CCGrid"
     publisher: "IEEE"
     year: 2024
+    month_num: 5
     bib_key: "jacquet:hal-04454043"
     entry_type: "conference"
     section_cv: "main"
@@ -129,6 +136,7 @@ papers:
     abbr: "TSUSC"
     publisher: "IEEE"
     year: 2024
+    month_num: 2
     bib_key: "jacquet:hal-04466538"
     entry_type: "journal"
     section_cv: "main"
@@ -147,6 +155,7 @@ papers:
     abbr: "IC2E"
     publisher: "IEEE"
     year: 2023
+    month_num: 9
     bib_key: "jacquet2023cloudfactory"
     entry_type: "conference"
     section_cv: "main"
@@ -165,6 +174,7 @@ press:
     venue: "The Conversation"
     journal: "Ouest-France"
     year: 2023
+    month_num: 1
     bib_key: "theconversation"
     note: "Notes: Plus de 300 000 impressions"
     links:
@@ -177,6 +187,7 @@ press:
     authors: "Pierre Jacquet"
     venue: "Docteurs SPI"
     year: 2025
+    month_num: 2
     bib_key: "redocspi"
     publisher: "Réseau National des Écoles Doctorales Sciences Pour l'Ingénieur"
     note: "https://www.docteurs-spi.org/post/agir-face-aux-enjeux-environnementaux-la-thèse-comme-levier"
@@ -192,6 +203,7 @@ theses:
     thesis_type: "phd"
     school: "Université de Lille"
     year: 2024
+    month_num: 7
     bib_key: "phdthesis"
     links:
       - label: "[Thesis]"
@@ -203,6 +215,7 @@ theses:
     thesis_type: "masters"
     school: "Université Paris 12"
     year: 2021
+    month_num: 7
     bib_key: "masterthesis"
     links:
       - label: "[Thesis]"
