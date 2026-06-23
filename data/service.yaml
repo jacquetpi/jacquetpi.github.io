@@ -27,6 +27,14 @@
 # role_type examples (display text): General Chair, PC Member, Reviewer, etc.
 
 entries:
+  - domain: "journal"
+    role_type: "Reviewer"
+    role_group: "reviewer"
+    venue: "Elsevier Journal of Systems Architecture"
+    year: 2026
+    month_num: 6
+    selected: false
+
   - domain: "conference"
     role_type: "PC Member"
     role_group: "pc_member"
@@ -61,7 +69,7 @@ entries:
     venue: "INFRASTRUCTURE"
     url: "https://infrastructure.web.deuxfleurs.fr/2025"
     note: "Workshop"
-    years: [2025, 2026]
+    years: [2025, 2027]
     month_num: 1
     selected: true
 
@@ -71,7 +79,7 @@ entries:
     venue: "INFRASTRUCTURE"
     url: "https://infrastructure.web.deuxfleurs.fr/2025"
     note: "Workshop"
-    years: [2025, 2026]
+    years: [2025, 2027]
     month_num: 1
     selected: false
 
