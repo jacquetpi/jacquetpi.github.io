@@ -1,7 +1,7 @@
 ---
-title: "Interactive timeline"
+title: "Activity timeline"
 date: 2026-06-18
-summary: "A scrollable, vertical timeline of publications, talks, artifacts, service and teaching"
+summary: "A timeline of publications, talks, artifacts, service and teaching"
 link: "/timeline/"
 build:
   render: never

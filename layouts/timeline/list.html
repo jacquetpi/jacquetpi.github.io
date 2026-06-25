@@ -64,33 +64,59 @@
 
   {{/* Teaching -> red */}}
   {{ range .Site.Data.teaching.courses }}
-    {{ $items = $items | append (dict
-      "cat" "teaching"
-      "year" (.year | default 0)
-      "month" (.month_num | default 1)
-      "label" (printf "Teaching: %s" .title)
-      "title" (printf "%s (%s)" .title .institution)
-      "detail" (.description | default (printf "%s (%s)." .institution .period))
-      "link" "/teaching/") }}
+    {{ $entry := . }}
+    {{ $detail := .description | default (printf "%s (%s)." .institution .period) }}
+    {{ if .years }}
+      {{ range .years }}
+        {{ $items = $items | append (dict
+          "cat" "teaching"
+          "year" .
+          "month" ($entry.month_num | default 1)
+          "label" (printf "Teaching: %s" $entry.title)
+          "title" (printf "%s (%s)" $entry.title $entry.institution)
+          "detail" $detail
+          "link" "/teaching/") }}
+      {{ end }}
+    {{ else }}
+      {{ $items = $items | append (dict
+        "cat" "teaching"
+        "year" (.year | default 0)
+        "month" (.month_num | default 1)
+        "label" (printf "Teaching: %s" .title)
+        "title" (printf "%s (%s)" .title .institution)
+        "detail" $detail
+        "link" "/teaching/") }}
+    {{ end }}
   {{ end }}
 
   {{/* Service -> orange */}}
   {{ range .Site.Data.service.entries }}
-    {{ $year := .year | default 0 }}
-    {{ if and (eq $year 0) .years }}
-      {{ range .years }}{{ if gt . $year }}{{ $year = . }}{{ end }}{{ end }}
-    {{ end }}
-    {{ if gt $year 0 }}
+    {{ $entry := . }}
     {{ $detail := printf "%s - %s" .role_type .venue }}
     {{ if .note }}{{ $detail = printf "%s (%s)" $detail .note }}{{ end }}
-    {{ $items = $items | append (dict
-      "cat" "service"
-      "year" $year
-      "month" (.month_num | default 1)
-      "label" (printf "Service: %s" .venue)
-      "title" (printf "%s — %s" .role_type .venue)
-      "detail" $detail
-      "link" "/service/") }}
+    {{ if .years }}
+      {{ range .years }}
+        {{ $items = $items | append (dict
+          "cat" "service"
+          "year" .
+          "month" ($entry.month_num | default 1)
+          "label" (printf "Service: %s" $entry.venue)
+          "title" (printf "%s — %s" $entry.role_type $entry.venue)
+          "detail" $detail
+          "link" "/service/") }}
+      {{ end }}
+    {{ else }}
+      {{ $year := .year | default 0 }}
+      {{ if gt $year 0 }}
+        {{ $items = $items | append (dict
+          "cat" "service"
+          "year" $year
+          "month" (.month_num | default 1)
+          "label" (printf "Service: %s" .venue)
+          "title" (printf "%s — %s" .role_type .venue)
+          "detail" $detail
+          "link" "/service/") }}
+      {{ end }}
     {{ end }}
   {{ end }}
 

@@ -47,40 +47,65 @@
 {{- end -}}
 
 {{- range .Site.Data.teaching.courses -}}
+  {{- $entry := . -}}
   {{- $description := .description | default (printf "Course taught at %s (%s)." .institution .period) -}}
-  {{- $year := .year | default 0 -}}
-  {{- $items = $items | append (dict
-    "title" (printf "New Teaching: %s" .title)
-    "description" $description
-    "link" (absURL "teaching/")
-    "guid" (printf "teaching-%s-%s" (urlize .title) (urlize .period))
-    "year" $year
-    "month" (.month_num | default 1)
-  ) -}}
+  {{- if .years -}}
+    {{- range .years -}}
+      {{- $items = $items | append (dict
+        "title" (printf "New Teaching: %s" $entry.title)
+        "description" $description
+        "link" (absURL "teaching/")
+        "guid" (printf "teaching-%s-%d" (urlize $entry.title) .)
+        "year" .
+        "month" ($entry.month_num | default 1)
+      ) -}}
+    {{- end -}}
+  {{- else -}}
+    {{- $year := .year | default 0 -}}
+    {{- $items = $items | append (dict
+      "title" (printf "New Teaching: %s" .title)
+      "description" $description
+      "link" (absURL "teaching/")
+      "guid" (printf "teaching-%s-%s" (urlize .title) (urlize .period))
+      "year" $year
+      "month" (.month_num | default 1)
+    ) -}}
+  {{- end -}}
 {{- end -}}
 
 {{- range .Site.Data.service.entries -}}
-  {{- $year := .year | default 0 -}}
-  {{- if and (eq $year 0) .years -}}
-    {{- range .years -}}
-      {{- if gt . $year -}}
-        {{- $year = . -}}
-      {{- end -}}
-    {{- end -}}
-  {{- end -}}
-  {{- if gt $year 0 -}}
+  {{- if .years -}}
+    {{- $entry := . -}}
     {{- $description := printf "%s - %s" .role_type .venue -}}
     {{- if .note -}}
       {{- $description = printf "%s (%s)" $description .note -}}
     {{- end -}}
-    {{- $items = $items | append (dict
-      "title" (printf "New Service: %s: %s" .domain .venue)
-      "description" $description
-      "link" (absURL "service/")
-      "guid" (printf "service-%s-%s-%d" (urlize .domain) (urlize .venue) $year)
-      "year" $year
-      "month" (.month_num | default 1)
-    ) -}}
+    {{- range .years -}}
+      {{- $items = $items | append (dict
+        "title" (printf "New Service: %s: %s" $entry.domain $entry.venue)
+        "description" $description
+        "link" (absURL "service/")
+        "guid" (printf "service-%s-%s-%d" (urlize $entry.domain) (urlize $entry.venue) .)
+        "year" .
+        "month" ($entry.month_num | default 1)
+      ) -}}
+    {{- end -}}
+  {{- else -}}
+    {{- $year := .year | default 0 -}}
+    {{- if gt $year 0 -}}
+      {{- $description := printf "%s - %s" .role_type .venue -}}
+      {{- if .note -}}
+        {{- $description = printf "%s (%s)" $description .note -}}
+      {{- end -}}
+      {{- $items = $items | append (dict
+        "title" (printf "New Service: %s: %s" .domain .venue)
+        "description" $description
+        "link" (absURL "service/")
+        "guid" (printf "service-%s-%s-%d" (urlize .domain) (urlize .venue) $year)
+        "year" $year
+        "month" (.month_num | default 1)
+      ) -}}
+    {{- end -}}
   {{- end -}}
 {{- end -}}
 
