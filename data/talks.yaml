@@ -4,6 +4,17 @@
 # highlighted: optional boolean (default false), bold+dotted-underline type on site and bold type in PDF CV
 
 talks:
+  - title: "Reducing Cloud Environmental Impact is Teamwork"
+    venue: "DevOpsSustain (FSE workshop)"
+    location: "Concordia University, Canada"
+    type: "Talk"
+    year: 2026
+    month_num: 7
+    selected: false
+    links:
+      - label: "Program"
+        url: "https://devopssustain.github.io/ws2026/"
+
   - title: "Fewer server, Lower Footprint: Orchestration for Cloud Efficiency"
     venue: "Laboratoire d'Informatique et de Parallélisme (LIP)"
     location: "Lyon, France"

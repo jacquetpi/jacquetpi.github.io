@@ -4,6 +4,19 @@
 # For papers: bib_key (for CV bib), entry_type (journal | conference), section (main | workshop); optional doi, pages, publisher (default IEEE), ranking, month_num
 
 papers:
+  - title: "No Disk Left Behind: Lifetime-Aware Oversubscription of Thin Provisioned Storage in Cloud IaaS platforms"
+    authors: "Pierre Jacquet, Camille Coti, and Marcos Dias de Assunção"
+    venue: "International Conference for High Performance Computing, Networking, Storage and Analysis"
+    abbr: "SC 2026"
+    year: 2026
+    month_num: 11
+    publisher: "ACM"
+    bib_key: "scdisk"
+    entry_type: "conference"
+    section_cv: "main"
+    ranking: "19.2%"
+    selected: true
+
   - title: "CINERGY: Deterministic Power Monitoring for Carbon Accounting in the Cloud"
     authors: "Pierre Jacquet, Camille Coti, Marcos Dias de Assunção, and Romain Rouvoy"
     venue: "IEEE Transactions on Cloud Computing"
