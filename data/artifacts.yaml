@@ -3,6 +3,17 @@
 # Optional RSS metadata: year, month_num
 
 artifacts:
+  - name: "IaaS Storage Oversubscription Simulator"
+    family: "Vehicle"
+    audience: "Partners"
+    evolution: "No future"
+    duration: "1 year"
+    contribution: "Leader"
+    url: "https://zenodo.org/records/21262313"
+    description: "A discrete-event simulator for cloud orchestrators testing dynamic disk overcommit"
+    year: 2026
+    month_num: 6
+
   - name: "Cinergy framework"
     family: "Vehicle"
     audience: "Partners"
