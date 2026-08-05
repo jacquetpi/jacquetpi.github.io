@@ -362,7 +362,7 @@ def generate_talks_section(talks_data):
                     f"\\href{{{latex_escape_url(url)}}}{{{latex_escape(label)}}}"
                 )
         if link_parts:
-            title_line = f"\\textit{{{title_esc}}} ~ " + ", ".join(link_parts)
+            title_line = f"\\textit{{{title_esc}}} - " + ", ".join(link_parts)
         else:
             title_line = f"\\textit{{{title_esc}}}"
 

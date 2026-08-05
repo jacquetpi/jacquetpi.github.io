@@ -333,7 +333,7 @@ def test_generate_talks_two_lines_highlighted_and_links():
     }
     out = gen.generate_talks_section(talks_data)
     assert "    \\item " in out
-    assert "\\textit{My Talk} ~ " in out
+    assert "\\textit{My Talk} - " in out
     assert "\\href{https://x.example/s.pdf}{Slides}" in out
     assert "\\textbf{Invited talk}" in out
     assert "Conf, Paris, France, June, 2025" in out

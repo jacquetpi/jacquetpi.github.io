@@ -18,6 +18,7 @@ Submission deadlines of distributed systems and related conferences, grouped by 
 
 ## April
 - [Cluster](https://clustercomp.org/2026/papers/)
+- [IC2E](https://conferences.computer.org/IC2E/2026/)
 - [HPDC](http://www.hpdc.org/)
 - [IMC (ACM Internet Measurement Conf.)](https://conferences.sigcomm.org/imc/2026/) — cycle 2 deadline
 - [NSDI](https://www.usenix.org/conference/nsdi27/call-for-papers) - spring deadline
