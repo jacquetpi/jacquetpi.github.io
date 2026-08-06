@@ -36,6 +36,9 @@ def latex_escape(s):
     s = s.replace("%", "\\%")
     s = s.replace("#", "\\#")
     s = s.replace("_", "\\_")
+    s = s.replace("$", "\\$")
+    s = s.replace("~", "\\textasciitilde{}")
+    s = s.replace("^", "\\textasciicircum{}")
     # Common accents (produce {\'e} etc.; do not escape { } so these remain valid)
     s = s.replace("é", "{\\'e}")
     s = s.replace("è", "{\\`e}")
@@ -49,7 +52,6 @@ def latex_escape(s):
     s = s.replace("î", "{\\^i}")
     s = s.replace("É", "{\\'E}")
     s = s.replace("È", "{\\`E}")
-    s = s.replace("à", "{\\`a}")
     return s
 
 
@@ -57,7 +59,8 @@ def bib_author(authors_str, bold_me=True):
     """Convert 'Pierre Jacquet, Camille Coti, ...' to LaTeX with bold for Pierre Jacquet (any position)."""
     if not authors_str:
         return ""
-    parts = [p.strip().lstrip("and ").strip() for p in re.split(r",\s*|\s+and\s+", authors_str)]
+    # Note: re.sub (not str.lstrip) so names starting with a/n/d (e.g. "Andrea") are kept intact.
+    parts = [re.sub(r"^and\s+", "", p.strip()) for p in re.split(r",\s*|\s+and\s+", authors_str)]
     parts = [p for p in parts if p]
     out = []
     for part in parts:

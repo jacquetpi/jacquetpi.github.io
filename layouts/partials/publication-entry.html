@@ -1,23 +1,74 @@
 {{ $entry := . }}
-{{/* Abbreviate full first names for display (data stores full names); then highlight P. Jacquet */}}
-{{ $display := $entry.authors }}
-{{ $display = replace $display "Pierre Jacquet" "P. Jacquet" }}
-{{ $display = replace $display "Camille Coti" "C. Coti" }}
-{{ $display = replace $display "Marcos Dias de Assunção" "M. Dias de Assunção" }}
-{{ $display = replace $display "Romain Rouvoy" "R. Rouvoy" }}
-{{ $display = replace $display "Maxime Agusti" "M. Agusti" }}
-{{ $display = replace $display "Eddy Caron" "E. Caron" }}
-{{ $display = replace $display "Laurent Lefèvre" "L. Lefèvre" }}
-{{ $display = replace $display "Anne-Cécile Orgerie" "A. Orgerie" }}
-{{ $display = replace $display "Adrien Luxey-Bitri" "A. Luxey-Bitri" }}
-{{ $display = replace $display "Thomas Ledoux" "T. Ledoux" }}
+{{/* Abbreviate the first given name of every author (data stores full names),
+     then underline the site author. Works for any co-author. */}}
+{{ $abbrNames := slice }}
+{{ range $name := (split (replace $entry.authors ", and " ", ") ", ") }}
+  {{ $name = trim $name " " }}
+  {{ if $name }}
+    {{ $tokens := split $name " " }}
+    {{ if gt (len $tokens) 1 }}
+      {{ $abbrNames = $abbrNames | append (printf "%s. %s" (substr (index $tokens 0) 0 1) (delimit (after 1 $tokens) " ")) }}
+    {{ else }}
+      {{ $abbrNames = $abbrNames | append $name }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+{{ $display := delimit $abbrNames ", " }}
+{{ $display = $display | replaceRE `\bP\. Jacquet\b` `<span class="author-me">P. Jacquet</span>` | safeHTML }}
+{{ $bibSnippet := "" }}
+{{ if $entry.bib_key }}
+  {{/* Build a plain BibTeX snippet for the [BibTeX] toggle. */}}
+  {{ $bibtype := "misc" }}
+  {{ if eq $entry.entry_type "journal" }}
+    {{ $bibtype = "article" }}
+  {{ else if eq $entry.entry_type "conference" }}
+    {{ $bibtype = "inproceedings" }}
+  {{ end }}
+  {{ if eq $entry.thesis_type "masters" }}
+    {{ $bibtype = "mastersthesis" }}
+  {{ else if eq $entry.thesis_type "phd" }}
+    {{ $bibtype = "phdthesis" }}
+  {{ end }}
+  {{ $bibAuthors := replace (replace $entry.authors ", and " " and ") ", " " and " }}
+  {{ $bibLines := slice
+    (printf "@%s{%s," $bibtype $entry.bib_key)
+    (printf "  title  = {%s}," $entry.title)
+    (printf "  author = {%s}," $bibAuthors) }}
+  {{ if $entry.school }}
+    {{ $bibLines = $bibLines | append (printf "  school = {%s}," $entry.school) }}
+  {{ else }}
+    {{ if eq $bibtype "inproceedings" }}
+      {{ $bibLines = $bibLines | append (printf "  booktitle = {%s}," $entry.venue) }}
+    {{ else }}
+      {{ $journal := $entry.journal | default $entry.venue }}
+      {{ if $journal }}{{ $bibLines = $bibLines | append (printf "  journal = {%s}," $journal) }}{{ end }}
+    {{ end }}
+  {{ end }}
+  {{ $bibLines = $bibLines | append (printf "  year   = {%d}," $entry.year) }}
+  {{ with $entry.pages }}{{ $bibLines = $bibLines | append (printf "  pages  = {%s}," .) }}{{ end }}
+  {{ with $entry.doi }}{{ $bibLines = $bibLines | append (printf "  doi    = {%s}," .) }}{{ end }}
+  {{ with $entry.links }}{{ $bibLines = $bibLines | append (printf "  url    = {%s}," (index . 0).url) }}{{ end }}
+  {{ $bibLines = $bibLines | append "}" }}
+  {{ $bibSnippet = delimit $bibLines "\n" }}
+{{ end }}
+{{/* Order in the links row: [Paper] [Abstract] [rest of links] [BibTeX].
+     The abstract toggle goes right after the first paper link ([Paper], [Short Paper], ...),
+     or at the start of the row when no paper link exists. */}}
+{{ $paperIdx := -1 }}
+{{ if $entry.abstract }}
+  {{ range $i, $l := $entry.links }}
+    {{ if and (eq $paperIdx -1) (strings.Contains (lower $l.label) "paper") }}{{ $paperIdx = $i }}{{ end }}
+  {{ end }}
+{{ end }}
 <article class="publication">
   <p>
     <b{{ if $entry.keynote }} class="talk-type-keynote"{{ end }}>{{ $entry.title }}</b>,{{ " " -}}
-    {{- ($display | replaceRE `\bP\. Jacquet\b` `<span class="author-me">P. Jacquet</span>`) | safeHTML -}}
+    {{- $display -}}
     <br>{{ $entry.venue }}{{ with $entry.abbr }} (<b>{{ . }}</b>){{ end }}, {{ $entry.year }}
-    {{ with $entry.links }}
-    <br><span class="publication-links">{{ range . }}<a class="article" href="{{ .url }}">{{ .label }}</a> {{ end }}</span>
+    {{ if or $entry.links $entry.abstract $entry.bib_key }}
+    <br><span class="publication-links">{{ if and $entry.abstract (eq $paperIdx -1) }}<button type="button" class="article abstract-toggle" aria-expanded="false">[Abstract]</button> {{ end }}{{ range $i, $l := $entry.links }}<a class="article" href="{{ $l.url }}">{{ $l.label }}</a> {{ if eq $i $paperIdx }}<button type="button" class="article abstract-toggle" aria-expanded="false">[Abstract]</button> {{ end }}{{ end }}{{ with $entry.bib_key }}<button type="button" class="article bibtex-toggle" aria-expanded="false">[BibTeX]</button>{{ end }}</span>
     {{ end }}
   </p>
+  {{ with $entry.abstract }}<div class="abstract-block" hidden>{{ . }}</div>{{ end }}
+  {{ with $entry.bib_key }}<pre class="bibtex-block" hidden>{{ $bibSnippet }}</pre>{{ end }}
 </article>

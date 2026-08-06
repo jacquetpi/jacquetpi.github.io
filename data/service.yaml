@@ -13,7 +13,7 @@
 # - month_num: optional month number (1-12), used for RSS dating
 # - role_prefix: optional text prefix before venue for a specific entry (e.g., "Web Chair")
 # - note: free-form detail ("Workshop", "guide, session chair", etc.)
-# - sub_reviewing: true marks a sub-reviewing entry (legend appears in CV/site section)
+# - sub_reviewing: true marks the entry as sub-reviewing work in the data (currently informational only, not rendered)
 # - displayed_on_site: false hides entry on website (default true)
 # - selected: true includes entry in homepage service block (selected-only behavior)
 #

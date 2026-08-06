@@ -7,7 +7,7 @@ summary: "[French] My PhD defense took place on **Wednesday, 19th July 2024**"
 <p>
 Ma soutenance de thèse a eu lieu le <span style='font-weight: bold;'>Vendredi 19 juillet 2024</span> au <a href="https://www.inria.fr/fr/centre-inria-de-luniversite-de-lille#a6">Centre Inria de l'Université de Lille</a> (Villeneuve d'Ascq, France).
 La thèse, intitulée <span style='font-style: italic;'>"Améliorer la sur-allocation des ressources pour une meilleure consolidation des IaaS"</span>, a été défendue en français.
-Elle a mis en valeur <a href='/articles/240615_share_fr.html'>comment et pourquoi partager les ressources du Cloud.</a>
+Elle a mis en valeur <a href='/articles/on-the-importance-of-sharing-cloud-resources.html'>comment et pourquoi partager les ressources du Cloud.</a>
 </p>
 
 <ul>

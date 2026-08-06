@@ -22,6 +22,8 @@ outputs:
   home:
     - html
     - feed
+  section:
+    - html
 
 markup:
   goldmark:

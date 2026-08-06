@@ -1,7 +1,7 @@
 # type: paper | press | thesis
 # selected: true means show on homepage "Selected Publications"
 # links: list of { label: "[Paper]", url: "..." }
-# For papers: bib_key (for CV bib), entry_type (journal | conference), section (main | workshop); optional doi, pages, publisher (default IEEE), ranking, month_num
+# For papers: bib_key (for CV bib), entry_type (journal | conference), section_cv (main | workshop); optional doi, pages, publisher (default IEEE), ranking, month_num
 
 papers:
   - title: "No Disk Left Behind: Lifetime-Aware Oversubscription of Thin Provisioned Storage in Cloud IaaS platforms"

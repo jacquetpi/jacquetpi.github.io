@@ -1,10 +1,22 @@
+/* Theme is selected via the data-theme attribute on <html>, set before
+   first paint by the inline script in partials/head.html. */
+:root {
+    --bg: #000000;
+    --fg: #ffffff;
+    --grey: #e6e6e6;
+}
+:root[data-theme="light"] {
+    --bg: #ffffff;
+    --fg: #000000;
+    --grey: #5a5a5a;
+}
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     display: flex;
-    background-color: black;
-    color: white;
+    background-color: var(--bg);
+    color: var(--fg);
 }
 .cv-sidebar {
     width: 21%;
@@ -46,18 +58,18 @@ body {
     padding-left: min(max(1%,0.1em),30px);
 }
 .theme-color {
-    color: white !important;
+    color: var(--bg) !important;
 }
 .theme-contrast {
-    color: black;
-    fill: black;
+    color: var(--fg);
+    fill: var(--fg);
 }
 .theme-grey {
-    color: #5a5a5a;
-    fill: #5a5a5a;
+    color: var(--grey);
+    fill: var(--grey);
 }
 .background-contrast {
-    background-color: black !important;
+    background-color: var(--fg) !important;
 }
 .cv-section {
     margin-bottom: 20px;
@@ -127,9 +139,33 @@ body {
 .article {
     font-style: italic;
     color: inherit;
+    text-decoration: underline;
 }
 .author-me {
     text-decoration: underline dotted;
+}
+.bibtex-toggle,
+.abstract-toggle {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    font-style: italic;
+    color: inherit;
+    cursor: pointer;
+}
+.abstract-block {
+    margin: 0.4em 0 0;
+    padding-left: 0.6em;
+    border-left: 3px solid var(--grey);
+}
+.bibtex-block {
+    margin: 0;
+    padding: 0.6em;
+    border: 1px dashed var(--grey);
+    font-size: 0.85em;
+    white-space: pre;
+    overflow-x: auto;
 }
 /* Adapt horizontally (from the least to the most restrictive */
 @media only screen and (max-width: 32em){

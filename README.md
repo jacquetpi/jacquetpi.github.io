@@ -59,7 +59,7 @@ Then open http://localhost:1313 .
 
 All publications (papers, press, theses) live in **`data/publications.yaml`**.
 
-- **Papers:** Append or edit entries under `papers:`. Use `selected: true` to show the item in the “Selected Publications” block on the home page. Use full first names in `authors`; the site abbreviates for display (e.g. P. Jacquet) and underlines the site author. Optional `abbr` is the venue abbreviation in parentheses (e.g. `CCGrid`). Optional `keynote: true` adds the same bold + dotted underline title styling as keynote talks (on both home and `/publications/`; non-home pages use `blog.css`). Example:
+- **Papers:** Append or edit entries under `papers:`. Use `selected: true` to show the item in the “Selected Publications” block on the home page. Use full first names in `authors`; the site abbreviates for display (e.g. P. Jacquet) and underlines the site author. Optional `abbr` is the venue abbreviation in parentheses (e.g. `CCGrid`). Optional `keynote: true` adds the same bold + dotted underline title styling as keynote talks (on both home and `/publications/`; non-home pages use `blog.css`). Every entry with a `bib_key` also gets a `[BibTeX]` toggle on the site that shows and copies a plain BibTeX snippet for the publication. Optional `abstract` (plain text) adds an `[Abstract]` toggle right after the first `[Paper]`-labelled link in the links row (before remaining links and `[BibTeX]`). Example:
 
   ```yaml
   - title: "Paper title"
@@ -149,11 +149,11 @@ Then run `hugo --minify`. The home page shows the first 5 items per category; `/
 
 ### LaTeX CV (PDF)
 
-A LaTeX CV is generated from the same data and served at **`/cv/cv.pdf`** (and sources at `/cv/cv.tex`, `/cv/cv.bib`). The generator script **`scripts/generate_cv.py`** reads `data/publications.yaml`, `data/interviews.yaml`, `data/service.yaml`, `data/talks.yaml`, and `data/artifacts.yaml`, then fills the skeleton **`cv/cv_skeleton.tex`** and writes **`cv/cv.bib`** and **`cv/cv.tex`**. CI builds the PDF and copies it (with the generated `.tex` and `.bib`) into `public/cv/` on deploy.
+A LaTeX CV is generated from the same data and served at **`/cv/cv.pdf`** (and sources at `/cv/cv.tex`, `/cv/cv.bib`). The generator script **`scripts/generate_cv.py`** reads `data/publications.yaml`, `data/interviews.yaml`, `data/service.yaml`, `data/talks.yaml`, and `data/artifacts.yaml`, then fills the skeleton **`latex/cv_skeleton.tex`** and writes **`latex/cv.bib`** and **`latex/cv.tex`**. CI builds the PDF and copies it (with the generated `.tex` and `.bib`) into `public/cv/` on deploy.
 
 - **To regenerate locally:** `pip install -r scripts/requirements.txt` then `python3 scripts/generate_cv.py`. Build with `cd latex && pdflatex cv.tex && bibtex cv && pdflatex cv.tex && pdflatex cv.tex`. Run tests: `pytest scripts/test_generate_cv.py -v`.
 - **Publications:** Use `bib_key`, `entry_type` (`journal` or `conference`), `section` (`main` or `workshop`), and optional `doi`, `pages`, `publisher` (default IEEE) in `data/publications.yaml`; order in the CV follows the file order. Theses use optional `thesis_type` (`phd` or `masters`) for the bib entry type.
-- **Service:** Set `sub_reviewing: true` on an item to mark it with `*` on the site (and `~*` in the CV). Optional `note_after` (e.g. `"* Sub-reviewing"`) is shown after that category on the site and in the CV only if at least one item in the category has `sub_reviewing: true`.
+- **Service:** `sub_reviewing: true` is an informational flag only (not rendered on the site or in the CV; sub-reviewing entries get their own "Journal - Sub-reviewer" category via `role_group`).
 - **Interviews:** `data/interviews.yaml` (each entry: `bib_key`, `title`, `authors`, `year`, optional `note` for URL or text).
 - **Artifacts:** `data/artifacts.yaml` (each entry: `name`, `family`, `audience`, `evolution`, `duration`, `contribution`, `url`, `description`).
 
@@ -180,7 +180,7 @@ A LaTeX CV is generated from the same data and served at **`/cv/cv.pdf`** (and s
 | `data/service.yaml` | Single source for service (categories + items); `displayed_on_site: false` hides item on site but keeps it in CV |
 | `data/interviews.yaml` | Interviews (for CV bib and outreach section) |
 | `data/artifacts.yaml` | Research artifacts (for CV “Research artifacts” section) |
-| `cv/cv_skeleton.tex` | LaTeX CV template with placeholders; filled by `scripts/generate_cv.py` |
+| `latex/cv_skeleton.tex` | LaTeX CV template with placeholders; filled by `scripts/generate_cv.py` |
 | `scripts/generate_cv.py` | Generates `latex/cv.tex` and `latex/cv.bib` from data/*.yaml |
 | `scripts/test_generate_cv.py` | Pytest tests for the CV generator |
 | `layouts/index.html` | Home (CV) layout |

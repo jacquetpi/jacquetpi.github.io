@@ -6,6 +6,7 @@ on:
       - master
 
 permissions:
+  actions: write
   contents: read
   pages: write
   id-token: write
@@ -54,6 +55,23 @@ jobs:
           if [ -f latex/cv.pdf ]; then
             cp latex/cv.pdf public/cv/
           fi
+
+      - name: Delete stale github-pages artifacts
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: context.runId,
+            });
+            for (const artifact of artifacts.data.artifacts.filter(a => a.name === 'github-pages')) {
+              await github.rest.actions.deleteArtifact({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                artifact_id: artifact.id,
+              });
+            }
 
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3

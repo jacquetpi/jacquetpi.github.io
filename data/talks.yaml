@@ -15,7 +15,7 @@ talks:
       - label: "Program"
         url: "https://devopssustain.github.io/ws2026/"
 
-  - title: "Fewer server, Lower Footprint: Orchestration for Cloud Efficiency"
+  - title: "Fewer servers, Lower Footprint: Orchestration for Cloud Efficiency"
     venue: "Laboratoire d'Informatique et de Parallélisme (LIP)"
     location: "Lyon, France"
     type: "Invited talk"
@@ -48,7 +48,7 @@ talks:
         url: "https://tdis.gitlab.io/tdis26/"
 
   - title: "Panel on Industrial Opportunities After a PhD"
-    venue: "Université du Quebec (ÉTS)"
+    venue: "Université du Québec (ÉTS)"
     location: "Montréal, Canada"
     type: "Invited Talk"
     year: 2026
@@ -145,7 +145,7 @@ talks:
     selected: false
     links:
       - label: "Program"
-        url: https://2024.compas-conference.fr/"
+        url: "https://2024.compas-conference.fr/"
 
   - title: "A less brown Cloud: How to use less resources?"
     venue: "Green Days"
@@ -158,7 +158,7 @@ talks:
       - label: "Video"
         url: "https://graal.ens-lyon.fr/~llefevre/greendays2024/GreenDays2024_Jacquet.mp4"
 
-  - title: "Cloud Computing, doing more with less using oversubcription"
+  - title: "Cloud Computing, doing more with less using oversubscription"
     venue: "GDR RSD and ASF Winter School"
     location: "Les 7 Laux, France"
     type: "Talk"
@@ -167,7 +167,7 @@ talks:
     selected: false
     links:
       - label: "Program"
-        url: https://sites.google.com/site/rsdwinterschool/last-editions/asf-winter-school-2024"
+        url: "https://sites.google.com/site/rsdwinterschool/last-editions/asf-winter-school-2024"
 
   - title: "A less brown Cloud using oversubscription"
     venue: "Epiférence (EPISEN school)"
@@ -186,7 +186,7 @@ talks:
     selected: false
     links:
       - label: "Program"
-        url: https://202.compas-conference.fr/"
+        url: "https://2023.compas-conference.fr/"
 
   - title: "Improve cloud resource utilization with dynamic oversubscription"
     venue: "GDR RSD and ASF Winter School"

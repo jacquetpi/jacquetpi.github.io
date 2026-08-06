@@ -32,6 +32,12 @@ def test_latex_escape_accents():
     assert "{\\c c}" in gen.latex_escape("ça")
 
 
+def test_latex_escape_math_and_verbatim_chars():
+    assert "\\$" in gen.latex_escape("a $ b")
+    assert "\\textasciitilde{}" in gen.latex_escape("a ~ b")
+    assert "\\textasciicircum{}" in gen.latex_escape("a ^ b")
+
+
 # --- bib_author ---
 
 
@@ -68,6 +74,13 @@ def test_bib_author_strips_and_from_parts():
     out = gen.bib_author("A, B, and C")
     assert " and and " not in out
     assert out == "A and B and C"
+
+
+def test_bib_author_keeps_names_starting_with_and():
+    # lstrip("and ") would mangle "Andrea" -> "rea"; a word-boundary sub must not.
+    out = gen.bib_author("Andrea Smith, Daniel Doe")
+    assert "Andrea Smith" in out
+    assert "Daniel Doe" in out
 
 
 # --- format_venue_red ---

@@ -148,7 +148,11 @@
     {{- range first 150 $items }}
     {{- $pubDate := now.UTC -}}
     {{- if gt .year 0 -}}
-      {{- $pubDate = (time.AsTime (printf "%04d-%02d-01T00:00:00Z" .year (.month | default 1))).UTC -}}
+      {{- $candidate := (time.AsTime (printf "%04d-%02d-01T00:00:00Z" .year (.month | default 1))).UTC -}}
+      {{/* Never emit future-dated items: readers may hide them or pin them forever. */}}
+      {{- if $candidate.Before now -}}
+        {{- $pubDate = $candidate -}}
+      {{- end -}}
     {{- end -}}
     {{- $guidSeed := printf "%s|%s|%s|%s|%d|%d" .guid .title .description .link .year (.month | default 1) -}}
     {{- $guid := printf "%s-%s" .guid (md5 $guidSeed) -}}

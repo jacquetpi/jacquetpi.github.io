@@ -8,4 +8,4 @@ I currently focus on sharing mechanisms through orchestration and oversubscripti
 
 Questions about real cloud platform challenges? Interested in collaborating? Contact: pierre.{lastname} {at} etsmtl {dot} ca
 
-[My blog](/blog/) | Last article: [PhD defense announcement!](/articles/soutenance-de-thèse.html)
+[My blog](/blog/) | {{< latest-post >}}

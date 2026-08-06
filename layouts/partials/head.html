@@ -1,8 +1,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+(function () {
+  var t = null;
+  try { t = localStorage.getItem('theme'); } catch (e) {}
+  if (t !== 'light' && t !== 'dark') {
+    t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+  }
+  document.documentElement.setAttribute('data-theme', t);
+})();
+</script>
 <link rel="preconnect" href="https://avatars.githubusercontent.com">
 <meta name="description" content="{{ .Description | default "Pierre Jacquet" }}">
 <meta name="author" content="Pierre Jacquet">
+{{ range .AlternativeOutputFormats }}
+<link rel="alternate" type="{{ .MediaType.Type }}" href="{{ .Permalink }}" title="{{ $.Site.Title }} (RSS)">
+{{ end }}
 {{ if .IsHome }}
 <link rel="stylesheet" href="/resources/css/cv.css">
 {{ else }}

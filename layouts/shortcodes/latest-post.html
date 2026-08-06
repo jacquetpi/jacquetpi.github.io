@@ -1,0 +1,7 @@
+{{- /* Renders "Last article: <link>" pointing at the most recent blog post. */ -}}
+{{- $posts := where site.RegularPages "Type" "blog" -}}
+{{- if gt (len $posts) 0 -}}
+  {{- $latest := index ($posts.ByDate.Reverse) 0 -}}
+  {{- $url := $latest.Params.link | default $latest.RelPermalink -}}
+  Last article: <a href="{{ $url }}">{{ $latest.Title }}</a>
+{{- end -}}
