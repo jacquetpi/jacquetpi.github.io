@@ -53,6 +53,7 @@ body {
 }
 .cv-content {
     flex: 1;
+    min-width: 0;
     max-width: 80em;
     margin-left: min(max(21%,5em),14em);
     padding-left: min(max(1%,0.1em),30px);
@@ -154,18 +155,36 @@ body {
     color: inherit;
     cursor: pointer;
 }
+.bibtex-block,
 .abstract-block {
-    margin: 0.4em 0 0;
-    padding-left: 0.6em;
-    border-left: 3px solid var(--grey);
+    position: relative;
+    margin: 0;
+    padding: 0.6em 1.8em 0.6em 0.6em; /* right padding: room for the close button */
+    border: 1px dashed var(--grey);
 }
 .bibtex-block {
-    margin: 0;
-    padding: 0.6em;
-    border: 1px dashed var(--grey);
     font-size: 0.85em;
-    white-space: pre;
-    overflow-x: auto;
+}
+.bibtex-snippet {
+    margin: 0;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+.pub-block-close {
+    position: absolute;
+    top: 0.1em;
+    right: 0.25em;
+    background: none;
+    border: none;
+    padding: 0.1em;
+    font: inherit;
+    color: var(--grey);
+    cursor: pointer;
+    line-height: 1;
+}
+.pub-block-close:hover,
+.pub-block-close:focus {
+    color: var(--fg);
 }
 /* Adapt horizontally (from the least to the most restrictive */
 @media only screen and (max-width: 32em){

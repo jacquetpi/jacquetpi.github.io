@@ -69,6 +69,6 @@
     <br><span class="publication-links">{{ if and $entry.abstract (eq $paperIdx -1) }}<button type="button" class="article abstract-toggle" aria-expanded="false">[Abstract]</button> {{ end }}{{ range $i, $l := $entry.links }}<a class="article" href="{{ $l.url }}">{{ $l.label }}</a> {{ if eq $i $paperIdx }}<button type="button" class="article abstract-toggle" aria-expanded="false">[Abstract]</button> {{ end }}{{ end }}{{ with $entry.bib_key }}<button type="button" class="article bibtex-toggle" aria-expanded="false">[BibTeX]</button>{{ end }}</span>
     {{ end }}
   </p>
-  {{ with $entry.abstract }}<div class="abstract-block" hidden>{{ . }}</div>{{ end }}
-  {{ with $entry.bib_key }}<pre class="bibtex-block" hidden>{{ $bibSnippet }}</pre>{{ end }}
+  {{ with $entry.abstract }}<div class="abstract-block" hidden><button type="button" class="pub-block-close" aria-label="Close" title="Close">&times;</button>{{ . }}</div>{{ end }}
+  {{ with $entry.bib_key }}<div class="bibtex-block" hidden><button type="button" class="pub-block-close" aria-label="Close" title="Close">&times;</button><pre class="bibtex-snippet">{{ $bibSnippet }}</pre></div>{{ end }}
 </article>

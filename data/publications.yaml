@@ -12,6 +12,15 @@ papers:
     month_num: 11
     publisher: "ACM"
     bib_key: "scdisk"
+    abstract: >-
+      Cloud resource oversubscription is widely used to improve infrastructure utilization, particularly for CPU.
+      In contrast, storage resources remain largely statically provisioned despite significant underutilization: our analysis of
+      multiple OVHcloud platforms shows that virtual machines use on average only 42.9% of their local disk capacity.
+      This paper explores disk oversubscription in thin-provisioned environments, where storage resources are persistent and
+      difficult to predict in the black-box context of IaaS platforms. We introduce Disk Release Prediction (DRP), a dynamic
+      oversubscription method that anticipates disk capacity released by instance churn. Using large-scale traces from OVHcloud,
+      we show that DRP can reduce required disk capacity by up to 2x while maintaining a low rate of corrective migrations,
+      lowering storage-related scope 3 emissions by approximately 44.5% in newer cloud regions.
     entry_type: "conference"
     section_cv: "main"
     ranking: "19.2%"
@@ -28,6 +37,16 @@ papers:
     month_num: 9
     publisher: "IEEE"
     bib_key: "esquantum"
+    abstract: >-
+      Hybrid quantum-classical applications require execution environments able to coordinate conventional computing resources
+      and quantum processing units (QPUs). As quantum platforms remain scarce and difficult to access for systematic scheduling
+      studies, simulation and runtime support are needed to evaluate programming models, performance models, and scheduling
+      policies before deployment on physical hardware. This paper presents an open-source framework for studying hybrid
+      quantum-classical execution: we extend SimGrid with QPU resources able to execute quantum circuits through an emulator
+      while injecting platform-specific execution-time estimates, and StarPU with a task-based programming model in which
+      quantum tasks can be scheduled alongside classical tasks. Empirical measurements on the IBM ibm_quebec quantum computer,
+      integrated into the simulator, show that circuit execution time is mainly driven by the number of shots, while circuit
+      depth and number of active qubits have a weaker observable influence under the tested conditions.
     entry_type: "conference"
     section_cv: "main"
 
@@ -39,6 +58,17 @@ papers:
     month_num: 6
     publisher: "IEEE"
     bib_key: "cinergytcc"
+    abstract: >-
+      Cloud providers now commonly offer tools to monitor the environmental impact of hosted services, a significant share of
+      which arises from the power consumption of servers. To allocate server-related emissions, these methodologies typically
+      rely on resource-quantity-based attribution and do not account for the effective usage of virtual resources. We
+      demonstrate that resource usage can drastically affect carbon estimations, and propose CINERGY, a framework to
+      standardize how cloud providers integrate the power consumption of virtual resources into their carbon calculators.
+      It defines a deterministic baseline for the power consumption of a provisioned VM (same usage, same estimate) while
+      still accounting for consolidation gains enabled by virtualization. Constructed and evaluated empirically, our approach
+      achieves high precision, with a mean absolute error of 6.6% across various hardware. Using metrics collected from cloud
+      providers, we reveal the impact of instance type on energy efficiency (up to 85% differences for the same VM size) and
+      show that quantity-based accounting can underestimate CO2 emissions by up to a factor of three.
     entry_type: "journal"
     section_cv: "main"
     ranking: "Q1"
@@ -59,6 +89,16 @@ papers:
     month_num: 5
     publisher: "IEEE"
     bib_key: "cloudevolutionccgrid26"
+    abstract: >-
+      In contrast to hardware, the evolution of the virtual resources through which most practitioners interact with computing
+      infrastructure remains largely unexplored. We study how Virtual Machine (VM) configurations have evolved across major
+      cloud providers over the past two decades, using historical catalogs and large-scale usage traces. Our analysis shows
+      that VM evolution diverges from underlying hardware trends: although provider catalogs have expanded toward larger
+      configurations, client demand remains concentrated on the smallest options. At the same time, larger options are
+      increasingly selected, and gradual increases in minimal allocations have raised the footprint of active VMs, which
+      doubled between 2019 and 2025. Consequently, the number of instances consolidated per host has remained stable over
+      time. By progressively inflating default VM footprints, cloud offerings weaken incentives for software efficiency and
+      limit the potential gains from consolidating workloads on more capable servers.
     entry_type: "conference"
     section_cv: "main"
     ranking: "25%"
@@ -74,6 +114,15 @@ papers:
     month_num: 4
     publisher: "ACM"
     bib_key: "eurosys26"
+    abstract: >-
+      As the demand for AI-driven workloads increases, the energy consumption of Graphics Processing Units (GPUs) has come
+      under intense scrutiny, particularly in hyperscale data centers where large numbers of accelerators are centralized and
+      leased to diverse clients. However, GPU power monitoring in cloud environments presents several challenges, as the
+      monitoring capabilities of physical devices may be limited or even absent depending on the product offered. We propose
+      methods to estimate the energy consumption of jobs running on GPU devices in cloud environments, spanning shared and
+      managed offerings (ML-as-a-Service) to less managed products (Infrastructure-as-a-Service). Our models demonstrate the
+      benefits of sharing GPUs for small AI workloads, as well as the current sub-optimal utilization of GPUs in cloud
+      hyperscalers, based on insights from an IaaS GPU cluster.
     entry_type: "conference"
     section_cv: "main"
     ranking: "16.9%"
@@ -93,6 +142,15 @@ papers:
     year: 2025
     month_num: 6
     bib_key: "sharinglimits"
+    abstract: >-
+      Although the sector appears virtual, Information and Communication Technologies remain inherently constrained by their
+      materiality and cannot rely on an infinite pool of resources. Contrary to common assumptions, we show that tenants
+      typically do not share computing resources, even in environments commonly perceived as mutualized such as cloud
+      platforms: time-sharing has been progressively phased out for reasons of performance, security, predictability, and the
+      decreasing cost of computing resources. This paper advocates for managing fewer physical resources by improving resource
+      sharing between tenants, a paradigm shift moving beyond traditional time-sharing at the hardware level to a higher
+      abstraction. We review the current state of the art, identify challenges and opportunities, and outline key research
+      directions for Time-Shared Computing.
     entry_type: "conference"
     section_cv: "workshop"
     selected: true
@@ -109,6 +167,15 @@ papers:
     month_num: 5
     publisher: "IEEE"
     bib_key: "jacquet:hal-04981001"
+    abstract: >-
+      While the power consumption of physical servers can be physically monitored, the adoption of virtual environments such
+      as cloud computing renders physical measurements impractical in operational contexts. State-of-the-art approaches mostly
+      assign shares of server power consumption to hosted processes using system metrics, but this bottom-up approach is
+      highly sensitive in multi-tenant environments: the same VM activity may lead to different power traces depending on
+      co-hosted VMs. As cloud customers only control their provisioned virtual resources, we propose CINERGY, a method to
+      model the power consumption of virtual appliances with context-agnostic tracking of their environmental impact. Designed
+      to be more predictable than state-of-the-art power models while still exposing the gains from consolidation, CINERGY is
+      deterministic and accurate, with an average error of 6.6% evaluated against ground-truth measurements.
     entry_type: "conference"
     section_cv: "workshop"
     doi: "10.1109/CCGRID64434.2025.00024"
@@ -127,6 +194,15 @@ papers:
     year: 2024
     month_num: 9
     bib_key: "jacquetslack"
+    abstract: >-
+      Cloud providers expose a large catalog of Virtual Machine (VM) offers, some premium with guaranteed dedicated resources
+      and others hosted in oversubscribed environments. Managing multiple oversubscribed VM levels often leads providers to
+      provision isolated clusters of Physical Machines (PMs) for each category of offers. We introduce SLACKVM, a shared
+      architecture in which VMs from various oversubscription levels coexist on the same cluster of PMs. We demonstrate that
+      oversubscription levels can be complementary, meaning they do not saturate the same resource components: by coupling
+      multiple levels, Cloud providers can better consolidate VM offers onto PMs and reduce the size of their clusters by up
+      to 9.6%. These resource savings yield both operational cost reduction and a reduced ecological footprint, with a limited
+      impact on the Quality of Service.
     entry_type: "conference"
     section_cv: "main"
     ranking: "28%"
@@ -146,6 +222,15 @@ papers:
     year: 2024
     month_num: 5
     bib_key: "jacquet:hal-04454043"
+    abstract: >-
+      VMs schedulers mostly implement all-or-nothing oversubscription strategies, wherein all VM resources are either
+      oversubscribed or remain unaltered. An empirical study of individual virtual CPU (vCPU) usage in the OVHcloud production
+      environment demonstrates that vCPUs are not uniformly utilized, making this holistic approach questionable. We introduce
+      SWEETSPOTVM, where oversubscription ratios are applied at the granularity of individual vCPUs instead of whole VMs,
+      enabling a more flexible oversubscription management strategy by pinning oversubscription ratios per vCPU within VMs.
+      Experiments on a physical platform show the possibility of dividing the cost of hosting VMs by 3 while maintaining VM
+      performance at the level of non-oversubscribed platforms, opening new avenues to boost consolidation with positive
+      impacts on the environmental footprint of cloud computing.
     entry_type: "conference"
     section_cv: "main"
     ranking: "26%"
@@ -165,6 +250,15 @@ papers:
     year: 2024
     month_num: 2
     bib_key: "jacquet:hal-04466538"
+    abstract: >-
+      Despite continuous improvements, cloud physical resources remain underused, severely impacting the efficiency of these
+      infrastructures. IaaS providers usually compensate for oversized Virtual Machines (VMs) by offering more virtual
+      resources than are physically available on a host, but statically-defined oversubscription ratios may hinder performance
+      under resource contention. This article studies how a greedy increase of the oversubscription ratio per Physical Machine
+      and resource type can preserve performance goals. Our contribution, SCROOGEVM, leverages the detection of PM stability
+      to carefully increase the associated oversubscription ratios. Based on metrics shared by public cloud providers, our
+      comparative analysis shows that SCROOGEVM outperforms state-of-the-art oversubscription computations by leveraging
+      long-lasting VMs, while avoiding live migration penalties and performance impacts for stakeholders.
     entry_type: "journal"
     section_cv: "main"
     ranking: "Q1"
@@ -184,6 +278,15 @@ papers:
     year: 2023
     month_num: 9
     bib_key: "jacquet2023cloudfactory"
+    abstract: >-
+      Simulators and benchmarks are broadly adopted to study cloud infrastructures, but their reported results may suffer from
+      a representativeness problem, as they vary depending on input workloads whose characteristics differ greatly between
+      cloud providers and public/private deployments. Addressing this representativeness requires providers to share
+      production-scale datasets, which might be considered sensitive. This paper introduces CLOUDFACTORY, an IaaS workload
+      generator composed of a library allowing providers to share IaaS statistics instead of raw datasets, and of a generator
+      producing realistic VM workloads matching these statistics. As an example, we analyze the scheduling evolution for
+      different IaaS workload intensities of two cloud providers (Microsoft Azure and Chameleon), and report OVHcloud
+      statistics computed with CLOUDFACTORY compared to other providers.
     entry_type: "conference"
     section_cv: "main"
     ranking: "33%"
@@ -227,6 +330,17 @@ theses:
   - title: "Enhancing IaaS Consolidation with Resource Oversubscription"
     authors: "Pierre Jacquet"
     venue: "Ph.D. Thesis"
+    abstract: >-
+      By running workloads in shared data centers, the digital realm has improved its energy efficiency, as visible through
+      indicators such as Power Usage Efficiency (PUE). However, infrastructure is not the sole point of optimization: from
+      both an energy and material standpoint, a server loaded at 100% is preferable to three servers loaded at 30%, making
+      usage rates a considerable potential gain for research. This thesis examines these usage rates along four complementary
+      contributions: (1) the creation of realistic controlled experiments in an IaaS context, through a dedicated workload
+      generation tool; (2) the calculation of individual server oversubscription ratios by considering individual server
+      stability, fine-tuning ratios without additional violations; (3) the introduction of a new oversubscription paradigm
+      based on the observation that VM vCPUs are not uniformly used, exposing cores of different power levels to improve
+      overall performance; (4) the complementarity of oversubscription techniques, since premium and oversubscribed VMs
+      saturate their hosts' resources differently, enabling synergies that reduce the number of servers by up to 9.6%.
     thesis_type: "phd"
     school: "Université de Lille"
     year: 2024
@@ -239,6 +353,16 @@ theses:
   - title: "Mainframe footprint and consumption, an evaluation based on sustainable IT approach"
     authors: "Pierre Jacquet"
     venue: "Master Thesis"
+    abstract: >-
+      Mainframes remain a key infrastructure element for the banking sector: according to IBM, 92 of the top 100 banks use
+      mainframe computers and 90% of all credit card transactions are performed on mainframes. While sustainable IT has been
+      extensively studied on common platforms such as x86 computers, there are, to the best of our knowledge, no dedicated
+      studies considering the mainframe ecosystem through a consumption prism. We first review consumption evaluation methods
+      (hardware, hybrid, and software approaches) and how to adapt them to mainframe specificities. We then determine the
+      consumption and carbon footprint of the Groupe BPCE mainframe servers, including external components such as tape
+      libraries and flash storage arrays, and compare this order of magnitude against an equivalent x86 architecture. Finally,
+      we study how mainframe specificities, including its architecture and retro-compatibility capacity, could support a
+      sustainable strategy, and outline directions for such a strategy based on identified internal and external factors.
     thesis_type: "masters"
     school: "Université Paris 12"
     year: 2021
