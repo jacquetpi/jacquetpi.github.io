@@ -124,35 +124,40 @@ Then run `hugo --minify`. The home page and `/teaching/` read from this file.
 
 ### Adding or editing service
 
-All service entries (committees, reviews, etc.) live in **`data/service.yaml`**. The display uses a **nested list**: each category (e.g. “Committees”, “Reviews”) is a top-level list item with its own sub-list of items. **On the home page, only the first 5 items per category** (e.g. first 5 committees, first 5 reviews) are shown; the full list is at `/service/`.
+All service entries (committees, reviews, etc.) live in **`data/service.yaml`** as a flat `entries:` list. Entries are grouped automatically into display categories by **`domain`** + **`role_group`** (e.g. “Conference - PC Member”, “Journal - Reviewer”, “Organization”), rendered as a nested list. **On the home page, only entries with `selected: true` are shown** (max 5 per resulting category); the full list is at `/service/`.
 
-- **Structure:** `categories:` is a list of `name` + `items`. Each item has `text` (required); optional `link: { label, url }`; optional `suffix` (e.g. `" Workshop"`); optional **`years`** (list, e.g. `[2025, 2027]`) for multiple years—renders as “ 2025, 2027” after the link/suffix. Set **`displayed_on_site: false`** on an item to show it only in the generated LaTeX CV, not on the website.
-- Example (single year via suffix, or multiple years via `years`):
+- **Required fields:** `domain` (`conference` | `journal` | `journal/conference` | `organization`), `role_type` (display label, e.g. "PC Member"), `role_group` (grouping key, e.g. `pc_member`), `venue` (display name).
+- **Optional fields:** `url` (venue link), `year` (single year) or `years` (list, renders as "2025, 2027"), `month_num` (1-12, RSS dating), `role_prefix` (text shown before the venue, e.g. "Web Chair"), `note` (rendered in parentheses, e.g. "Workshop"), `sub_reviewing` (informational flag only), `selected` (show on home page). Set **`displayed_on_site: false`** on an entry to show it only in the generated LaTeX CV, not on the website.
+- Example:
 
   ```yaml
-  categories:
-    - name: "Committees"
-      items:
-        - text: "PC member of Artifact track, "
-          link: { label: "DSN", url: "https://..." }
-          suffix: " 2026"
-        - text: "Web Chair & PC member of "
-          link: { label: "INFRASTRUCTURE", url: "https://..." }
-          suffix: " Workshop"
-          years: [2025, 2027]
-    - name: "Reviews"
-      items:
-        - text: "Journal of Y"
+  entries:
+    - domain: "conference"
+      role_type: "PC Member"
+      role_group: "pc_member"
+      venue: "IEEE/IFIP DSN"
+      url: "https://..."
+      year: 2026
+      month_num: 6
+      selected: true
+    - domain: "conference"
+      role_type: "General Chair"
+      role_group: "general_chair"
+      role_prefix: "Web Chair"
+      venue: "INFRASTRUCTURE"
+      url: "https://..."
+      note: "Workshop"
+      years: [2025, 2027]
   ```
 
-Then run `hugo --minify`. The home page shows the first 5 items per category; `/service/` shows the full nested list.
+Then run `hugo --minify`. The home page shows selected entries (max 5 per category); `/service/` shows the full nested list.
 
 ### LaTeX CV (PDF)
 
 A LaTeX CV is generated from the same data and served at **`/cv/cv.pdf`** (and sources at `/cv/cv.tex`, `/cv/cv.bib`). The generator script **`scripts/generate_cv.py`** reads `data/publications.yaml`, `data/interviews.yaml`, `data/service.yaml`, `data/talks.yaml`, and `data/artifacts.yaml`, then fills the skeleton **`latex/cv_skeleton.tex`** and writes **`latex/cv.bib`** and **`latex/cv.tex`**. CI builds the PDF and copies it (with the generated `.tex` and `.bib`) into `public/cv/` on deploy.
 
 - **To regenerate locally:** `pip install -r scripts/requirements.txt` then `python3 scripts/generate_cv.py`. Build with `cd latex && pdflatex cv.tex && bibtex cv && pdflatex cv.tex && pdflatex cv.tex`. Run tests: `pytest scripts/test_generate_cv.py -v`.
-- **Publications:** Use `bib_key`, `entry_type` (`journal` or `conference`), `section` (`main` or `workshop`), and optional `doi`, `pages`, `publisher` (default IEEE) in `data/publications.yaml`; order in the CV follows the file order. Theses use optional `thesis_type` (`phd` or `masters`) for the bib entry type.
+- **Publications:** Use `bib_key`, `entry_type` (`journal` or `conference`), `section_cv` (`main` or `workshop`), and optional `doi`, `pages`, `publisher` (default IEEE) in `data/publications.yaml`; order in the CV follows the file order. Theses use optional `thesis_type` (`phd` or `masters`) for the bib entry type.
 - **Service:** `sub_reviewing: true` is an informational flag only (not rendered on the site or in the CV; sub-reviewing entries get their own "Journal - Sub-reviewer" category via `role_group`).
 - **Interviews:** `data/interviews.yaml` (each entry: `bib_key`, `title`, `authors`, `year`, optional `note` for URL or text).
 - **Artifacts:** `data/artifacts.yaml` (each entry: `name`, `family`, `audience`, `evolution`, `duration`, `contribution`, `url`, `description`).
@@ -177,7 +182,7 @@ A LaTeX CV is generated from the same data and served at **`/cv/cv.pdf`** (and s
 | `data/publications.yaml` | Single source for all publications |
 | `data/talks.yaml` | Single source for all talks |
 | `data/teaching.yaml` | Single source for all teaching/courses |
-| `data/service.yaml` | Single source for service (categories + items); `displayed_on_site: false` hides item on site but keeps it in CV |
+| `data/service.yaml` | Single source for service (flat `entries:` list); `displayed_on_site: false` hides entry on site but keeps it in CV |
 | `data/interviews.yaml` | Interviews (for CV bib and outreach section) |
 | `data/artifacts.yaml` | Research artifacts (for CV “Research artifacts” section) |
 | `latex/cv_skeleton.tex` | LaTeX CV template with placeholders; filled by `scripts/generate_cv.py` |
