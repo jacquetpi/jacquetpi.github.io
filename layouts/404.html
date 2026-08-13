@@ -1,0 +1,8 @@
+{{ define "main" }}
+{{ partial "sidebar-blog.html" (dict "midTitle" "404" "midHref" "/") }}
+<div class="blog-content">
+  <a class="fallback-home" href="/">Back to home</a>
+  <h1 class="theme-contrast">404 — Page not found</h1>
+  <p>The page you are looking for does not exist (or anymore). Head back to the <a class="article" href="/">home page</a> or browse <a class="article" href="/blog/">the blog</a>.</p>
+</div>
+{{ end }}

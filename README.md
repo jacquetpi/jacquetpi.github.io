@@ -15,7 +15,7 @@ A minimal personal/academic site built with [Hugo](https://gohugo.io/).
 
 ## Build (compile)
 
-**Prerequisites:** [Hugo](https://gohugo.io/installation/) (extended not required).
+**Prerequisites:** [Hugo](https://gohugo.io/installation/) (extended not required; CI is pinned to v0.165.0).
 
 ```bash
 hugo --minify
@@ -162,9 +162,14 @@ A LaTeX CV is generated from the same data and served at **`/cv/cv.pdf`** (and s
 - **Interviews:** `data/interviews.yaml` (each entry: `bib_key`, `title`, `authors`, `year`, optional `note` for URL or text).
 - **Artifacts:** `data/artifacts.yaml` (each entry: `name`, `family`, `audience`, `evolution`, `duration`, `contribution`, `url`, `description`).
 
+### RSS feed
+
+`/feed.xml` aggregates **blog posts** (`content/blog/`) and all data-driven entries (publications, talks, teaching, service, interviews, artifacts), sorted newest first. Future-dated entries are excluded until their date has passed, so items appear in readers exactly once (requires git history; CI builds with `fetch-depth: 0`).
+
 ### Changing site metadata
 
 - **Site params** (profile image, credit, GitHub/Scholar/LinkedIn): `hugo.yaml` → `params`.
+- **Last-updated footer:** the home page shows a "Last updated" date derived from git commit dates (`enableGitInfo: true`).
 - **Favicons:** Put favicon files in `static/resources/favicon/` (paths are already referenced in `layouts/partials/head.html`).
 - **Styles:** `static/resources/css/cv.css` (home) and `static/resources/css/blog.css` (blog and publications).
 
@@ -189,6 +194,8 @@ A LaTeX CV is generated from the same data and served at **`/cv/cv.pdf`** (and s
 | `scripts/generate_cv.py` | Generates `latex/cv.tex` and `latex/cv.bib` from data/*.yaml |
 | `scripts/test_generate_cv.py` | Pytest tests for the CV generator |
 | `layouts/index.html` | Home (CV) layout |
+| `layouts/404.html` | Custom 404 page (served automatically by GitHub Pages) |
+| `layouts/index.feed.xml` | RSS feed template (blog posts + data files) |
 | `layouts/blog/list.html`, `single.html` | Blog list and post layout |
 | `layouts/publications/list.html` | Publications page layout |
 | `layouts/talks/list.html` | Talks page layout |

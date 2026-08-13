@@ -1,7 +1,7 @@
 ---
 title: "Soutenance de thèse"
 date: 2024-07-19
-summary: "[French] My PhD defense took place on **Friday, 19th July 2024**"
+summary: "[French] My PhD defense took place on Friday, 19th July 2024"
 ---
 
 <p>

@@ -7,7 +7,7 @@
   {{ $items := slice }}
 
   {{/* Publications (papers, press, theses) -> blue */}}
-  {{ range .Site.Data.publications.papers }}
+  {{ range hugo.Data.publications.papers }}
     {{ $items = $items | append (dict
       "cat" "publication"
       "year" .year
@@ -17,7 +17,7 @@
       "detail" (printf "%s. %s (%d)." .authors .venue .year)
       "link" "/publications/") }}
   {{ end }}
-  {{ range .Site.Data.publications.press }}
+  {{ range hugo.Data.publications.press }}
     {{ $items = $items | append (dict
       "cat" "publication"
       "year" .year
@@ -27,7 +27,7 @@
       "detail" (printf "%s. %s (%d)." .authors .venue .year)
       "link" "/publications/") }}
   {{ end }}
-  {{ range .Site.Data.publications.theses }}
+  {{ range hugo.Data.publications.theses }}
     {{ $items = $items | append (dict
       "cat" "publication"
       "year" .year
@@ -39,7 +39,7 @@
   {{ end }}
 
   {{/* Artifacts -> purple */}}
-  {{ range .Site.Data.artifacts.artifacts }}
+  {{ range hugo.Data.artifacts.artifacts }}
     {{ $items = $items | append (dict
       "cat" "artifact"
       "year" (.year | default 0)
@@ -51,7 +51,7 @@
   {{ end }}
 
   {{/* Talks -> yellow */}}
-  {{ range .Site.Data.talks.talks }}
+  {{ range hugo.Data.talks.talks }}
     {{ $items = $items | append (dict
       "cat" "talk"
       "year" .year
@@ -63,7 +63,7 @@
   {{ end }}
 
   {{/* Teaching -> red */}}
-  {{ range .Site.Data.teaching.courses }}
+  {{ range hugo.Data.teaching.courses }}
     {{ $entry := . }}
     {{ $detail := .description | default (printf "%s (%s)." .institution .period) }}
     {{ if .years }}
@@ -90,7 +90,7 @@
   {{ end }}
 
   {{/* Service -> orange */}}
-  {{ range .Site.Data.service.entries }}
+  {{ range hugo.Data.service.entries }}
     {{ $entry := . }}
     {{ $detail := printf "%s - %s" .role_type .venue }}
     {{ if .note }}{{ $detail = printf "%s (%s)" $detail .note }}{{ end }}
@@ -121,7 +121,7 @@
   {{ end }}
 
   {{/* Interviews -> grey (others) */}}
-  {{ range .Site.Data.interviews.interviews }}
+  {{ range hugo.Data.interviews.interviews }}
     {{ $items = $items | append (dict
       "cat" "other"
       "year" .year
@@ -133,7 +133,7 @@
   {{ end }}
 
   {{ $ranges := slice }}
-  {{ with .Site.Data.timeline }}
+  {{ with hugo.Data.timeline }}
     {{ range .ranges }}
       {{ $ranges = $ranges | append (dict
         "label" .label

@@ -1,6 +1,7 @@
 baseURL: "https://jacquetpi.github.io/"
-languageCode: "en-us"
+locale: "en-US"
 title: "P. Jacquet"
+enableGitInfo: true
 
 disableKinds:
   - taxonomy

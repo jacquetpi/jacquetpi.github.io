@@ -11,7 +11,10 @@
 })();
 </script>
 <link rel="preconnect" href="https://avatars.githubusercontent.com">
-<meta name="description" content="{{ .Description | default "Pierre Jacquet" }}">
+{{- $desc := .Description | default .Params.summary | default "" -}}
+{{- if not $desc -}}{{- $desc = "Pierre Jacquet" -}}{{- end -}}
+{{- $desc = $desc | plainify | truncate 200 -}}
+<meta name="description" content="{{ $desc }}">
 <meta name="author" content="Pierre Jacquet">
 {{ range .AlternativeOutputFormats }}
 <link rel="alternate" type="{{ .MediaType.Type }}" href="{{ .Permalink }}" title="{{ $.Site.Title }} (RSS)">
@@ -24,3 +27,4 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/resources/favicon/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/resources/favicon/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/resources/favicon/favicon-16x16.png">
+<link rel="icon" href="/resources/favicon/favicon.ico">

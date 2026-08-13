@@ -1,0 +1,8 @@
+{{- /* Site-wide "last updated" note, based on git commit dates (enableGitInfo). */ -}}
+{{- $last := time.AsTime "1970-01-01T00:00:00Z" -}}
+{{- range site.Pages -}}
+  {{- if and .Lastmod (gt .Lastmod.Unix $last.Unix) -}}
+    {{- $last = .Lastmod -}}
+  {{- end -}}
+{{- end -}}
+<p class="last-updated">Last updated: {{ $last.Format "2 January 2006" }}</p>

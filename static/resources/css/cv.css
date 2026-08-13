@@ -142,6 +142,12 @@ body {
     color: inherit;
     text-decoration: underline;
 }
+.last-updated {
+    margin-top: 3em;
+    font-size: 0.8em;
+    font-style: italic;
+    color: var(--grey);
+}
 .author-me {
     text-decoration: underline dotted;
 }

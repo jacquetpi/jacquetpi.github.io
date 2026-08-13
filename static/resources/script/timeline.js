@@ -227,6 +227,14 @@
           if (!wasOpen) this.classList.add('open');
         });
 
+        card.addEventListener('keydown', function (evt) {
+          if (evt.key !== 'Enter' && evt.key !== ' ') return;
+          evt.preventDefault();
+          var wasOpen = this.classList.contains('open');
+          closeAll();
+          if (!wasOpen) this.classList.add('open');
+        });
+
         axis.appendChild(card);
         y += ROW;
       });
@@ -303,6 +311,14 @@
     el.appendChild(det);
 
     el.addEventListener('click', function () {
+      var wasOpen = this.classList.contains('open');
+      closeAll();
+      if (!wasOpen) this.classList.add('open');
+    });
+
+    el.addEventListener('keydown', function (evt) {
+      if (evt.key !== 'Enter' && evt.key !== ' ') return;
+      evt.preventDefault();
       var wasOpen = this.classList.contains('open');
       closeAll();
       if (!wasOpen) this.classList.add('open');

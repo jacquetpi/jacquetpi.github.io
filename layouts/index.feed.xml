@@ -1,166 +1,199 @@
-{{- $siteTitle := .Site.Title -}}
-{{- $baseURL := .Site.BaseURL -}}
+{{- $siteTitle := site.Title -}}
+{{- $baseURL := site.BaseURL -}}
 {{- $items := slice -}}
 
-{{- range .Site.Data.publications.papers -}}
+{{- /* Blog posts (content/blog) */ -}}
+{{- range where site.RegularPages "Type" "blog" -}}
+  {{- $d := .Date.UTC -}}
   {{- $items = $items | append (dict
-    "title" (printf "New Paper: %s" .title)
-    "description" (printf "%s. %s (%d)." .authors .venue .year)
-    "link" (absURL "publications/")
-    "guid" (printf "publication-%s" .bib_key)
-    "year" .year
-    "month" (.month_num | default 1)
+    "title" (printf "New Article: %s" .Title)
+    "description" (.Params.summary | default .Description | default "")
+    "link" ((.Params.link | default .Permalink) | absURL)
+    "guid" (printf "blog-%s" (urlize .Title))
+    "date" $d
+    "ts" (add (mul $d.Year 12) (sub (int $d.Month) 1))
   ) -}}
 {{- end -}}
 
-{{- range .Site.Data.publications.press -}}
-  {{- $items = $items | append (dict
-    "title" (printf "New Press: %s" .title)
-    "description" (printf "%s. %s (%d)." .authors .venue .year)
-    "link" (absURL "publications/")
-    "guid" (printf "press-%s" .bib_key)
-    "year" .year
-    "month" (.month_num | default 1)
-  ) -}}
-{{- end -}}
-
-{{- range .Site.Data.publications.theses -}}
-  {{- $items = $items | append (dict
-    "title" (printf "New Thesis: %s" .title)
-    "description" (printf "%s. %s (%d)." .authors .venue .year)
-    "link" (absURL "publications/")
-    "guid" (printf "thesis-%s" .bib_key)
-    "year" .year
-    "month" (.month_num | default 1)
-  ) -}}
-{{- end -}}
-
-{{- range .Site.Data.talks.talks -}}
-  {{- $items = $items | append (dict
-    "title" (printf "New Talk: %s" .title)
-    "description" (printf "%s at %s, %s (%d)." .type .venue .location .year)
-    "link" (absURL "talks/")
-    "guid" (printf "talk-%s-%d-%d" (urlize .title) .year (.month_num | default 1))
-    "year" .year
-    "month" (.month_num | default 1)
-  ) -}}
-{{- end -}}
-
-{{- range .Site.Data.teaching.courses -}}
-  {{- $entry := . -}}
-  {{- $description := .description | default (printf "Course taught at %s (%s)." .institution .period) -}}
-  {{- if .years -}}
-    {{- range .years -}}
-      {{- $items = $items | append (dict
-        "title" (printf "New Teaching: %s" $entry.title)
-        "description" $description
-        "link" (absURL "teaching/")
-        "guid" (printf "teaching-%s-%d" (urlize $entry.title) .)
-        "year" .
-        "month" ($entry.month_num | default 1)
-      ) -}}
-    {{- end -}}
-  {{- else -}}
-    {{- $year := .year | default 0 -}}
+{{- range $p := hugo.Data.publications.papers -}}
+  {{- $year := int ($p.year | default 0) -}}
+  {{- if gt $year 0 -}}
+    {{- $month := int ($p.month_num | default 1) -}}
     {{- $items = $items | append (dict
-      "title" (printf "New Teaching: %s" .title)
-      "description" $description
-      "link" (absURL "teaching/")
-      "guid" (printf "teaching-%s-%s" (urlize .title) (urlize .period))
-      "year" $year
-      "month" (.month_num | default 1)
+      "title" (printf "New Paper: %s" $p.title)
+      "description" (printf "%s. %s (%d)." $p.authors $p.venue $year)
+      "link" (absURL "publications/")
+      "guid" (printf "publication-%s" $p.bib_key)
+      "date" ((time.AsTime (printf "%04d-%02d-01T00:00:00Z" $year $month)).UTC)
+      "ts" (add (mul $year 12) (sub $month 1))
     ) -}}
   {{- end -}}
 {{- end -}}
 
-{{- range .Site.Data.service.entries -}}
-  {{- if .years -}}
-    {{- $entry := . -}}
-    {{- $description := printf "%s - %s" .role_type .venue -}}
-    {{- if .note -}}
-      {{- $description = printf "%s (%s)" $description .note -}}
-    {{- end -}}
-    {{- range .years -}}
-      {{- $items = $items | append (dict
-        "title" (printf "New Service: %s: %s" $entry.domain $entry.venue)
-        "description" $description
-        "link" (absURL "service/")
-        "guid" (printf "service-%s-%s-%d" (urlize $entry.domain) (urlize $entry.venue) .)
-        "year" .
-        "month" ($entry.month_num | default 1)
-      ) -}}
+{{- range $p := hugo.Data.publications.press -}}
+  {{- $year := int ($p.year | default 0) -}}
+  {{- if gt $year 0 -}}
+    {{- $month := int ($p.month_num | default 1) -}}
+    {{- $items = $items | append (dict
+      "title" (printf "New Press: %s" $p.title)
+      "description" (printf "%s. %s (%d)." $p.authors $p.venue $year)
+      "link" (absURL "publications/")
+      "guid" (printf "press-%s" $p.bib_key)
+      "date" ((time.AsTime (printf "%04d-%02d-01T00:00:00Z" $year $month)).UTC)
+      "ts" (add (mul $year 12) (sub $month 1))
+    ) -}}
+  {{- end -}}
+{{- end -}}
+
+{{- range $p := hugo.Data.publications.theses -}}
+  {{- $year := int ($p.year | default 0) -}}
+  {{- if gt $year 0 -}}
+    {{- $month := int ($p.month_num | default 1) -}}
+    {{- $items = $items | append (dict
+      "title" (printf "New Thesis: %s" $p.title)
+      "description" (printf "%s. %s (%d)." $p.authors $p.venue $year)
+      "link" (absURL "publications/")
+      "guid" (printf "thesis-%s" $p.bib_key)
+      "date" ((time.AsTime (printf "%04d-%02d-01T00:00:00Z" $year $month)).UTC)
+      "ts" (add (mul $year 12) (sub $month 1))
+    ) -}}
+  {{- end -}}
+{{- end -}}
+
+{{- range $t := hugo.Data.talks.talks -}}
+  {{- $year := int ($t.year | default 0) -}}
+  {{- if gt $year 0 -}}
+    {{- $month := int ($t.month_num | default 1) -}}
+    {{- $items = $items | append (dict
+      "title" (printf "New Talk: %s" $t.title)
+      "description" (printf "%s at %s, %s (%d)." $t.type $t.venue $t.location $year)
+      "link" (absURL "talks/")
+      "guid" (printf "talk-%s-%d-%d" (urlize $t.title) $year $month)
+      "date" ((time.AsTime (printf "%04d-%02d-01T00:00:00Z" $year $month)).UTC)
+      "ts" (add (mul $year 12) (sub $month 1))
+    ) -}}
+  {{- end -}}
+{{- end -}}
+
+{{- range $c := hugo.Data.teaching.courses -}}
+  {{- $desc := $c.description | default (printf "Course taught at %s (%s)." $c.institution $c.period) -}}
+  {{- if $c.years -}}
+    {{- range $y := $c.years -}}
+      {{- $year := int $y -}}
+      {{- if gt $year 0 -}}
+        {{- $month := int ($c.month_num | default 1) -}}
+        {{- $items = $items | append (dict
+          "title" (printf "New Teaching: %s" $c.title)
+          "description" $desc
+          "link" (absURL "teaching/")
+          "guid" (printf "teaching-%s-%d" (urlize $c.title) $year)
+          "date" ((time.AsTime (printf "%04d-%02d-01T00:00:00Z" $year $month)).UTC)
+          "ts" (add (mul $year 12) (sub $month 1))
+        ) -}}
+      {{- end -}}
     {{- end -}}
   {{- else -}}
-    {{- $year := .year | default 0 -}}
+    {{- $year := int ($c.year | default 0) -}}
     {{- if gt $year 0 -}}
-      {{- $description := printf "%s - %s" .role_type .venue -}}
-      {{- if .note -}}
-        {{- $description = printf "%s (%s)" $description .note -}}
-      {{- end -}}
+      {{- $month := int ($c.month_num | default 1) -}}
       {{- $items = $items | append (dict
-        "title" (printf "New Service: %s: %s" .domain .venue)
-        "description" $description
-        "link" (absURL "service/")
-        "guid" (printf "service-%s-%s-%d" (urlize .domain) (urlize .venue) $year)
-        "year" $year
-        "month" (.month_num | default 1)
+        "title" (printf "New Teaching: %s" $c.title)
+        "description" $desc
+        "link" (absURL "teaching/")
+        "guid" (printf "teaching-%s-%s" (urlize $c.title) (urlize $c.period))
+        "date" ((time.AsTime (printf "%04d-%02d-01T00:00:00Z" $year $month)).UTC)
+        "ts" (add (mul $year 12) (sub $month 1))
       ) -}}
     {{- end -}}
   {{- end -}}
 {{- end -}}
 
-{{- range .Site.Data.interviews.interviews -}}
-  {{- $items = $items | append (dict
-    "title" (printf "New Interview: %s" .title)
-    "description" (printf "%s (%d)." .authors .year)
-    "link" (absURL "publications/")
-    "guid" (printf "interview-%s" .bib_key)
-    "year" .year
-    "month" (.month_num | default 1)
-  ) -}}
+{{- range $s := hugo.Data.service.entries -}}
+  {{- $desc := printf "%s - %s" $s.role_type $s.venue -}}
+  {{- if $s.note -}}{{- $desc = printf "%s (%s)" $desc $s.note -}}{{- end -}}
+  {{- $syears := slice -}}
+  {{- if $s.years -}}
+    {{- $syears = $s.years -}}
+  {{- else if gt (int ($s.year | default 0)) 0 -}}
+    {{- $syears = slice $s.year -}}
+  {{- end -}}
+  {{- range $y := $syears -}}
+    {{- $year := int $y -}}
+    {{- if gt $year 0 -}}
+      {{- $month := int ($s.month_num | default 1) -}}
+      {{- $items = $items | append (dict
+        "title" (printf "New Service: %s" $s.venue)
+        "description" $desc
+        "link" (absURL "service/")
+        "guid" (printf "service-%s-%s-%d" (urlize $s.domain) (urlize $s.venue) $year)
+        "date" ((time.AsTime (printf "%04d-%02d-01T00:00:00Z" $year $month)).UTC)
+        "ts" (add (mul $year 12) (sub $month 1))
+      ) -}}
+    {{- end -}}
+  {{- end -}}
 {{- end -}}
 
-{{- range .Site.Data.artifacts.artifacts -}}
-  {{- $year := .year | default 0 -}}
-  {{- $month := .month_num | default 1 -}}
-  {{- $items = $items | append (dict
-    "title" (printf "New Artifact: %s" .name)
-    "description" .description
-    "link" (absURL "publications/")
-    "guid" (printf "artifact-%s" (urlize .name))
-    "year" $year
-    "month" $month
-  ) -}}
+{{- range $i := hugo.Data.interviews.interviews -}}
+  {{- $year := int ($i.year | default 0) -}}
+  {{- if gt $year 0 -}}
+    {{- $month := int ($i.month_num | default 1) -}}
+    {{- $link := absURL "publications/" -}}
+    {{- if hasPrefix ($i.note | default "") "http" -}}{{- $link = $i.note -}}{{- end -}}
+    {{- $items = $items | append (dict
+      "title" (printf "New Interview: %s" $i.title)
+      "description" (printf "%s (%d)." $i.authors $year)
+      "link" $link
+      "guid" (printf "interview-%s" $i.bib_key)
+      "date" ((time.AsTime (printf "%04d-%02d-01T00:00:00Z" $year $month)).UTC)
+      "ts" (add (mul $year 12) (sub $month 1))
+    ) -}}
+  {{- end -}}
 {{- end -}}
 
-{{- $items = sort $items "month" "desc" -}}
-{{- $items = sort $items "year" "desc" -}}
+{{- range $a := hugo.Data.artifacts.artifacts -}}
+  {{- $year := int ($a.year | default 0) -}}
+  {{- if gt $year 0 -}}
+    {{- $month := int ($a.month_num | default 1) -}}
+    {{- $link := absURL "publications/" -}}
+    {{- if hasPrefix ($a.url | default "") "http" -}}{{- $link = $a.url -}}{{- end -}}
+    {{- $items = $items | append (dict
+      "title" (printf "New Artifact: %s" $a.name)
+      "description" ($a.description | default "")
+      "link" $link
+      "guid" (printf "artifact-%s" (urlize $a.name))
+      "date" ((time.AsTime (printf "%04d-%02d-01T00:00:00Z" $year $month)).UTC)
+      "ts" (add (mul $year 12) (sub $month 1))
+    ) -}}
+  {{- end -}}
+{{- end -}}
+
+{{- /* Newest first (stable sort keeps file order within the same month). */ -}}
+{{- $items = sort $items "ts" "desc" -}}
+{{- /* Drop future-dated items so they appear exactly once, when their date has passed. */ -}}
+{{- $visible := slice -}}
+{{- range $items -}}
+  {{- if not (.date.After now) -}}
+    {{- $visible = $visible | append . -}}
+  {{- end -}}
+{{- end -}}
 
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2000/Atom">
   <channel>
     <title>{{ $siteTitle | htmlEscape }}</title>
     <link>{{ $baseURL }}</link>
-    <description>Updates generated from structured data files.</description>
-    <language>{{ .Site.LanguageCode | default "en-us" }}</language>
+    <description>Updates generated from blog posts and structured data files.</description>
+    <language>{{ site.Language.Locale | default "en-US" }}</language>
     <lastBuildDate>{{ now.UTC.Format "Mon, 02 Jan 2006 15:04:05 -0700" }}</lastBuildDate>
     <atom:link href="{{ absURL "feed.xml" }}" rel="self" type="application/rss+xml" />
-    {{- range first 150 $items }}
-    {{- $pubDate := now.UTC -}}
-    {{- if gt .year 0 -}}
-      {{- $candidate := (time.AsTime (printf "%04d-%02d-01T00:00:00Z" .year (.month | default 1))).UTC -}}
-      {{/* Never emit future-dated items: readers may hide them or pin them forever. */}}
-      {{- if $candidate.Before now -}}
-        {{- $pubDate = $candidate -}}
-      {{- end -}}
-    {{- end -}}
-    {{- $guidSeed := printf "%s|%s|%s|%s|%d|%d" .guid .title .description .link .year (.month | default 1) -}}
+    {{- range first 150 $visible }}
+    {{- $guidSeed := printf "%s|%s|%s|%s|%s" .guid .title .description .link (.date.Format "2006-01-02") -}}
     {{- $guid := printf "%s-%s" .guid (md5 $guidSeed) -}}
     <item>
       <title>{{ .title | htmlEscape }}</title>
       <link>{{ .link }}</link>
       <guid isPermaLink="false">{{ $guid | htmlEscape }}</guid>
-      <pubDate>{{ $pubDate.Format "Mon, 02 Jan 2006 15:04:05 -0700" }}</pubDate>
+      <pubDate>{{ .date.Format "Mon, 02 Jan 2006 15:04:05 -0700" }}</pubDate>
       <description>{{ .description | htmlEscape }}</description>
     </item>
     {{- end }}
