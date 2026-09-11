@@ -11,6 +11,7 @@
     talk: '#f2c200',
     service: '#f08a24',
     teaching: '#e23b3b',
+    awards: '#2a9d54',
     other: '#9aa0a6'
   };
   var CATLABEL = {
@@ -19,9 +20,10 @@
     talk: 'Talks',
     service: 'Service',
     teaching: 'Teaching',
+    awards: 'Awards',
     other: 'Others'
   };
-  var ORDER = ['publication', 'artifact', 'talk', 'service', 'teaching', 'other'];
+  var ORDER = ['publication', 'artifact', 'talk', 'service', 'teaching', 'awards', 'other'];
   var MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   var RANGE_PALETTE = ['#1f9e89', '#c0559f', '#3a86ff', '#e07a3f', '#5d8a3a', '#8a6fd6'];
 

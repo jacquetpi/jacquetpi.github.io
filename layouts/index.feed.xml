@@ -167,6 +167,26 @@
   {{- end -}}
 {{- end -}}
 
+{{- range $a := hugo.Data.awards.awards -}}
+  {{- $year := int ($a.year | default 0) -}}
+  {{- if gt $year 0 -}}
+    {{- $month := int ($a.month_num | default 1) -}}
+    {{- $link := absURL "/" -}}
+    {{- if hasPrefix ($a.url | default "") "http" -}}{{- $link = $a.url -}}
+    {{- else if hasPrefix ($a.program_url | default "") "http" -}}{{- $link = $a.program_url -}}{{- end -}}
+    {{- $desc := printf "%s, %s (%d)." $a.title $a.venue $year -}}
+    {{- if $a.description -}}{{- $desc = printf "%s, %s (%d) — %s." $a.title $a.venue $year $a.description -}}{{- end -}}
+    {{- $items = $items | append (dict
+      "title" (printf "New Award: %s" $a.title)
+      "description" $desc
+      "link" $link
+      "guid" (printf "award-%s-%d" (urlize $a.title) $year)
+      "date" ((time.AsTime (printf "%04d-%02d-01T00:00:00Z" $year $month)).UTC)
+      "ts" (add (mul $year 12) (sub $month 1))
+    ) -}}
+  {{- end -}}
+{{- end -}}
+
 {{- /* Newest first (stable sort keeps file order within the same month). */ -}}
 {{- $items = sort $items "ts" "desc" -}}
 {{- /* Drop future-dated items so they appear exactly once, when their date has passed. */ -}}

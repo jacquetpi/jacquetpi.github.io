@@ -1,4 +1,4 @@
 ---
 title: "Timeline"
-description: "Pierre Jacquet – Timeline of publications, talks, artifacts, service, teaching and more"
+description: "Pierre Jacquet – Timeline of publications, talks, artifacts, service, teaching, awards and more"
 ---

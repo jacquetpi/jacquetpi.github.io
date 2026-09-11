@@ -1,0 +1,47 @@
+# Awards and distinctions for the CV "Distinctions" section, the timeline and the RSS feed.
+# Fields:
+# - title:        award name, e.g. "Travel grant" (required)
+# - venue:        event or institution the award refers to (required)
+# - url:          optional link on the venue text (rendered as \href)
+# - program:      optional extra text in parentheses, e.g. "MITACS Elevate program"
+# - program_url:  optional link on the program text
+# - display_year: optional boolean; renders "(<year>)" after venue/program (default false)
+# - description:  optional text after the em dash
+# - year:         award year, used for chronological display and RSS dating (required)
+# - month_num:    optional month number (1-12), used for RSS/timeline dating
+
+awards:
+  - title: "Early Career grant"
+    venue: "SC 2026"
+    url: "https://sc26.supercomputing.org/program/early-career/"
+    description: "awarded to present on main track"
+    year: 2026
+    month_num: 9
+
+  - title: "Travel grant"
+    venue: "EuroSys 2026"
+    url: "https://2026.eurosys.org/grants.html"
+    description: "awarded to present on main track"
+    year: 2026
+    month_num: 3
+
+  - title: "24-month scholarship"
+    venue: "ÉTS Montréal"
+    program: "MITACS Elevate program"
+    program_url: "https://www.mitacs.ca/our-programs/elevate/"
+    description: "awarded after an application to an excellence fellowship"
+    year: 2024
+
+  - title: "Best Contribution Award"
+    venue: "IBM Master the Mainframe"
+    url: "https://community.ibm.com/community/user/blogs/meredith-stowell1/2021/03/31/announcing-the-2020-master-the-mainframe-winners"
+    display_year: true
+    description: "international innovation competition with 25,000 participants"
+    year: 2020
+
+  - title: "Jury Prize"
+    venue: "Safran Black-Out Challenge"
+    url: "https://www.agorize.com/en/challenges/black-out-2/pages/saison-1"
+    display_year: true
+    description: "national innovation competition with 650 participants"
+    year: 2019

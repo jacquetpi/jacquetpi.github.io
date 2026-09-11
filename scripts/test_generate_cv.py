@@ -417,3 +417,105 @@ def test_get_first_link_url():
     assert gen.get_first_link_url(links) == "https://a"
     assert gen.get_first_link_url(links, "Code") == "https://b"
     assert gen.get_first_link_url([]) is None
+
+
+# --- generate_awards_section ---
+
+
+def test_generate_awards_basic_with_url_and_description():
+    awards_data = {
+        "awards": [
+            {
+                "title": "Travel grant",
+                "venue": "EuroSys 2026",
+                "url": "https://2026.eurosys.org/grants.html",
+                "description": "awarded to present on main track",
+                "year": 2026,
+                "month_num": 3,
+            }
+        ]
+    }
+    out = gen.generate_awards_section(awards_data)
+    assert out == "Travel grant, \\href{https://2026.eurosys.org/grants.html}{EuroSys 2026} — awarded to present on main track\\\\"
+
+
+def test_generate_awards_display_year_suffix():
+    awards_data = {
+        "awards": [
+            {
+                "title": "Best Contribution Award",
+                "venue": "IBM Master the Mainframe",
+                "url": "https://community.ibm.com/x",
+                "display_year": True,
+                "description": "international innovation competition with 25,000 participants",
+                "year": 2020,
+            }
+        ]
+    }
+    out = gen.generate_awards_section(awards_data)
+    assert "{IBM Master the Mainframe} (2020) —" in out
+
+
+def test_generate_awards_no_display_year_by_default():
+    awards_data = {"awards": [{"title": "Early Career grant", "venue": "SC 2026", "year": 2026}]}
+    out = gen.generate_awards_section(awards_data)
+    assert "(2026)" not in out
+
+
+def test_generate_awards_program_with_its_own_url():
+    awards_data = {
+        "awards": [
+            {
+                "title": "24-month scholarship",
+                "venue": "ÉTS Montréal",
+                "program": "MITACS Elevate program",
+                "program_url": "https://www.mitacs.ca/our-programs/elevate/",
+                "description": "awarded after an application to an excellence fellowship",
+                "year": 2024,
+            }
+        ]
+    }
+    out = gen.generate_awards_section(awards_data)
+    assert "\\href{https://www.mitacs.ca/our-programs/elevate/}{(MITACS Elevate program)}" in out
+    assert "ÉTS Montréal \\href" in out or "{\\'E}TS Montr{\\'e}al \\href" in out
+
+
+def test_generate_awards_venue_without_url_is_plain():
+    awards_data = {"awards": [{"title": "Jury Prize", "venue": "Local Event", "year": 2019}]}
+    out = gen.generate_awards_section(awards_data)
+    assert out.startswith("Jury Prize, Local Event")
+    assert "\\href" not in out
+
+
+def test_generate_awards_escapes_special_characters():
+    awards_data = {"awards": [{"title": "Award #1 & co", "venue": "V_2020", "year": 2020}]}
+    out = gen.generate_awards_section(awards_data)
+    assert "Award \\#1 \\& co" in out
+    assert "V\\_2020" in out
+
+
+def test_generate_awards_order_follows_file_order():
+    awards_data = {
+        "awards": [
+            {"title": "Newer", "venue": "V", "year": 2026},
+            {"title": "Older", "venue": "V", "year": 2019},
+        ]
+    }
+    out = gen.generate_awards_section(awards_data)
+    assert out.index("Newer") < out.index("Older")
+
+
+def test_generate_awards_each_line_ends_with_break():
+    awards_data = {
+        "awards": [
+            {"title": "A", "venue": "V1", "year": 2026},
+            {"title": "B", "venue": "V2", "year": 2025},
+        ]
+    }
+    out = gen.generate_awards_section(awards_data)
+    assert out.count("\\\\") == 2
+
+
+def test_generate_awards_empty():
+    assert gen.generate_awards_section({"awards": []}) == ""
+    assert gen.generate_awards_section({}) == ""

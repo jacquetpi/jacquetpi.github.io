@@ -420,6 +420,35 @@ def generate_artifacts_section(artifacts_data):
     return "\n".join(lines)
 
 
+def generate_awards_section(awards_data):
+    awards = awards_data.get("awards", [])
+    lines = []
+    for a in awards:
+        title_tex = latex_escape(a.get("title", ""))
+        venue = a.get("venue", "")
+        url = (a.get("url") or "").strip()
+        venue_tex = f"\\href{{{latex_escape_url(url)}}}{{{latex_escape(venue)}}}" if url else latex_escape(venue)
+        line = f"{title_tex}, {venue_tex}"
+
+        program = (a.get("program") or "").strip()
+        if program:
+            program_url = (a.get("program_url") or "").strip()
+            if program_url:
+                line += f" \\href{{{latex_escape_url(program_url)}}}{{({latex_escape(program)})}}"
+            else:
+                line += f" ({latex_escape(program)})"
+
+        if _is_true(a.get("display_year", False)) and a.get("year") not in (None, ""):
+            line += f" ({a['year']})"
+
+        description = (a.get("description") or "").strip()
+        if description:
+            line += f" — {latex_escape(description)}"
+
+        lines.append(line + "\\\\")
+    return "\n".join(lines)
+
+
 def generate_outreach_interviews(interviews_data):
     items = interviews_data.get("interviews", [])
     # Use \par to separate entries; \\ causes "There's no line here to end" in this context
@@ -439,6 +468,7 @@ def main():
     talks_data = load_yaml("talks")
     artifacts_data = load_yaml("artifacts")
     interviews_data = load_yaml("interviews")
+    awards_data = load_yaml("awards")
 
     # Generate cv.bib
     bib_content = generate_bib(pub=pub, interviews=interviews_data)
@@ -454,6 +484,7 @@ def main():
         "{{SERVICE_SECTION}}": generate_service_section(service),
         "{{OUTREACH_TALKS}}": generate_talks_section(talks_data),
         "{{ARTIFACTS_SECTION}}": generate_artifacts_section(artifacts_data),
+        "{{AWARDS_SECTION}}": generate_awards_section(awards_data),
         "{{OUTREACH_INTERVIEWS}}": generate_outreach_interviews(interviews_data),
         "{{OUTREACH_PRESS}}": generate_outreach_press(pub),
     }

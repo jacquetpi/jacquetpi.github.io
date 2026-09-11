@@ -26,6 +26,8 @@ papers:
     ranking: "19.2%"
     selected: true
     links:
+      - label: "[Paper]"
+        url: "https://hal.science/hal-05747503"
       - label: "[Code]"
         url: "https://zenodo.org/records/21262313"
 

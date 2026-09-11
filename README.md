@@ -152,9 +152,28 @@ All service entries (committees, reviews, etc.) live in **`data/service.yaml`** 
 
 Then run `hugo --minify`. The home page shows selected entries (max 5 per category); `/service/` shows the full nested list.
 
+### Adding or editing awards
+
+All awards and distinctions live in **`data/awards.yaml`**. They render in the generated LaTeX CV (`Distinctions` section), on the `/timeline/` page (green "Awards" lane), and in the RSS feed.
+
+- **Fields:** `title`, `venue`, `year` (required). Optional `url` (link on the venue), `program` + `program_url` (extra text in parentheses, e.g. a fellowship program), `display_year: true` (renders `(<year>)` after the venue), `description` (text after the em dash), `month_num` (1-12, timeline/RSS dating). Order in the CV follows the file order.
+- Example:
+
+  ```yaml
+  awards:
+    - title: "Travel grant"
+      venue: "EuroSys 2026"
+      url: "https://example.org/grants"
+      description: "awarded to present on main track"
+      year: 2026
+      month_num: 3
+  ```
+
+Then run `python3 scripts/generate_cv.py` for the CV and `hugo --minify` for the site.
+
 ### LaTeX CV (PDF)
 
-A LaTeX CV is generated from the same data and served at **`/cv/cv.pdf`** (and sources at `/cv/cv.tex`, `/cv/cv.bib`). The generator script **`scripts/generate_cv.py`** reads `data/publications.yaml`, `data/interviews.yaml`, `data/service.yaml`, `data/talks.yaml`, and `data/artifacts.yaml`, then fills the skeleton **`latex/cv_skeleton.tex`** and writes **`latex/cv.bib`** and **`latex/cv.tex`**. CI builds the PDF and copies it (with the generated `.tex` and `.bib`) into `public/cv/` on deploy.
+A LaTeX CV is generated from the same data and served at **`/cv/cv.pdf`** (and sources at `/cv/cv.tex`, `/cv/cv.bib`). The generator script **`scripts/generate_cv.py`** reads `data/publications.yaml`, `data/interviews.yaml`, `data/service.yaml`, `data/talks.yaml`, `data/artifacts.yaml`, and `data/awards.yaml`, then fills the skeleton **`latex/cv_skeleton.tex`** and writes **`latex/cv.bib`** and **`latex/cv.tex`**. CI builds the PDF and copies it (with the generated `.tex` and `.bib`) into `public/cv/` on deploy.
 
 - **To regenerate locally:** `pip install -r scripts/requirements.txt` then `python3 scripts/generate_cv.py`. Build with `cd latex && pdflatex cv.tex && bibtex cv && pdflatex cv.tex && pdflatex cv.tex`. Run tests: `pytest scripts/test_generate_cv.py -v`.
 - **Publications:** Use `bib_key`, `entry_type` (`journal` or `conference`), `section_cv` (`main` or `workshop`), and optional `doi`, `pages`, `publisher` (default IEEE) in `data/publications.yaml`; order in the CV follows the file order. Theses use optional `thesis_type` (`phd` or `masters`) for the bib entry type.
@@ -164,7 +183,7 @@ A LaTeX CV is generated from the same data and served at **`/cv/cv.pdf`** (and s
 
 ### RSS feed
 
-`/feed.xml` aggregates **blog posts** (`content/blog/`) and all data-driven entries (publications, talks, teaching, service, interviews, artifacts), sorted newest first. Future-dated entries are excluded until their date has passed, so items appear in readers exactly once (requires git history; CI builds with `fetch-depth: 0`).
+`/feed.xml` aggregates **blog posts** (`content/blog/`) and all data-driven entries (publications, talks, teaching, service, interviews, artifacts, awards), sorted newest first. Future-dated entries are excluded until their date has passed, so items appear in readers exactly once (requires git history; CI builds with `fetch-depth: 0`).
 
 ### Changing site metadata
 
@@ -190,6 +209,7 @@ A LaTeX CV is generated from the same data and served at **`/cv/cv.pdf`** (and s
 | `data/service.yaml` | Single source for service (flat `entries:` list); `displayed_on_site: false` hides entry on site but keeps it in CV |
 | `data/interviews.yaml` | Interviews (for CV bib and outreach section) |
 | `data/artifacts.yaml` | Research artifacts (for CV “Research artifacts” section) |
+| `data/awards.yaml` | Awards and distinctions (CV “Distinctions” section, `/timeline/`, RSS feed) |
 | `latex/cv_skeleton.tex` | LaTeX CV template with placeholders; filled by `scripts/generate_cv.py` |
 | `scripts/generate_cv.py` | Generates `latex/cv.tex` and `latex/cv.bib` from data/*.yaml |
 | `scripts/test_generate_cv.py` | Pytest tests for the CV generator |

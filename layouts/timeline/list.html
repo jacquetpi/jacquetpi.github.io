@@ -132,6 +132,18 @@
       "link" (.note | default "/publications/")) }}
   {{ end }}
 
+  {{/* Awards -> green */}}
+  {{ range hugo.Data.awards.awards }}
+    {{ $items = $items | append (dict
+      "cat" "awards"
+      "year" (.year | default 0)
+      "month" (.month_num | default 1)
+      "label" (printf "Award: %s" .title)
+      "title" (printf "%s — %s" .title .venue)
+      "detail" (printf "%s, %s (%d) — %s" .title .venue .year (.description | default ""))
+      "link" (.url | default (.program_url | default "/"))) }}
+  {{ end }}
+
   {{ $ranges := slice }}
   {{ with hugo.Data.timeline }}
     {{ range .ranges }}
