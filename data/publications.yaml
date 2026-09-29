@@ -107,6 +107,11 @@ papers:
     selected: true
     doi: "10.1109/CCGrid68966.2026.00037"
     pages: "287-296"
+    links:
+      - label: "[Paper]"
+        url: "https://hal.science/hal-05749619"
+      - label: "[Code]"
+        url: "https://github.com/jacquetpi/aws-explo-trend"
 
   - title: "Untangling GPU Power Consumption: Job-Level Inference in Cloud Shared Settings"
     authors: "Pierre Jacquet, Maxime Agusti, Eddy Caron, Camille Coti, Marcos Dias de Assunção, Laurent Lefèvre, and Anne-Cécile Orgerie"

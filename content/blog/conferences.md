@@ -12,6 +12,7 @@ Submission deadlines of distributed systems and related conferences, grouped by 
 - [FAccT](https://facctconference.org/)
 - [ACM e-Energy](https://energy.acm.org/conferences/eenergy/2026/) — winter deadline
 - [SIGMETRICS](https://www.sigmetrics.org/) — winter deadline
+- [ICT4S (ICT for Sustainability)](https://conf.researchr.org/home/ict4s-2027)
 
 ## February
 - [SoCC (ACM Symposium on Cloud Computing)](https://acmsocc.org/2026/papers.html) — round 1 deadline

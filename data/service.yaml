@@ -30,6 +30,23 @@ entries:
   - domain: "journal"
     role_type: "Reviewer"
     role_group: "reviewer"
+    venue: "Journal of Visualized Experiments (JoVE)"
+    year: 2026
+    month_num: 9
+    selected: false
+
+  - domain: "conference"
+    role_type: "Reviewer"
+    role_group: "reviewer"
+    venue: "EuroSys"
+    url: "https://2027.eurosys.org/"
+    year: 2027
+    month_num: 4
+    selected: false
+
+  - domain: "journal"
+    role_type: "Reviewer"
+    role_group: "reviewer"
     venue: "Elsevier Journal of Systems Architecture"
     year: 2026
     month_num: 6
